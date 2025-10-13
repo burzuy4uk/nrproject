@@ -1,105 +1,102 @@
-// js/i18n.js
-(function () {
-    const dict = {
-      en: {
-        title: "Narodna Rada Fond — Home",
-        enclex: "ENC-LEX",
-        publications: "PUBLICATIONS",
-        ukraine_support: "UKRAINE SUPPORT",
-        brand_name: "Narodna Rada Fond",
-        brand_tag: "National Development Fund",
-        menu_enclex: "ENC-LEX ▾",
-        menu_publications: "PUBLICATIONS ▾",
-        menu_ukraine: "UKRAINE SUPPORT ▾",
-        treaty: "Treaty",
-        legal_acts: "Legal Acts",
-        case_law: "Case Law",
-        annual_report: "Annual Report",
-        studies: "Studies",
-        initiatives: "Initiatives",
-        updates: "Updates",
-        login: "Login",
-        search: "Search",
-        headline_l1: "UNITING EUROPE'S",
-        headline_l2: "ENERGY, TODAY!",
-        our_mission: "OUR MISSION ▸",
-        news: "NEWS",
-        all_news: "All news",
-        news1_h: "Regulators drove progress on electricity market coupling",
-        news1_p: "Brief teaser text to simulate a real post.",
-        news2_h: "Stronger regulators key to accelerate reforms",
-        news2_p: "Another short abstract goes here.",
-        read_more: "Read more →",
-        footer_copy: "© 2025 BrandName — All rights reserved"
-      },
-      uk: {
-        title: "Narodna Rada Fond — Головна",
-        enclex: "ENC-LEX",
-        publications: "ПУБЛІКАЦІЇ",
-        ukraine_support: "ПІДТРИМКА УКРАЇНИ",
-        brand_name: "Narodna Rada Fond",
-        brand_tag: "Національний фонд розвитку",
-        menu_enclex: "ENC-LEX ▾",
-        menu_publications: "ПУБЛІКАЦІЇ ▾",
-        menu_ukraine: "ПІДТРИМКА УКРАЇНИ ▾",
-        treaty: "Договір",
-        legal_acts: "Нормативні акти",
-        case_law: "Судова практика",
-        annual_report: "Річний звіт",
-        studies: "Дослідження",
-        initiatives: "Ініціативи",
-        updates: "Оновлення",
-        login: "Увійти",
-        search: "Пошук",
-        headline_l1: "ЄДНАЄМО ЕНЕРГІЮ",
-        headline_l2: "ЄВРОПИ, СЬОГОДНІ!",
-        our_mission: "НАША МІСІЯ ▸",
-        news: "НОВИНИ",
-        all_news: "Усі новини",
-        news1_h: "Регулятори просунулися у куплінгу ринку електроенергії",
-        news1_p: "Короткий анонс, щоб змоделювати реальний запис.",
-        news2_h: "Сильніші регулятори — ключ до прискорення реформ",
-        news2_p: "Ще один короткий підзаголовок.",
-        read_more: "Читати далі →",
-        footer_copy: "© 2025 BrandName — Усі права захищено"
-      }
-    };
-  
-    // helpers
-    const $ = (sel, root = document) => root.querySelector(sel);
-    const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-  
-    function applyLang(lang) {
-      const bundle = dict[lang] || dict.en;
-  
-      // атрибут lang на <html>
-      document.documentElement.setAttribute("lang", lang);
-  
-      // елементи з data-i18n -> textContent
-      $$("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (bundle[key] != null) el.textContent = bundle[key];
-      });
-  
-      // плейсхолдери (input/textarea)
-      $$("[data-i18n-placeholder]").forEach(el => {
-        const key = el.getAttribute("data-i18n-placeholder");
-        if (bundle[key] != null) el.setAttribute("placeholder", bundle[key]);
-      });
-  
-      // зберегти вибір
-      localStorage.setItem("lang", lang);
+(function(){
+  const dict = {
+    uk: {
+      // header
+      home: "Головна",
+      about: "Про фонд",
+      news: "Новини",
+      contacts: "Контакти",
+
+      // index
+      hero_l1: "NARODNA RADA FOND",
+      hero_l2: "ДЛЯ СИЛЬНОГО МАЙБУТНЬОГО",
+      hero_p:  "Прискорюємо розвиток через партнерства, інновації та прозорість.",
+      cta_more:"Дізнатись більше ▸",
+      cta_contact:"Зв’язатися ▸",
+      projects:"Проєкти",
+      partnerships:"Партнерства",
+      innovation:"Інновації",
+      transparency:"Прозорість",
+      latest_news:"Останні новини",
+      all_news:"Усі новини",
+
+      // about
+      about_title:"Про фонд",
+      about_text:"Narodna Rada Fond — це платформа, що об’єднує громади, бізнес і державу для сталого розвитку та цифрових змін.",
+
+      // news
+      news_title:"Новини",
+      news_card1:"NRF запускає програму мікрогрантів для громад",
+      news_card2:"Меморандум з інвесторами у ВДЕ",
+      news_card3:"Звіт: прозорість закупівель у регіонах",
+
+      // contacts
+      contacts_title:"Контакти",
+      contacts_hint:"Наведи курсор на відділ, щоб побачити анімацію.",
+      contacts_secretariat:"Секретаріат",
+      contacts_legal:"Юридичний відділ",
+      contacts_comm:"Комунікації",
+      contacts_events:"Події",
+
+      // footer
+      footer:"© 2025 Narodna Rada Fond — Усі права захищено"
+    },
+    en: {
+      // header
+      home: "Home",
+      about: "About",
+      news: "News",
+      contacts: "Contacts",
+
+      // index
+      hero_l1: "NARODNA RADA FOND",
+      hero_l2: "FOR A STRONGER FUTURE",
+      hero_p:  "Accelerating development through partnerships, innovation and transparency.",
+      cta_more:"Learn more ▸",
+      cta_contact:"Contact us ▸",
+      projects:"Projects",
+      partnerships:"Partnerships",
+      innovation:"Innovation",
+      transparency:"Transparency",
+      latest_news:"Latest news",
+      all_news:"All news",
+
+      // about
+      about_title:"About",
+      about_text:"Narodna Rada Fond unites communities, businesses and the state to foster sustainable development and digital transformation.",
+
+      // news
+      news_title:"News",
+      news_card1:"NRF launches micro-grant program for communities",
+      news_card2:"Memorandum with renewable energy investors",
+      news_card3:"Report: procurement transparency in regions",
+
+      // contacts
+      contacts_title:"Contacts",
+      contacts_hint:"Hover over a department to see the animation.",
+      contacts_secretariat:"Secretariat",
+      contacts_legal:"Legal Affairs",
+      contacts_comm:"Communications",
+      contacts_events:"Events",
+
+      // footer
+      footer:"© 2025 Narodna Rada Fond — All rights reserved"
     }
-  
-    // ініціалізація
-    const saved = localStorage.getItem("lang");
-    const initial = saved || (document.documentElement.lang === "uk" ? "uk" : "en");
-    applyLang(initial);
-  
-    // кнопки
-    const btnUK = $("#lang-uk");
-    const btnEN = $("#lang-en");
-    if (btnUK) btnUK.addEventListener("click", () => applyLang("uk"));
-    if (btnEN) btnEN.addEventListener("click", () => applyLang("en"));
-  })();
-  
+  };
+
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  function apply(lang){
+    const pack = dict[lang] || dict.en;
+    $$("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      if (pack[key] != null) el.textContent = pack[key];
+    });
+    localStorage.setItem("lang", lang);
+    document.documentElement.lang = lang;
+  }
+
+  const saved = localStorage.getItem("lang") || "uk";
+  apply(saved);
+  document.getElementById("lang-uk")?.addEventListener("click",()=>apply("uk"));
+  document.getElementById("lang-en")?.addEventListener("click",()=>apply("en"));
+})();
