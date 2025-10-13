@@ -2,3 +2,5 @@
 /news     /news.html     200
 /contact  /contact.html  200
 /*        /404.html      404
+/news/:slug           /news-post.html?slug=:slug    200
+/news/page/:page      /news.html?page=:page         200

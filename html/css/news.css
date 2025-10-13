@@ -1,0 +1,39 @@
+.news-page{margin:26px auto 40px}
+.page-title{margin:10px 0 14px}
+
+.filters{background:#f2f5f7;color:#0d2830;border:1px solid #e2e8ee;border-radius:10px;padding:10px 12px;margin-bottom:16px}
+.filters-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.filters-row label{display:flex;flex-direction:column;gap:6px;font-weight:700}
+.filters-row select{padding:10px 12px;border:1px solid #d6dee6;border-radius:10px;min-width:180px;background:#fff}
+.search-inp{padding:10px 12px;border:1px solid #d6dee6;border-radius:10px;min-width:240px;background:#fff}
+.filters-reset{background:#e8eef7;color:#0a2030}
+
+.content{display:grid;grid-template-columns:3fr 1.2fr;gap:18px}
+@media (max-width:1000px){ .content{grid-template-columns:1fr} }
+
+.list{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:900px){ .list{grid-template-columns:1fr} }
+
+.card-article{
+  background:#ffffff;border:1px solid #e2e8ee;border-radius:10px;padding:16px;
+  display:flex;flex-direction:column;gap:10px;color:#0d2830;
+}
+.card-article .title{font-size:1.15rem;font-weight:800;line-height:1.15}
+.card-article .excerpt{color:#415264}
+.card-article .meta{display:flex;gap:10px;align-items:center;font-size:.86rem;color:#6b7a89}
+.card-article .chip{padding:2px 8px;border-radius:999px;border:1px solid #dbe6ef;background:#f6fbff;color:#0d3f57;font-weight:700}
+.card-article a.more{font-weight:800;color:#0d3f57}
+
+.sidebar-title{margin:0 0 10px}
+.sidebar-feed{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.sidebar-feed li{border-bottom:1px solid #e7edf4;padding:10px 0}
+.sidebar-feed a{color:#0d3f57;font-weight:800}
+.sidebar-feed .date{display:block;color:#7a8a98;font-size:.86rem;margin-top:2px}
+
+.pagination{display:flex;gap:10px;justify-content:center;margin-top:18px}
+.page-btn{
+  min-width:36px;height:36px;display:grid;place-items:center;
+  border:1px solid #d6dee6;border-radius:8px;background:#fff;color:#0d2830;font-weight:700;
+}
+.page-btn.active{background:#2fbf71;color:#07361f;border-color:#2fbf71}
+.page-btn[disabled]{opacity:.5;pointer-events:none}
