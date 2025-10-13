@@ -1,0 +1,42 @@
+[
+    {
+      "id": 1,
+      "slug": "regulators-pushed-forward-2025",
+      "date": "2025-10-08",
+      "country": "Regional",
+      "category": "Integration",
+      "title_en": "In 2025, regulators pushed forward on electricity market integration and regulatory coordination. Here’s how they achieved it.",
+      "title_uk": "У 2025 регулятори просунули інтеграцію ринку та координацію. Як їм це вдалося.",
+      "excerpt_en": "Q&A on ECRB work aligning practices and building an integrated market.",
+      "excerpt_uk": "Q&A про роботу ECRB із узгодження практик та підготовки інтегрованого ринку.",
+      "content_en": "<p>This Q&A takes a closer look at the work of the ECRB...</p>",
+      "content_uk": "<p>Це Q&A детальніше розглядає роботу ECRB...</p>"
+    },
+    {
+      "id": 2,
+      "slug": "stronger-regulators-key",
+      "date": "2025-10-07",
+      "country": "Regional",
+      "category": "Report",
+      "title_en": "Stronger regulators key to accelerating energy market integration",
+      "title_uk": "Сильніші регулятори — ключ до прискорення інтеграції енергоринку",
+      "excerpt_en": "New report shows better-resourced NRAs unlock faster integration.",
+      "excerpt_uk": "Новий звіт показує, що краще забезпечені НРА пришвидшують інтеграцію.",
+      "content_en": "<p>According to the Secretariat's report...</p>",
+      "content_uk": "<p>Згідно зі звітом Секретаріату...</p>"
+    },
+    {
+      "id": 3,
+      "slug": "georgia-guarantees-of-origin",
+      "date": "2025-10-01",
+      "country": "Georgia",
+      "category": "Renewables",
+      "title_en": "Georgia powers up renewable energy transparency with Guarantees of Origin",
+      "title_uk": "Грузія підвищує прозорість ВДЕ завдяки гарантіям походження",
+      "excerpt_en": "GO system strengthens transparency and net-zero goals.",
+      "excerpt_uk": "Система GO зміцнює прозорість і цілі net-zero.",
+      "content_en": "<p>Georgia has introduced...</p>",
+      "content_uk": "<p>Грузія запровадила...</p>"
+    }
+  ]
+  

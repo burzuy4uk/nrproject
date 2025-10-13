@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News — Article</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/news.css">
+  <link rel="stylesheet" href="./css/news-post.css">
+</head>
+<body>
+  <!-- Хедер двохрівневий (той самий, що й на інших сторінках) -->
+  <header class="dual-header">
+    <div class="topbar">
+      <div class="container topbar-row">
+        <a href="./index.html" class="brand-link" aria-label="Go to homepage">
+          <div class="logo-circle">NR</div>
+          <div class="brand-text">
+            <div class="brand-title">Narodna Rada Fond</div>
+            <div class="brand-subtitle">National Development Fund</div>
+          </div>
+        </a>
+        <nav class="top-links">
+          <a href="#" class="toplink">ENC-LEX ▾</a>
+          <a href="#" class="toplink">Publications ▾</a>
+          <a href="#" class="toplink">Ukraine Support ▾</a>
+        </nav>
+        <div class="top-actions">
+          <a href="#" class="login">Login</a>
+          <button class="icon-btn" aria-label="Search">🔍</button>
+          <button class="burger" aria-label="Menu" aria-expanded="false"><span class="bar"></span></button>
+        </div>
+      </div>
+    </div>
+    <div class="subbar">
+      <div class="container">
+        <nav class="sub-links" id="subnav">
+          <a class="item link" href="./about.html">About us</a>
+          <a class="item link" href="#" >Contracting Parties</a>
+          <a class="item link" href="#" >Secretariat</a>
+          <a class="item link" href="#">ECRB</a>
+          <a class="item link" href="#" >Topics</a>
+          <a class="item link active" href="./news.html">News</a>
+          <a class="item link" href="./contact.html">Events</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="menu-overlay" aria-hidden="true"></div>
+
+  <main class="container article-page">
+    <div class="article-main">
+      <nav class="backline"><a href="./news.html">← Back to news</a></nav>
+      <h1 id="post-title"></h1>
+      <div class="post-meta">
+        <span id="post-date"></span> ·
+        <span id="post-country" class="chip"></span>
+        <span id="post-category" class="chip"></span>
+      </div>
+      <article id="post-content" class="post-content"></article>
+    </div>
+
+    <aside class="article-sidebar">
+      <h3 class="sidebar-title">Related</h3>
+      <ul class="sidebar-feed" id="related-list"></ul>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <div class="container row">© 2025 Narodna Rada Fond — Усі права захищено</div>
+  </footer>
+
+  <script src="./js/burger.js" defer></script>
+  <script src="./js/news-post.js" defer></script>
+</body>
+</html>
