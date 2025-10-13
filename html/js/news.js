@@ -1,6 +1,7 @@
-// news.js — list + filters + search + pagination + URL routes
+// news.js — список + фільтри + пошук + пагінація + красиві URL
 document.addEventListener("DOMContentLoaded", () => {
     const PAGE_SIZE = 6;
+  
     const els = {
       list: document.getElementById("news-list"),
       feed: document.getElementById("sidebar-feed"),
@@ -13,21 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   
     let data = [];
-    let view = { country: "", year: "", cat: "", page: 1, q: "" };
+    let view = { country: "", year: "", cat: "", q: "", page: 1 };
   
     init();
   
-    async function init(){
-      data = await fetch("./data/news.json").then(r => r.json());
+    async function init() {
+      data = await fetch("/data/news.json").then(r => r.json());
   
-      // fill filters
+      // заповнити селекти
       fillSelect(els.country, uniq(data.map(x => x.country)).sort());
       fillSelect(els.year,    uniq(data.map(x => new Date(x.date).getFullYear())).sort((a,b)=>b-a));
       fillSelect(els.cat,     uniq(data.map(x => x.category)).sort());
   
-      // read URL params + route /news/page/N
+      // прочитати URL (query + route /news/page/N)
       const params = new URLSearchParams(location.search);
       const pageMatch = location.pathname.match(/\/news\/page\/(\d+)/);
+  
       view.country = params.get("country") || "";
       view.year    = params.get("year") || "";
       view.cat     = params.get("category") || "";
@@ -44,16 +46,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     function attachEvents(){
-      const onChange = () => { view.page=1; syncURL(); renderAll(); };
+      const onChange = () => { view.page = 1; syncURL(); renderAll(); };
+  
       els.country.addEventListener("change", e => { view.country = e.target.value; onChange(); });
       els.year.addEventListener("change",    e => { view.year    = e.target.value; onChange(); });
       els.cat.addEventListener("change",     e => { view.cat     = e.target.value; onChange(); });
-      els.q.addEventListener("input", debounce(() => { view.q = els.q.value.trim(); view.page=1; syncURL(); renderAll(); }, 180));
+  
+      els.q.addEventListener("input", debounce(() => {
+        view.q = els.q.value.trim();
+        view.page = 1;
+        syncURL();
+        renderAll();
+      }, 180));
+  
       els.reset.addEventListener("click", () => {
-        view = { country:"", year:"", cat:"", page:1, q:"" };
+        view = { country:"", year:"", cat:"", q:"", page:1 };
         [els.country, els.year, els.cat].forEach(s => s.value="");
         els.q.value = "";
-        syncURL(); renderAll();
+        syncURL();
+        renderAll();
       });
     }
   
@@ -67,13 +78,11 @@ document.addEventListener("DOMContentLoaded", () => {
         .filter(x => {
           if (!view.q) return true;
           const q = view.q.toLowerCase();
-          const t = title(x).toLowerCase();
-          const e = excerpt(x).toLowerCase();
-          return t.includes(q) || e.includes(q);
+          return title(x).toLowerCase().includes(q) || excerpt(x).toLowerCase().includes(q);
         })
-        .sort((a,b)=>new Date(b.date)-new Date(a.date));
+        .sort((a,b) => new Date(b.date) - new Date(a.date));
   
-      // sidebar recent (5)
+      // сайдбар
       els.feed.innerHTML = filtered.slice(0,5).map(item => `
         <li>
           <a href="${postUrl(item.slug)}">${escapeHTML(title(item))}</a>
@@ -81,13 +90,13 @@ document.addEventListener("DOMContentLoaded", () => {
         </li>
       `).join("");
   
-      // pagination
+      // пагінація
       const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
       if (view.page > pages) view.page = pages;
       const start = (view.page - 1) * PAGE_SIZE;
       const pageItems = filtered.slice(start, start + PAGE_SIZE);
   
-      // list
+      // список
       els.list.innerHTML = pageItems.map(item => `
         <article class="card-article">
           <h3 class="title">${escapeHTML(title(item))}</h3>
@@ -101,19 +110,19 @@ document.addEventListener("DOMContentLoaded", () => {
         </article>
       `).join("");
   
-      // pager
+      // контрол пагінації
       els.pag.innerHTML = pagerHTML(pages, view.page);
       els.pag.querySelectorAll("[data-page]").forEach(btn => {
         btn.addEventListener("click", () => {
           view.page = Number(btn.dataset.page);
           syncURL();
           renderAll();
-          window.scrollTo({top:0, behavior:"smooth"});
+          window.scrollTo({top: 0, behavior: "smooth"});
         });
       });
     }
   
-    // helpers
+    // допоміжні
     function title(it){ return (getLang()==='uk' ? it.title_uk : it.title_en) || it.title_en; }
     function excerpt(it){ return (getLang()==='uk' ? it.excerpt_uk : it.excerpt_en) || it.excerpt_en; }
     const getLang = () => localStorage.getItem("lang") || document.documentElement.lang || "uk";
@@ -133,15 +142,23 @@ document.addEventListener("DOMContentLoaded", () => {
       if (view.year)    q.set("year", view.year);
       if (view.cat)     q.set("category", view.cat);
       if (view.q)       q.set("q", view.q);
+  
       const base = view.page>1 ? `/news/page/${view.page}` : `/news`;
       const url = q.toString() ? `${base}?${q.toString()}` : base;
       history.replaceState(null, "", url);
     }
   
-    function fillSelect(sel, values){ values.forEach(v => { const o=document.createElement("option"); o.value=o.textContent=v; sel.appendChild(o); }); }
+    function fillSelect(sel, values){
+      values.forEach(v => {
+        const o = document.createElement("option");
+        o.value = o.textContent = v;
+        sel.appendChild(o);
+      });
+    }
+  
     const uniq = arr => [...new Set(arr)];
-    const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const fmtDate = iso => new Date(iso).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
-    function debounce(fn,ms){let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}}
+    const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function debounce(fn,ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms); }; }
   });
   

@@ -1,16 +1,16 @@
-// news-post.js — render article from slug (supports /news/:slug and ?slug=)
+// news-post.js — рендер однієї новини (підтримує /news/:slug і ?slug=)
 document.addEventListener("DOMContentLoaded", async () => {
     const lang = localStorage.getItem("lang") || document.documentElement.lang || "uk";
   
-    // slug from /news/:slug or ?slug=
-    const params = new URLSearchParams(location.search);
-    let slug = params.get("slug");
+    // дістаємо slug з маршруту або query
+    const qs = new URLSearchParams(location.search);
+    let slug = qs.get("slug");
     if (!slug) {
       const m = location.pathname.match(/\/news\/([^/]+)/);
       slug = m ? decodeURIComponent(m[1]) : null;
     }
   
-    const data = await fetch("./data/news.json").then(r=>r.json());
+    const data = await fetch("/data/news.json").then(r => r.json());
     const post = data.find(x => x.slug === slug);
   
     if (!post) {
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const holder = document.getElementById("post-content");
     holder.innerHTML = content || `<p>${escapeHTML(excerpt)}</p>`;
   
-    // related (same category/country, exclude current)
+    // Related (та сама категорія або країна)
     const related = data
       .filter(x => x.slug !== post.slug && (x.category===post.category || x.country===post.country))
       .sort((a,b)=>new Date(b.date)-new Date(a.date))
