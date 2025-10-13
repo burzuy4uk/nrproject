@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Narodna Rada Fond — Home</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Header (burger) -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <div class="brand">
+        <div class="brand-logo">NR</div>
+        <div>
+          <div class="brand-name">Narodna Rada Fond</div>
+          <div class="tagline">National Development Fund</div>
+        </div>
+      </div>
+
+      <nav class="main-links">
+        <a href="./index.html" class="active">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./news.html">News</a>
+        <a href="./contact.html">Contacts</a>
+      </nav>
+
+      <button class="burger" aria-label="Menu" aria-expanded="false">
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+  <div class="menu-overlay" aria-hidden="true"></div>
+
+  <!-- HERO -->
+  <section class="hero" style="position:relative">
+    <div class="hero-bg"></div>
+    <div class="hero-inner container">
+      <div style="text-align:center">
+        <h1 style="margin:0 0 10px">
+          <span>NARODNA RADA FOND</span><br/>
+          <span>FOR A STRONGER FUTURE</span>
+        </h1>
+        <p style="max-width:720px;margin:10px auto 0;color:#c8d2de">
+          Прискорюємо розвиток через партнерства, інновації та прозорість.
+        </p>
+        <div class="cta" style="margin-top:22px;display:flex;gap:12px;justify-content:center">
+          <a class="btn" href="./about.html">Дізнатись більше ▸</a>
+          <a class="btn" href="./contact.html" style="background:#6aa0ff;color:#0a1520">Зв’язатися ▸</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="container" style="margin:30px auto 10px">
+    <div class="grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+      <article class="card" style="padding:16px">
+        <strong>Projects</strong>
+        <p class="muted" style="color:#afbacb;margin-top:6px">Ініціативи з прозорими KPI та звітністю.</p>
+      </article>
+      <article class="card" style="padding:16px">
+        <strong>Partnerships</strong>
+        <p class="muted" style="color:#afbacb;margin-top:6px">Співпраця з громадами, бізнесом і державою.</p>
+      </article>
+      <article class="card" style="padding:16px">
+        <strong>Innovation</strong>
+        <p class="muted" style="color:#afbacb;margin-top:6px">Технології й дані для ефективних рішень.</p>
+      </article>
+      <article class="card" style="padding:16px">
+        <strong>Transparency</strong>
+        <p class="muted" style="color:#afbacb;margin-top:6px">Відкриті дані, аудит, етика врядування.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- NEWS PREVIEW -->
+  <section id="news" class="news-band">
+    <div class="container">
+      <div class="section-head" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <h2 style="margin:0">LATEST NEWS</h2>
+        <a class="btn" href="./news.html">All news</a>
+      </div>
+
+      <div class="news-grid">
+        <article class="news-card">
+          <div class="meta">NEWS</div>
+          <h3>NRF запускає програму мікрогрантів для громад</h3>
+          <p>Перший етап підтримки місцевих ініціатив для інфраструктури та освіти.</p>
+          <a href="./news.html">Read more →</a>
+        </article>
+        <article class="news-card">
+          <div class="meta">NEWS</div>
+          <h3>Меморандум з інвесторами про ВДЕ</h3>
+          <p>Спільна дорожня карта проєктів на 2026–2027 роки.</p>
+          <a href="./news.html">Read more →</a>
+        </article>
+        <article class="news-card">
+          <div class="meta">NEWS</div>
+          <h3>Звіт: прозорість закупівель у регіонах</h3>
+          <p>Ключові висновки та рекомендації щодо відкритих процедур.</p>
+          <a href="./news.html">Read more →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container row">© 2025 Narodna Rada Fond — Усі права захищено</div>
+  </footer>
+
+  <script src="../js/burger.js" defer></script>
+</body>
+</html>
