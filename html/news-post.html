@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ук">
+<html lang="uk">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <base href="/" />
-  <title>News — Article</title>
+  <title data-i18n="news_article_title">News — Article</title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/news.css">
   <link rel="stylesheet" href="/css/news-post.css">
@@ -15,15 +15,18 @@
       <div class="container topbar-row">
         <a href="/" class="brand-link" aria-label="Go to homepage">
           <div class="logo-circle">NR</div>
-          <div class="brand-text"><div class="brand-title">Narodna Rada Fond</div><div class="brand-subtitle">National Development Fund</div></div>
+          <div class="brand-text">
+            <div class="brand-title" data-i18n="brand_title">Narodna Rada Fond</div>
+            <div class="brand-subtitle" data-i18n="brand_subtitle">National Development Fund</div>
+          </div>
         </a>
         <nav class="top-links">
-          <a href="#" class="toplink">ENC-LEX ▾</a>
-          <a href="#" class="toplink">Publications ▾</a>
-          <a href="#" class="toplink">Ukraine Support ▾</a>
+          <a href="#" class="toplink" data-i18n="enc_lex">ENC-LEX ▾</a>
+          <a href="#" class="toplink" data-i18n="publications">Publications ▾</a>
+          <a href="#" class="toplink" data-i18n="ukraine_support">Ukraine Support ▾</a>
         </nav>
         <div class="top-actions">
-          <a href="#" class="login">Login</a>
+          <a href="#" class="login" data-i18n="login">Login</a>
           <button class="icon-btn" aria-label="Search">🔍</button>
           <button class="burger" aria-label="Menu" aria-expanded="false"><span class="bar"></span></button>
         </div>
@@ -32,40 +35,49 @@
     <div class="subbar">
       <div class="container">
         <nav class="sub-links" id="subnav">
-          <a class="item link" href="/about">About us</a>
-          <a class="item link" href="#">Contracting Parties</a>
-          <a class="item link" href="#">Secretariat</a>
-          <a class="item link" href="#">ECRB</a>
-          <a class="item link" href="#">Topics</a>
-          <a class="item link active" href="/news">News</a>
-          <a class="item link" href="/contact">Events</a>
+          <a class="item link" href="/about" data-i18n="about_us">About us</a>
+          <a class="item link" href="/contracting" data-i18n="contracting_parties">Contracting Parties</a>
+          <a class="item link" href="/secretariat" data-i18n="secretariat">Secretariat</a>
+          <a class="item link" href="/ecrb" data-i18n="ecrb">ECRB</a>
+          <a class="item link" href="/topics" data-i18n="topics">Topics</a>
+          <a class="item link active" href="/news" data-i18n="news">News</a>
+          <a class="item link" href="/contact" data-i18n="events">Events</a>
         </nav>
       </div>
     </div>
   </header>
+
   <div class="menu-overlay" aria-hidden="true"></div>
 
   <main class="container article-page">
     <div class="article-main">
-      <nav class="backline"><a href="/news">← Back to news</a></nav>
-      <h1 id="post-title"></h1>
+      <nav class="backline"><a href="/news" data-i18n="back_to_news">← Back to news</a></nav>
+      <h1 id="post-title" data-i18n="post_title"></h1>
       <div class="post-meta">
-        <span id="post-date"></span> ·
-        <span id="post-country" class="chip"></span>
-        <span id="post-category" class="chip"></span>
+        <span id="post-date" data-i18n="post_date"></span> ·
+        <span id="post-country" class="chip" data-i18n="post_country"></span>
+        <span id="post-category" class="chip" data-i18n="post_category"></span>
       </div>
-      <article id="post-content" class="post-content"></article>
+      <article id="post-content" class="post-content" data-i18n="post_content"></article>
     </div>
 
     <aside class="article-sidebar">
-      <h3 class="sidebar-title">Related</h3>
+      <h3 class="sidebar-title" data-i18n="related">Related</h3>
       <ul class="sidebar-feed" id="related-list"></ul>
     </aside>
   </main>
 
-  <footer class="footer"><div class="container row">© 2025 Narodna Rada Fond — Усі права захищено</div></footer>
+  <footer class="footer">
+    <div class="container row" data-i18n="footer_copy">© 2025 Narodna Rada Fond — Усі права захищено</div>
+  </footer>
+
+  <div class="language-switcher">
+    <button id="lang-uk" aria-label="Українська">UA</button>
+    <button id="lang-en" aria-label="English">EN</button>
+  </div>
 
   <script src="/js/burger.js" defer></script>
   <script src="/js/news-post.js" defer></script>
+  <script src="/js/language.js" defer></script>
 </body>
 </html>
