@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ук">
+<html lang="uk">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <base href="/" />
-  <title>Contacts — Narodna Rada Fond</title>
+  <title data-i18n="contacts-title">Contacts — Narodna Rada Fond</title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/contact.css">
 </head>
@@ -14,15 +14,18 @@
       <div class="container topbar-row">
         <a href="/" class="brand-link" aria-label="Go to homepage">
           <div class="logo-circle">NR</div>
-          <div class="brand-text"><div class="brand-title">Narodna Rada Fond</div><div class="brand-subtitle">National Development Fund</div></div>
+          <div class="brand-text">
+            <div class="brand-title" data-i18n="brand_title">Narodna Rada Fond</div>
+            <div class="brand-subtitle" data-i18n="brand_subtitle">National Development Fund</div>
+          </div>
         </a>
         <nav class="top-links">
-          <a href="#" class="toplink">ENC-LEX ▾</a>
-          <a href="#" class="toplink">Publications ▾</a>
-          <a href="#" class="toplink">Ukraine Support ▾</a>
+          <a href="#" class="toplink" data-i18n="enc_lex">ENC-LEX ▾</a>
+          <a href="#" class="toplink" data-i18n="publications">Publications ▾</a>
+          <a href="#" class="toplink" data-i18n="ukraine_support">Ukraine Support ▾</a>
         </nav>
         <div class="top-actions">
-          <a href="#" class="login">Login</a>
+          <a href="#" class="login" data-i18n="login">Login</a>
           <button class="icon-btn" aria-label="Search">🔍</button>
           <button class="burger" aria-label="Menu" aria-expanded="false"><span class="bar"></span></button>
         </div>
@@ -31,13 +34,13 @@
     <div class="subbar">
       <div class="container">
         <nav class="sub-links" id="subnav">
-          <a class="item link" href="/about">About us</a>
-          <a class="item link" href="#">Contracting Parties</a>
-          <a class="item link" href="#">Secretariat</a>
-          <a class="item link" href="#">ECRB</a>
-          <a class="item link" href="#">Topics</a>
-          <a class="item link" href="/news">News</a>
-          <a class="item link active" href="/contact">Events</a>
+          <a class="item link" href="/about" data-i18n="about_us">About us</a>
+          <a class="item link" href="#" data-i18n="contracting_parties">Contracting Parties</a>
+          <a class="item link" href="#" data-i18n="secretariat">Secretariat</a>
+          <a class="item link" href="#" data-i18n="ecrb">ECRB</a>
+          <a class="item link" href="#" data-i18n="topics">Topics</a>
+          <a class="item link" href="/news" data-i18n="news">News</a>
+          <a class="item link active" href="/contact" data-i18n="events">Events</a>
         </nav>
       </div>
     </div>
@@ -45,18 +48,50 @@
   <div class="menu-overlay" aria-hidden="true"></div>
 
   <main class="container" style="margin:26px auto 40px">
-    <h1>Contacts</h1>
+    <h1 data-i18n="contacts_title">Contacts</h1>
     <section class="contact-grid">
-      <article class="contact-card"><h3>Secretariat</h3><ul><li><strong>Email:</strong> secretariat@example.org</li><li><strong>Phone:</strong> +43 1 234 567</li></ul></article>
-      <article class="contact-card"><h3>Legal Affairs</h3><ul><li><strong>Email:</strong> legal@example.org</li><li><strong>Phone:</strong> +43 1 234 568</li></ul></article>
-      <article class="contact-card"><h3>Communications</h3><ul><li><strong>Email:</strong> press@example.org</li><li><strong>Phone:</strong> +43 1 234 569</li></ul></article>
-      <article class="contact-card"><h3>Events</h3><ul><li><strong>Email:</strong> events@example.org</li><li><strong>Phone:</strong> +43 1 234 570</li></ul></article>
+      <article class="contact-card">
+        <h3 data-i18n="contacts_secretariat">Secretariat</h3>
+        <ul>
+          <li><strong data-i18n="email">Email:</strong> secretariat@example.org</li>
+          <li><strong data-i18n="phone">Phone:</strong> +43 1 234 567</li>
+        </ul>
+      </article>
+      <article class="contact-card">
+        <h3 data-i18n="contacts_legal">Legal Affairs</h3>
+        <ul>
+          <li><strong data-i18n="email">Email:</strong> legal@example.org</li>
+          <li><strong data-i18n="phone">Phone:</strong> +43 1 234 568</li>
+        </ul>
+      </article>
+      <article class="contact-card">
+        <h3 data-i18n="contacts_comm">Communications</h3>
+        <ul>
+          <li><strong data-i18n="email">Email:</strong> press@example.org</li>
+          <li><strong data-i18n="phone">Phone:</strong> +43 1 234 569</li>
+        </ul>
+      </article>
+      <article class="contact-card">
+        <h3 data-i18n="contacts_events">Events</h3>
+        <ul>
+          <li><strong data-i18n="email">Email:</strong> events@example.org</li>
+          <li><strong data-i18n="phone">Phone:</strong> +43 1 234 570</li>
+        </ul>
+      </article>
     </section>
   </main>
 
-  <footer class="footer"><div class="container row">© 2025 Narodna Rada Fond — Усі права захищено</div></footer>
+  <footer class="footer">
+    <div class="container row" data-i18n="footer_copy">© 2025 Narodna Rada Fond — Усі права захищено</div>
+  </footer>
+
+  <div class="language-switcher">
+    <button id="lang-uk" aria-label="Українська">UA</button>
+    <button id="lang-en" aria-label="English">EN</button>
+  </div>
 
   <script src="/js/burger.js" defer></script>
   <script src="/js/contact-anim.js" defer></script>
+  <script src="/js/language.js" defer></script>
 </body>
 </html>
