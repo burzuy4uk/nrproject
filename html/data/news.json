@@ -1,88 +1,43 @@
 [
     {
+      "id": 4,
+      "slug": "nrf-microgrants-2025",
+      "title": "NRF запускає мікрогранти для громадських просторів",
+      "date": "2025-10-10",
+      "country": "Ukraine",
+      "category": "Grants",
+      "excerpt": "Перший раунд підтримки локальних ініціатив із створення та відновлення громадських просторів.",
+      "content": "<p>Фонд оголосив мікрогрантову програму для ГО та ініціативних груп. Пріоритет — інклюзивність, доступність та прозорість використання коштів. Максимальна сума гранту — 6 000 €.</p><p>Подання заявок відкрите до 15 листопада.</p>"
+    },
+    {
       "id": 1,
-      "slug": "regulators-pushed-forward-2025",
-      "date": "2025-10-08",
-      "country": "Regional",
-      "category": "Integration",
-      "title_en": "In 2025, regulators pushed forward on electricity market integration and regulatory coordination. Here’s how they achieved it.",
-      "title_uk": "У 2025 регулятори просунули інтеграцію ринку та координацію. Як їм це вдалося.",
-      "excerpt_en": "Q&A on ECRB work aligning practices and building an integrated market.",
-      "excerpt_uk": "Q&A про роботу ECRB із узгодження практик та підготовки інтегрованого ринку.",
-      "content_en": "<p>This Q&A takes a closer look at the work of the ECRB and its Working Group in building consistent regulatory practices across the region and laying the foundation for a stronger, integrated, and resilient regional electricity market.</p><p>Key milestones include coordination mechanisms, data-sharing protocols, and cross-border initiatives.</p>",
-      "content_uk": "<p>Це Q&A детальніше розглядає роботу ECRB та робочої групи із напрацювання узгоджених регуляторних практик у регіоні та підготовки підґрунтя для інтегрованого, стійкого ринку електроенергії.</p><p>Серед ключових кроків — механізми координації, протоколи обміну даними та транскордонні ініціативи.</p>",
-      "url": ""
+      "slug": "nrf-university-partnership",
+      "title": "Партнерство з університетами для розвитку компетенцій ГО",
+      "date": "2025-09-22",
+      "country": "Ukraine",
+      "category": "Partnerships",
+      "excerpt": "Спільні програми з університетами для посилення аналітичних та управлінських навичок у НУО.",
+      "content": "<p>NRF підписав меморандуми з трьома закладами вищої освіти. У фокусі — аналітика даних, фандрейзинг та комунікації. Навчання стартує в грудні, для учасників — безкоштовно.</p>"
     },
     {
       "id": 2,
-      "slug": "stronger-regulators-key",
-      "date": "2025-10-07",
-      "country": "Regional",
-      "category": "Report",
-      "title_en": "Stronger regulators key to accelerating energy market integration",
-      "title_uk": "Сильніші регулятори — ключ до прискорення інтеграції енергоринку",
-      "excerpt_en": "New report shows better-resourced NRAs unlock faster integration.",
-      "excerpt_uk": "Новий звіт показує, що краще забезпечені НРА пришвидшують інтеграцію.",
-      "content_en": "<p>According to the Secretariat's report, adequately staffed and funded NRAs are a prerequisite for market coupling and fair competition.</p>",
-      "content_uk": "<p>Згідно зі звітом Секретаріату, належне кадрове та фінансове забезпечення регуляторів — передумова для куплінгу ринків і чесної конкуренції.</p>",
-      "url": ""
+      "slug": "nrf-leadership-bootcamp",
+      "title": "Освітній буткемп для лідерів громадських організацій",
+      "date": "2025-08-30",
+      "country": "Ukraine",
+      "category": "Training",
+      "excerpt": "Інтенсив на 5 тижнів: стратегія, управління проєктами, оцінка впливу.",
+      "content": "<p>Програма включає менторські сесії, шаблони для вимірювання результатів та пітчинг перед донорами. Кращі проєкти отримають мінігранти на пілотування.</p>"
     },
     {
       "id": 3,
-      "slug": "georgia-guarantees-of-origin",
-      "date": "2025-10-01",
-      "country": "Georgia",
-      "category": "Renewables",
-      "title_en": "Georgia powers up renewable energy transparency with Guarantees of Origin",
-      "title_uk": "Грузія підвищує прозорість ВДЕ завдяки гарантіям походження",
-      "excerpt_en": "GO system strengthens transparency and net-zero goals.",
-      "excerpt_uk": "Система GO зміцнює прозорість і цілі net-zero.",
-      "content_en": "<p>Georgia has introduced a Guarantees of Origin (GO) system to certify renewable generation and incentivize clean investments.</p>",
-      "content_uk": "<p>Грузія запровадила систему гарантій походження (GO) для сертифікації генерації з ВДЕ та стимулювання чистих інвестицій.</p>",
-      "url": ""
-    },
-    
-        {
-          "id": "nrf-microgrants-2025",
-          "slug": "nrf-microgrants-2025",
-          "title": "NRF запускає мікрогранти для громадських просторів",
-          "date": "2025-10-10",
-          "country": "Ukraine",
-          "category": "Grants",
-          "excerpt": "Перший раунд підтримки локальних ініціатив із створення та відновлення громадських просторів.",
-          "content": "<p>Фонд оголосив мікрогрантову програму для ГО та ініціативних груп. Пріоритет — інклюзивність, доступність та прозорість використання коштів. Максимальна сума гранту — 6 000 €.</p><p>Подання заявок відкрите до 15 листопада.</p>"
-        },
-        {
-          "id": "nrf-university-partnership",
-          "slug": "nrf-university-partnership",
-          "title": "Партнерство з університетами для розвитку компетенцій ГО",
-          "date": "2025-09-22",
-          "country": "Ukraine",
-          "category": "Partnerships",
-          "excerpt": "Спільні програми з університетами для посилення аналітичних та управлінських навичок у НУО.",
-          "content": "<p>NRF підписав меморандуми з трьома закладами вищої освіти. У фокусі — аналітика даних, фандрейзинг та комунікації. Навчання стартує в грудні, для учасників — безкоштовно.</p>"
-        },
-        {
-          "id": "nrf-leadership-bootcamp",
-          "slug": "nrf-leadership-bootcamp",
-          "title": "Освітній буткемп для лідерів громадських організацій",
-          "date": "2025-08-30",
-          "country": "Ukraine",
-          "category": "Training",
-          "excerpt": "Інтенсив на 5 тижнів: стратегія, управління проєктами, оцінка впливу.",
-          "content": "<p>Програма включає менторські сесії, шаблони для вимірювання результатів та пітчинг перед донорами. Кращі проєкти отримають мінігранти на пілотування.</p>"
-        },
-        {
-          "id": "nrf-transparency-report",
-          "slug": "nrf-transparency-report",
-          "title": "Звіт про прозорість грантових програм NRF 2025",
-          "date": "2025-07-12",
-          "country": "Ukraine",
-          "category": "Reports",
-          "excerpt": "Оприлюднені показники відбору, географія підтриманих проєктів і відкриті дані про гранти.",
-          "content": "<p>Ми опублікували деталізований звіт: відсоток схвалених заявок, регіональний розподіл, середній розмір гранту та KPI реалізації. Дані доступні у форматах CSV/JSON.</p>"
-        }
-      ]
-      
-  
+      "slug": "nrf-transparency-report",
+      "title": "Звіт про прозорість грантових програм NRF 2025",
+      "date": "2025-07-12",
+      "country": "Ukraine",
+      "category": "Reports",
+      "excerpt": "Оприлюднені показники відбору, географія підтриманих проєктів і відкриті дані про гранти.",
+      "content": "<p>Ми опублікували деталізований звіт: відсоток схвалених заявок, регіональний розподіл, середній розмір гранту та KPI реалізації. Дані доступні у форматах CSV/JSON.</p>"
+    }
+  ]
   
