@@ -48,20 +48,36 @@
   <div class="menu-overlay" aria-hidden="true"></div>
 
   <main class="container news-page">
-    <h1 class="page-title" data-i18n="news_header">Energy Community News</h1>
+    <header style="margin: 18px 0 8px">
+      <h1 class="page-title" data-i18n="news_header">Narodna Rada Foundation News</h1>
+      <p class="muted" data-i18n="news_subtitle">
+        Офіційні оновлення фонду: гранти, партнерства, навчальні програми та результати.
+      </p>
+    </header>
 
     <section class="filters">
       <div class="filters-row">
-        <label><span data-i18n="country">Country</span><select id="filter-country"><option value="">All</option></select></label>
-        <label><span data-i18n="year">Year</span><select id="filter-year"><option value="">All</option></select></label>
-        <label><span data-i18n="category">Category</span><select id="filter-category"><option value="">All</option></select></label>
-        <input id="filter-q" type="search" placeholder="Search news..." class="search-inp" data-i18n-placeholder="search_placeholder"/>
+        <label>
+          <span data-i18n="country">Country</span>
+          <select id="filter-country"><option value="">{All}</option></select>
+        </label>
+        <label>
+          <span data-i18n="year">Year</span>
+          <select id="filter-year"><option value="">{All}</option></select>
+        </label>
+        <label>
+          <span data-i18n="category">Category</span>
+          <select id="filter-category"><option value="">{All}</option></select>
+        </label>
+        <input id="filter-q" type="search" class="search-inp"
+               placeholder="Search news..." data-i18n-placeholder="search_placeholder"/>
         <button id="reset-filters" class="btn filters-reset" data-i18n="reset_filters">Reset</button>
       </div>
     </section>
 
     <section class="content">
       <div class="list" id="news-list"></div>
+
       <aside class="sidebar">
         <h3 class="sidebar-title" data-i18n="stay_informed">STAY INFORMED</h3>
         <ul class="sidebar-feed" id="sidebar-feed"></ul>
