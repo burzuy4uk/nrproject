@@ -78,3 +78,13 @@ body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu
   .nr-header__top { gap:12px; }
   .nr-brand__subtitle { font-size:0.8rem; }
 }
+
+
+/* Dropdowns also inside subnav */
+.nr-subnav .nr-dropdown { position: relative; }
+.nr-subnav .nr-dropdown__menu { top: calc(100% + 8px); left: 0; right: auto; }
+
+/* News categories bar */
+.nr-news-cats { display:flex; gap:10px; flex-wrap:wrap; padding:10px 8px; border-bottom:1px solid var(--nr-sep); }
+.nr-news-cats__btn { text-decoration:none; border:1px solid var(--nr-sep); padding:8px 12px; border-radius:999px; font-weight:700; }
+.nr-news-cats__btn[aria-current="true"], .nr-news-cats__btn:hover { background:rgba(10,77,140,0.06); }

@@ -1,33 +1,32 @@
-// ===== Народна Рада — Хедер =====
+// ===== Народна Рада — Хедер (multi-dropdown) =====
 (() => {
-  // Dropdown toggle
-  const dropdown = document.querySelector('.nr-dropdown');
-  const toggle = document.querySelector('.nr-dropdown__toggle');
-  const menu = document.getElementById('menu-fond');
-
-  function closeDropdown() {
-    dropdown?.setAttribute('data-open', 'false');
-    toggle?.setAttribute('aria-expanded', 'false');
+  // Handle all dropdowns
+  const dropdowns = Array.from(document.querySelectorAll('.nr-dropdown'));
+  function closeAll(except=null){
+    dropdowns.forEach(dd => {
+      if (dd !== except){
+        dd.setAttribute('data-open', 'false');
+        const t = dd.querySelector('.nr-dropdown__toggle');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      }
+    });
   }
-  function openDropdown() {
-    dropdown?.setAttribute('data-open', 'true');
-    toggle?.setAttribute('aria-expanded', 'true');
-  }
-
-  toggle?.addEventListener('click', (e) => {
-    const open = dropdown.getAttribute('data-open') === 'true';
-    (open ? closeDropdown : openDropdown)();
-    e.stopPropagation();
+  dropdowns.forEach(dd => {
+    const toggle = dd.querySelector('.nr-dropdown__toggle');
+    const menu = dd.querySelector('.nr-dropdown__menu');
+    function open(){ dd.setAttribute('data-open','true'); toggle?.setAttribute('aria-expanded','true'); }
+    function close(){ dd.setAttribute('data-open','false'); toggle?.setAttribute('aria-expanded','false'); }
+    toggle?.addEventListener('click', (e) => {
+      const isOpen = dd.getAttribute('data-open') === 'true';
+      if (isOpen){ close(); } else { closeAll(dd); open(); }
+      e.stopPropagation();
+    });
+    toggle?.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown'){ open(); menu?.querySelector('a')?.focus(); }
+      if (e.key === 'Escape'){ close(); toggle?.focus(); }
+    });
   });
-
-  document.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target)) closeDropdown();
-  });
-
-  // Keyboard support
-  toggle?.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown') { openDropdown(); menu?.querySelector('a')?.focus(); }
-  });
+  document.addEventListener('click', () => closeAll());
 
   // Burger / subnav
   const burger = document.querySelector('.nr-burger');
