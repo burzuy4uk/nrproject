@@ -55,3 +55,81 @@
   .nr-dropdown[data-open=true] .nr-dropdown__menu{display:block}
   body.menu-open{overflow:hidden}
 }
+/* ==== Brand typography upgrade ==== */
+
+/* Трохи більше простору під великий заголовок */
+.nr-header__top{
+  min-height: 72px;                    /* було ~auto */
+  padding: 10px 16px;
+}
+
+/* Контейнер бренду */
+.nr-brand{
+  gap: 14px;                            /* +2px до візуального “дихання” */
+  align-items: center;
+}
+
+/* Лого — трохи менший, щоб не конкурував з великим текстом */
+.nr-brand__logo{
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+
+/* Текстовий блок */
+.nr-brand__text{
+  display: flex;
+  flex-direction: column;
+  line-height: 1.02;                    /* більш щільно */
+}
+
+/* Головний заголовок (x2.5 і з новим шрифтом)
+   булo: font-size ~1.06rem; тепер 2.5x з адаптивом */
+.nr-brand__title{
+  font-family: "Unbounded", "Montserrat Alternates", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 900;                     /* виразний гротеск */
+  letter-spacing: .2px;
+  /* 2.5x і адаптивність: мобайл ~1.6rem, десктоп до ~2.8rem */
+  font-size: clamp(1.6rem, 4.2vw, 2.8rem);
+  /* легка тінь для контрасту на градієнті */
+  text-shadow: 0 1px 0 rgba(255,255,255,.25), 0 2px 14px rgba(0,0,0,.12);
+  color: #0b1522;                       /* гарна читабельність на синьо-жовтому */
+}
+
+/* Прибраний субтитр залишаємо вимкненим */
+.nr-brand__subtitle{ display: none !important; }
+
+/* Меню трохи відсуваємо, щоб не прилипало до великого бренду */
+.nr-topnav{
+  margin-left: auto;
+  gap: 14px;
+}
+
+/* Лінки меню — легше за вагою, аби не перебивали “Народна рада” */
+.nr-link{
+  font-family: "Montserrat Alternates", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 700;                     /* було ~750–800; робимо легше */
+  padding: 8px 10px;
+}
+
+/* На вузьких екранах трошки зменшуємо бренд, щоб не ламався хедер */
+@media (max-width: 520px){
+  .nr-brand__logo{ width: 36px; height: 36px; }
+  .nr-brand__title{ font-size: clamp(1.35rem, 6vw, 1.8rem); }
+}
+
+/* Невеликий ефект при скролі — робимо бренд трохи компактнішим, коли проскролили */
+.nr-header.is-scrolled .nr-brand__title{
+  font-size: clamp(1.4rem, 3.6vw, 2.2rem);
+  text-shadow: 0 1px 0 rgba(255,255,255,.2), 0 1px 8px rgba(0,0,0,.08);
+}
+.nr-header.is-scrolled .nr-header__top{
+  min-height: 64px;
+}
+
+/* Щоб велике слово не накладалось на бургер/меню */
+@media (max-width: 900px){
+  .nr-topnav{ gap: 10px; }
+}
