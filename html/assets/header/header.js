@@ -37,3 +37,14 @@
     subnav.setAttribute('aria-expanded', String(!expanded));
   });
 })();
+
+// Hover open for wide screens (non-touch heuristic)
+(() => {
+  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  if (isTouch) return;
+  const subs = document.querySelectorAll('#nr-subnav .nr-dropdown');
+  subs.forEach(dd => {
+    dd.addEventListener('mouseenter', () => dd.setAttribute('data-open','true'));
+    dd.addEventListener('mouseleave', () => dd.setAttribute('data-open','false'));
+  });
+})();
