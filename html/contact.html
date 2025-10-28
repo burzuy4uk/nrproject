@@ -68,39 +68,107 @@
   <div class="menu-overlay" aria-hidden="true"></div>
 
   <main class="container" style="margin:26px auto 40px">
-    <h1 data-i18n="contacts_title">Contacts</h1>
+    <div class="page-hero reveal">
+      <h1 class="page-title" data-i18n="contacts_title">Контакти</h1>
+      <p class="muted" style="margin:6px 0 0">Зв’яжіться з нами для партнерств, прес-запитів та організації заходів.</p>
+    </div>
+  
     <section class="contact-grid">
-      <article class="contact-card">
-        <h3 data-i18n="contacts_secretariat">Secretariat</h3>
+      <!-- Secretariat -->
+      <article class="contact-card reveal">
+        <h3>
+          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12.713l11.985-9.713H.015L12 12.713zM12 14.953L.015 5.24V20h23.97V5.24L12 14.953z"/></svg>
+          Секретаріат
+        </h3>
         <ul>
-          <li><strong data-i18n="email">Email:</strong> secretariat@example.org</li>
-          <li><strong data-i18n="phone">Phone:</strong> +43 1 234 567</li>
+          <li><strong>Email:</strong> <a href="mailto:secretariat@example.org" data-copy="secretariat@example.org">secretariat@example.org</a></li>
+          <li><strong>Phone:</strong> <a href="tel:+431234567" data-copy="+43 1 234 567">+43 1 234 567</a></li>
         </ul>
+        <div class="contact-actions">
+          <a class="chip-btn" href="mailto:secretariat@example.org">Написати листа</a>
+          <a class="chip-btn" href="tel:+431234567">Зателефонувати</a>
+        </div>
       </article>
-      <article class="contact-card">
-        <h3 data-i18n="contacts_legal">Legal Affairs</h3>
+  
+      <!-- Legal -->
+      <article class="contact-card reveal">
+        <h3>
+          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1l8 4v6c0 5.25-3.438 10.188-8 12-4.563-1.813-8-6.75-8-12V5l8-4zm0 3.09L6 6.18v4.82c0 4.313 2.813 8.375 6 9.817 3.188-1.442 6-5.504 6-9.817V6.18l-6-2.09z"/><path fill="currentColor" d="M12 7a2 2 0 110 4 2 2 0 010-4z"/></svg>
+          Юридичний відділ
+        </h3>
         <ul>
-          <li><strong data-i18n="email">Email:</strong> legal@example.org</li>
-          <li><strong data-i18n="phone">Phone:</strong> +43 1 234 568</li>
+          <li><strong>Email:</strong> <a href="mailto:legal@example.org" data-copy="legal@example.org">legal@example.org</a></li>
+          <li><strong>Phone:</strong> <a href="tel:+431234568" data-copy="+43 1 234 568">+43 1 234 568</a></li>
         </ul>
+        <div class="contact-actions">
+          <a class="chip-btn" href="mailto:legal@example.org">Написати листа</a>
+          <a class="chip-btn" href="tel:+431234568">Зателефонувати</a>
+        </div>
       </article>
-      <article class="contact-card">
-        <h3 data-i18n="contacts_comm">Communications</h3>
+  
+      <!-- Communications -->
+      <article class="contact-card reveal">
+        <h3>
+          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 3h20v14H6l-4 4V3zm3 4v2h14V7H5zm0 4v2h9v-2H5z"/></svg>
+          Комунікації
+        </h3>
         <ul>
-          <li><strong data-i18n="email">Email:</strong> press@example.org</li>
-          <li><strong data-i18n="phone">Phone:</strong> +43 1 234 569</li>
+          <li><strong>Email:</strong> <a href="mailto:press@example.org" data-copy="press@example.org">press@example.org</a></li>
+          <li><strong>Phone:</strong> <a href="tel:+431234569" data-copy="+43 1 234 569">+43 1 234 569</a></li>
         </ul>
+        <div class="contact-actions">
+          <a class="chip-btn" href="mailto:press@example.org">Написати листа</a>
+          <a class="chip-btn" href="tel:+431234569">Зателефонувати</a>
+        </div>
       </article>
-      <article class="contact-card">
-        <h3 data-i18n="contacts_events">Events</h3>
+  
+      <!-- Events -->
+      <article class="contact-card reveal">
+        <h3>
+          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h2v2h6V2h2v2h3a2 2 0 012 2v3H2V6a2 2 0 012-2h3V2zm15 8v8a2 2 0 01-2 2H4a2 2 0 01-2-2v-8h20zm-5 3H7v2h10v-2z"/></svg>
+          Події
+        </h3>
         <ul>
-          <li><strong data-i18n="email">Email:</strong> events@example.org</li>
-          <li><strong data-i18n="phone">Phone:</strong> +43 1 234 570</li>
+          <li><strong>Email:</strong> <a href="mailto:events@example.org" data-copy="events@example.org">events@example.org</a></li>
+          <li><strong>Phone:</strong> <a href="tel:+431234570" data-copy="+43 1 234 570">+43 1 234 570</a></li>
         </ul>
+        <div class="contact-actions">
+          <a class="chip-btn" href="mailto:events@example.org">Написати листа</a>
+          <a class="chip-btn" href="tel:+431234570">Зателефонувати</a>
+        </div>
       </article>
     </section>
+  
+    <!-- Map & FAQ -->
+    <section style="margin-top:24px; display:grid; grid-template-columns: 2fr 1fr; gap:22px">
+      <div class="map-card reveal">
+        <!-- заміни src на свій реальний embed -->
+        <iframe class="map-iframe" src="https://maps.google.com/maps?q=Kyiv&t=&z=12&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+      </div>
+  
+      <div class="accordion reveal">
+        <div class="acc-item" aria-expanded="false">
+          <button class="acc-btn">Графік роботи <span>▾</span></button>
+          <div class="acc-content">
+            Пн–Пт: 09:00–18:00, Обід: 13:00–14:00, Сб–Нд: вихідні.
+          </div>
+        </div>
+        <div class="acc-item" aria-expanded="false">
+          <button class="acc-btn">Питання для ЗМІ <span>▾</span></button>
+          <div class="acc-content">
+            Надсилайте запити на <a href="mailto:press@example.org">press@example.org</a> із темою “Media request”.
+          </div>
+        </div>
+        <div class="acc-item" aria-expanded="false">
+          <button class="acc-btn">Гуманітарні звернення <span>▾</span></button>
+          <div class="acc-content">
+            Для гуманітарних ініціатив пишіть на <a href="mailto:secretariat@example.org">secretariat@example.org</a>.
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
-
+  
   <footer class="footer">
     <div class="container row" data-i18n="footer_copy">© 2025 Narodna Rada Fond — Усі права захищено</div>
   </footer>
