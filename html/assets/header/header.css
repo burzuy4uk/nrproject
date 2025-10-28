@@ -1,0 +1,80 @@
+/* ===== Народна Рада — Хедер ===== */
+:root{
+  --nr-bg: #ffffff;
+  --nr-fg: #111;
+  --nr-muted: #111;
+  --nr-muted-alpha: 0.6;
+  --nr-accent: #0a4d8c;
+  --nr-sep: rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Noto Sans', Arial, sans-serif; color: var(--nr-fg); }
+
+.nr-header { position:sticky; top:0; background:var(--nr-bg); border-bottom:1px solid var(--nr-sep); z-index:50; }
+
+/* Top bar */
+.nr-header__top {
+  display:flex; align-items:center; gap:24px;
+  padding:10px 16px; border-bottom:1px solid var(--nr-sep);
+}
+
+.nr-brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; min-width:0; }
+.nr-brand__logo { width:44px; height:44px; object-fit:cover; border-radius:50%; box-shadow: 0 0 0 1px rgba(0,0,0,0.05); }
+.nr-brand__text { display:flex; flex-direction:column; line-height:1.1; }
+.nr-brand__title { font-weight:800; font-size:1.15rem; letter-spacing:0.2px; }
+.nr-brand__subtitle { font-weight:500; font-size:0.85rem; opacity: var(--nr-muted-alpha); max-width:66ch; }
+
+/* Menus */
+.nr-topnav { margin-left:auto; display:flex; align-items:center; gap:16px; position:relative; }
+.nr-menu { list-style:none; display:flex; gap:14px; margin:0; padding:0; }
+.nr-menu--top .nr-link { padding:8px 10px; }
+.nr-menu--bottom .nr-link { padding:10px 12px; }
+
+.nr-link { text-decoration:none; color:var(--nr-fg); font-weight:600; border-radius:10px; display:inline-flex; align-items:center; gap:6px; }
+.nr-link:hover, .nr-link:focus-visible { background:rgba(10,77,140,0.06); outline:none; }
+
+/* Dropdown */
+.nr-dropdown { position:relative; }
+.nr-caret { transition: transform .2s ease; }
+.nr-dropdown[data-open="true"] .nr-caret { transform: rotate(180deg); }
+
+.nr-dropdown__menu {
+  position:absolute; top: calc(100% + 8px); right:0;
+  min-width: 220px; background: #fff; border:1px solid var(--nr-sep);
+  border-radius:12px; padding:6px; box-shadow:0 8px 28px rgba(0,0,0,0.12);
+  display:none;
+}
+.nr-dropdown[data-open="true"] .nr-dropdown__menu { display:block; }
+.nr-dropdown__link { display:block; padding:10px 12px; border-radius:8px; color:var(--nr-fg); text-decoration:none; font-weight:600; }
+.nr-dropdown__link:hover, .nr-dropdown__link:focus-visible { background:rgba(10,77,140,0.06); outline:none; }
+
+.nr-dropdown__toggle {
+  background:none; border:0; cursor:pointer; font:inherit; color:inherit;
+  display:inline-flex; align-items:center; gap:6px; padding:8px 10px; border-radius:10px; font-weight:800;
+}
+.nr-dropdown__toggle:hover, .nr-dropdown__toggle:focus-visible { background:rgba(10,77,140,0.06); outline:none; }
+
+/* Bottom bar */
+.nr-subnav { padding:4px 8px; }
+.nr-menu--bottom { flex-wrap:wrap; }
+
+/* Burger for mobile */
+.nr-burger { display:none; width:44px; height:36px; padding:0; border:0; background:none; cursor:pointer; position:relative; }
+.nr-burger span { position:absolute; left:8px; right:8px; height:2px; background:var(--nr-fg); border-radius:1px; transition:transform .2s ease, opacity .2s ease, top .2s ease; }
+.nr-burger span:nth-child(1){ top:10px; }
+.nr-burger span:nth-child(2){ top:17px; }
+.nr-burger span:nth-child(3){ top:24px; }
+.nr-burger[aria-expanded="true"] span:nth-child(1){ top:17px; transform:rotate(45deg); }
+.nr-burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.nr-burger[aria-expanded="true"] span:nth-child(3){ top:17px; transform:rotate(-45deg); }
+
+/* Responsive */
+@media (max-width: 860px){
+  .nr-menu--top { display:none; }
+  .nr-burger { display:inline-block; }
+  .nr-subnav { display:none; }
+  .nr-subnav[aria-expanded="true"] { display:block; }
+  .nr-header__top { gap:12px; }
+  .nr-brand__subtitle { font-size:0.8rem; }
+}
