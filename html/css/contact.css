@@ -1,0 +1,11 @@
+
+.contact-page{margin:26px auto 40px;width:min(1100px,90%)}
+.contact-page h1{margin:0 0 12px;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.35)}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+@media (max-width:700px){.contact-grid{grid-template-columns:1fr}}
+.contact-card{background:#171a21;border:1px solid #253140;border-radius:14px;padding:22px;min-height:180px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;color:#e7e9ee;box-shadow:0 0 0 rgba(0,0,0,0);transform:translateY(10px);opacity:0;transition:transform .35s cubic-bezier(.22,.8,.24,1),opacity .35s ease,box-shadow .25s,border-color .25s,background .25s}
+.contact-card h3{margin:0 0 8px;font-size:1.2rem;letter-spacing:.2px;color:#7a63ff}
+.contact-card ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:.98rem;color:#c9d2dd}
+.contact-card a{color:#7a63ff;text-decoration:none;font-weight:700}.contact-card a:hover{text-decoration:underline}
+.contact-card.hovered{border-color:#5a41d8;box-shadow:0 14px 35px rgba(0,0,0,.45);background:linear-gradient(180deg,rgba(90,65,216,.06),transparent 40%),#171a21}
+.contact-card.reveal{transform:translateY(0);opacity:1}

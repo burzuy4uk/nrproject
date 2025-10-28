@@ -1,30 +1,20 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <base href="/" />
-  <title data-i18n="news_title">News — Narodna Rada Fond</title>
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/news.css">
-  <link rel="stylesheet" href="/assets/header/header.css">
-</head>
-<body>
+<!DOCTYPE html><html lang="uk"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<base href="/"/><title>Новини — Народна Рада</title>
+<link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/assets/header/header.css"><link rel="stylesheet" href="/css/theme-ukraine.css"><link rel="stylesheet" href="/css/news.css">
+</head><body>
 <header class="nr-header" role="banner">
   <div class="nr-header__top">
     <a class="nr-brand" href="/" aria-label="Головна">
       <img class="nr-brand__logo" src="/img/logo.jpg" alt="Логотип Народна рада" width="44" height="44">
       <div class="nr-brand__text">
-        <span class="nr-brand__title">Народна рада</span>
+        <span class="nr-brand__title">НАРОДНА РАДА</span>
         <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
       </div>
     </a>
-
     <nav class="nr-topnav" aria-label="Верхня навігація">
       <ul class="nr-menu nr-menu--top">
-        <li class="nr-menu__item">
-          <a class="nr-link" href="/projects.html">Проєкти</a>
-        </li>
+        <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
         <li class="nr-menu__item nr-dropdown">
           <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fond">
             Фонд
@@ -37,26 +27,23 @@
           </ul>
         </li>
       </ul>
-      <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav"><span></span><span></span><span></span></button>
     </nav>
   </div>
-
   <nav id="nr-subnav" class="nr-subnav" aria-label="Нижня навігація">
     <ul class="nr-menu nr-menu--bottom">
       <li class="nr-menu__item nr-dropdown">
-  <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
-    Про нас
-    <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
-  </button>
-  <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
-    <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
-    <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
-    <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
-    <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
-  </ul>
-</li>
+        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
+          Про нас
+          <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
+        </button>
+        <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
+        </ul>
+      </li>
       <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
       <li class="nr-menu__item"><a class="nr-link" href="/events.html">Події</a></li>
       <li class="nr-menu__item"><a class="nr-link" href="/committees.html">Комітети</a></li>
@@ -64,67 +51,30 @@
     </ul>
   </nav>
 </header>
-
-  <div class="menu-overlay" aria-hidden="true"></div>
-
-  \1
-<section class="nr-news-cats" aria-label="Категорії новин">
-  <a class="nr-news-cats__btn" href="/news.html?cat=nr">Новини НР</a>
-  <a class="nr-news-cats__btn" href="/news.html?cat=ua">Новини України</a>
-  <a class="nr-news-cats__btn" href="/news.html?cat=fund">Новини Фонду</a>
-</section>
-
-    <header style="margin: 18px 0 8px">
-      <h1 class="page-title" data-i18n="news_header">Narodna Rada Foundation News</h1>
-      <p class="muted" data-i18n="news_subtitle">
-        Офіційні оновлення фонду: гранти, партнерства, навчальні програми та результати.
-      </p>
-    </header>
-
-    <section class="filters">
-      <div class="filters-row">
-        <label>
-          <span data-i18n="country">Country</span>
-          <select id="filter-country"><option value="">{All}</option></select>
-        </label>
-        <label>
-          <span data-i18n="year">Year</span>
-          <select id="filter-year"><option value="">{All}</option></select>
-        </label>
-        <label>
-          <span data-i18n="category">Category</span>
-          <select id="filter-category"><option value="">{All}</option></select>
-        </label>
-        <input id="filter-q" type="search" class="search-inp"
-               placeholder="Search news..." data-i18n-placeholder="search_placeholder"/>
-        <button id="reset-filters" class="btn filters-reset" data-i18n="reset_filters">Reset</button>
-      </div>
-    </section>
-
-    <section class="content">
-      <div class="list" id="news-list"></div>
-
-      <aside class="sidebar">
-        <h3 class="sidebar-title" data-i18n="stay_informed">STAY INFORMED</h3>
-        <ul class="sidebar-feed" id="sidebar-feed"></ul>
-      </aside>
-    </section>
-
-    <nav class="pagination" id="pagination"></nav>
-  </main>
-
-  <footer class="footer">
-    <div class="container row" data-i18n="footer_copy">© 2025 Narodna Rada Fond — Усі права захищено</div>
-  </footer>
-
-  <div class="language-switcher">
-    <button id="lang-uk" aria-label="Українська">UA</button>
-    <button id="lang-en" aria-label="English">EN</button>
+<div class="menu-overlay" aria-hidden="true"></div>
+<main class="container" style="margin:26px auto 40px">
+  <h1 class="page-title">Новини</h1>
+  <div class="list">
+    <article class="card-article">
+      <span class="chip">Новини НР</span>
+      <h3 class="title">Запуск програми мікрогрантів</h3>
+      <p class="excerpt">Перший етап підтримки місцевих ініціатив…</p>
+      <div class="meta">12.10.2025</div>
+    </article>
+    <article class="card-article">
+      <span class="chip">Новини України</span>
+      <h3 class="title">Меморандум з інвесторами у ВДЕ</h3>
+      <p class="excerpt">Дорожня карта на 2026–2027 роки…</p>
+      <div class="meta">09.10.2025</div>
+    </article>
   </div>
-
-  <script src="/js/burger.js" defer></script>
-  <script src="/js/news.js" defer></script>
-  <script src="/js/language.js" defer></script>
-  <script defer src="/assets/header/header.js"></script>
-</body>
-</html>
+  <nav class="pagination" aria-label="Пагінація">
+    <button class="page-btn" disabled>‹</button>
+    <button class="page-btn active">1</button>
+    <button class="page-btn">2</button>
+    <button class="page-btn">›</button>
+  </nav>
+</main>
+<footer class="footer"><div class="container row">© 2025 Народна Рада — Усі права захищено</div></footer>
+<script src="/js/burger.js" defer></script><script src="/assets/header/header.js" defer></script><script src="/js/active-nav.js" defer></script>
+</body></html>

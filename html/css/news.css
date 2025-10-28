@@ -1,0 +1,11 @@
+
+.page-title{margin:16px 0 10px;font-weight:900;letter-spacing:.2px}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:900px){.list{grid-template-columns:1fr}}
+.card-article{background:#fff;border:1px solid #e2e8ee;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;color:#0d2830;box-shadow:0 10px 26px rgba(17,24,39,.06);transition:transform .16s,box-shadow .16s}
+.card-article:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(17,24,39,.10)}
+.card-article .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid color-mix(in oklab,var(--accent-2),#000 10%);background:color-mix(in oklab,var(--accent-2),#fff 85%);color:#1a0f4a;font-weight:800;font-size:.86rem;box-shadow:0 6px 14px rgba(122,99,255,.18)}
+.pagination{display:flex;gap:10px;justify-content:center;margin-top:18px}
+.page-btn{min-width:36px;height:36px;display:grid;place-items:center;border:1px solid color-mix(in oklab,var(--accent),#000 14%);border-radius:10px;background:#fff;color:#0d2830;font-weight:800;box-shadow:0 8px 18px rgba(90,65,216,.10)}
+.page-btn:hover{background:color-mix(in oklab,var(--accent-2),#fff 80%)} .page-btn.active{background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#120c2b;border-color:transparent}
+.page-btn[disabled]{opacity:.55;pointer-events:none}
