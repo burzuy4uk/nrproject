@@ -54,20 +54,37 @@
 <div class="menu-overlay" aria-hidden="true"></div>
 <main class="container" style="margin:26px auto 40px">
   <h1 class="page-title">Новини</h1>
+
+  <div class="filters">
+    <div class="filters-row">
+      <button class="chip active" data-filter="all">Усі</button>
+      <button class="chip" data-filter="nr">Новини НР</button>
+      <button class="chip" data-filter="ua">Новини України</button>
+      <button class="chip" data-filter="fond">Новини Фонду</button>
+    </div>
+  </div>
+
   <div class="list">
-    <article class="card-article">
+    <article class="card-article" data-cat="nr">
       <span class="chip">Новини НР</span>
       <h3 class="title">Запуск програми мікрогрантів</h3>
       <p class="excerpt">Перший етап підтримки місцевих ініціатив…</p>
       <div class="meta">12.10.2025</div>
     </article>
-    <article class="card-article">
+    <article class="card-article" data-cat="ua">
       <span class="chip">Новини України</span>
-      <h3 class="title">Меморандум з інвесторами у ВДЕ</h3>
-      <p class="excerpt">Дорожня карта на 2026–2027 роки…</p>
+      <h3 class="title">Партнерство для розвитку ВДЕ</h3>
+      <p class="excerpt">Підписано меморандум та дорожню карту…</p>
       <div class="meta">09.10.2025</div>
     </article>
+    <article class="card-article" data-cat="fond">
+      <span class="chip">Новини Фонду</span>
+      <h3 class="title">Звітність за III квартал</h3>
+      <p class="excerpt">Ключові результати та використання коштів…</p>
+      <div class="meta">02.10.2025</div>
+    </article>
   </div>
+
   <nav class="pagination" aria-label="Пагінація">
     <button class="page-btn" disabled>‹</button>
     <button class="page-btn active">1</button>
@@ -75,6 +92,7 @@
     <button class="page-btn">›</button>
   </nav>
 </main>
+
 <footer class="footer"><div class="container row">© 2025 Народна Рада — Усі права захищено</div></footer>
 <script src="/js/burger.js" defer></script><script src="/assets/header/header.js" defer></script><script src="/js/active-nav.js" defer></script>
 </body></html>

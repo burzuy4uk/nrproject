@@ -52,7 +52,51 @@
   </nav>
 </header>
 <div class="menu-overlay" aria-hidden="true"></div>
-<main class="page"><h1>Керівництво</h1><div class="prose"><p>Тут буде контент сторінки «Керівництво».</p></div></main>
+<main class="page">
+  <h1>Керівництво</h1>
+  <div class="tabs" style="margin-top:8px">
+    <div class="tablist" role="tablist">
+      <button id="t-board" role="tab" aria-controls="p-board">Правління</button>
+      <button id="t-super" role="tab" aria-controls="p-super">Наглядова рада</button>
+      <button id="t-depts" role="tab" aria-controls="p-depts">Департаменти</button>
+    </div>
+    <div class="tabpanels">
+      <section id="p-board" role="tabpanel" aria-labelledby="t-board">
+        <div class="people">
+          <article class="card-person"><div class="name">Лукашевич Надія Іванівна</div><div class="role">Голова</div><p>Відповідає за стратегічний розвиток.</p></article>
+          <article class="card-person"><div class="name">Лукашевич Сергій Володимирович</div><div class="role">Заступник</div><p>Операційне управління.</p></article>
+          <article class="card-person"><div class="name">Онищук Володимир Іванович</div><div class="role">Почесний Президент</div><p>Участь в управлінні та розвитку</p></article>
+        </div>
+      </section>
+      <section id="p-super" role="tabpanel" aria-labelledby="t-super" hidden>
+        <div class="people">
+          <article class="card-person"><div class="name">Ім’я Прізвище</div><div class="role">Голова наглядової ради</div><p>Контроль прозорості та аудиту.</p></article>
+        </div>
+      </section>
+      <section id="p-depts" role="tabpanel" aria-labelledby="t-depts" hidden>
+        <ul class="org-tree">
+          <li><span class="org-node"><button class="org-toggle">▾</button> Виконавча дирекція</span>
+            <ul>
+              <li><span class="org-node"><button class="org-toggle">▾</button> Фінансовий департамент</span>
+                <ul><li><span class="org-node">Бухгалтерія</span></li><li><span class="org-node">Бюджет та звітність</span></li></ul>
+              </li>
+              <li><span class="org-node"><button class="org-toggle">▾</button> Програмний департамент</span>
+                <ul><li><span class="org-node">Грантові програми</span></li><li><span class="org-node">Аналітика</span></li></ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p class="note">Натискайте на стрілку, щоб розгортати/згортати підрозділи.</p>
+      </section>
+    </div>
+  </div>
+</main>
 <footer class="footer"><div class="container row">© 2025 Народна Рада — Усі права захищено</div></footer>
-<script src="/js/burger.js" defer></script><script src="/assets/header/header.js" defer></script><script src="/js/active-nav.js" defer></script>
+<script defer src="/assets/header/header.js"></script>
+<script defer src="/js/counters.js"></script>            <!-- де є лічильники -->
+<script defer src="/js/accordion.js"></script>           <!-- де є акордеон -->
+<script defer src="/js/tabs.js"></script>                <!-- де є вкладки -->
+<script defer src="/js/partners-filter.js"></script>     <!-- новини/партнери/проєкти -->
+<script defer src="/js/orgchart.js"></script>            <!-- керівництво/структура -->
+<script defer src="/js/contact-anim.js"></script>        <!-- контакти -->
 </body></html>

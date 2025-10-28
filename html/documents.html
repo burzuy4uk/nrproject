@@ -52,7 +52,32 @@
   </nav>
 </header>
 <div class="menu-overlay" aria-hidden="true"></div>
-<main class="page"><h1>Документи</h1><div class="prose"><p>Тут буде контент сторінки «Документи».</p></div></main>
+<main class="page">
+  <h1>Документи</h1>
+  <div class="tabs" style="margin-top:8px">
+    <div class="tablist" role="tablist" aria-label="Категорії документів">
+      <button id="tab-1" role="tab" aria-controls="panel-1">Статутні</button>
+      <button id="tab-2" role="tab" aria-controls="panel-2">Звіти</button>
+      <button id="tab-3" role="tab" aria-controls="panel-3">Політики</button>
+    </div>
+    <div class="tabpanels">
+      <div id="panel-1" role="tabpanel" aria-labelledby="tab-1">
+        <ul><li><a href="#">Статут (PDF)</a></li><li><a href="#">Положення про наглядову раду (PDF)</a></li></ul>
+      </div>
+      <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+        <ul><li><a href="#">Річний звіт 2024 (PDF)</a></li><li><a href="#">Аудиторський висновок 2024 (PDF)</a></li></ul>
+      </div>
+    </div>
+  </div>
+</main>
+
 <footer class="footer"><div class="container row">© 2025 Народна Рада — Усі права захищено</div></footer>
-<script src="/js/burger.js" defer></script><script src="/assets/header/header.js" defer></script><script src="/js/active-nav.js" defer></script>
+<script defer src="/assets/header/header.js"></script>
+<script defer src="/js/counters.js"></script>            <!-- де є лічильники -->
+<script defer src="/js/accordion.js"></script>           <!-- де є акордеон -->
+<script defer src="/js/tabs.js"></script>                <!-- де є вкладки -->
+<script defer src="/js/partners-filter.js"></script>     <!-- новини/партнери/проєкти -->
+<script defer src="/js/orgchart.js"></script>            <!-- керівництво/структура -->
+<script defer src="/js/contact-anim.js"></script>        <!-- контакти -->
+
 </body></html>
