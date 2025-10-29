@@ -1,166 +1,193 @@
-<!DOCTYPE html><html lang="uk"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<base href="/"/><title>Документи — Народна Рада</title>
-<!-- Fancy fonts for the header -->
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Montserrat+Alternates:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/documents.css">
-<link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/assets/header/header.css"><link rel="stylesheet" href="/css/theme-ukraine.css"><link rel="stylesheet" href="/css/pages.css">
-</head><body>
-<header class="nr-header" role="banner">
-  <div class="nr-header__top">
-    <a class="nr-brand" href="/" aria-label="Головна">
-      <img class="nr-brand__logo" src="/img/logo.jpg" alt="Логотип Народна рада" width="44" height="44">
-      <div class="nr-brand__text">
-        <span class="nr-brand__title">НАРОДНА РАДА</span>
-        <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
-      </div>
-    </a>
-    <nav class="nr-topnav" aria-label="Верхня навігація">
-      <ul class="nr-menu nr-menu--top">
-        <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
-        <li class="nr-menu__item nr-dropdown">
-          <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fond">
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="/" />
+    <title>Документи — Народна Рада</title>
+    <!-- Fancy fonts for the header -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Montserrat+Alternates:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/documents.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/assets/header/header.css">
+    <link rel="stylesheet" href="/css/theme-ukraine.css">
+    <link rel="stylesheet" href="/css/pages.css">
+</head>
+
+<body>
+    <header class="nr-header" role="banner">
+        <div class="nr-header__top">
+            <a class="nr-brand" href="/" aria-label="Головна">
+                <img class="nr-brand__logo" src="/img/logo.jpg" alt="Логотип Народна рада" width="44" height="44">
+                <div class="nr-brand__text">
+                    <span class="nr-brand__title">НАРОДНА РАДА</span>
+                    <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
+                </div>
+            </a>
+            <nav class="nr-topnav" aria-label="Верхня навігація">
+                <ul class="nr-menu nr-menu--top">
+                    <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
+                    <li class="nr-menu__item nr-dropdown">
+                        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fond">
             Фонд
             <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
           </button>
-          <ul id="menu-fond" class="nr-dropdown__menu" role="menu" aria-label="Меню Фонд">
-            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/about-fond.html">Про фонд</a></li>
-            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/partners.html">Партнери</a></li>
-            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/founders.html">Засновники</a></li>
-          </ul>
-        </li>
-      </ul>
-      <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav"><span></span><span></span><span></span></button>
-    </nav>
-  </div>
-  <nav id="nr-subnav" class="nr-subnav" aria-label="Нижня навігація">
-    <ul class="nr-menu nr-menu--bottom">
-      <li class="nr-menu__item nr-dropdown">
-        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
+                        <ul id="menu-fond" class="nr-dropdown__menu" role="menu" aria-label="Меню Фонд">
+                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/about-fond.html">Про фонд</a></li>
+                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/partners.html">Партнери</a></li>
+                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/founders.html">Засновники</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav"><span></span><span></span><span></span></button>
+            </nav>
+        </div>
+        <nav id="nr-subnav" class="nr-subnav" aria-label="Нижня навігація">
+            <ul class="nr-menu nr-menu--bottom">
+                <li class="nr-menu__item nr-dropdown">
+                    <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
           Про нас
           <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
         </button>
-        <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
-        </ul>
-      </li>
-      <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/events.html">Події</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/committees.html">Комітети</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/contacts.html">Контакти</a></li>
-    </ul>
-  </nav>
-</header>
-<div class="menu-overlay" aria-hidden="true"></div>
-<main class="page documents">
-  <!-- HERO -->
-  <section class="docs-hero reveal">
-    <div class="container">
-      <span class="eyebrow">Про нас</span>
-      <h1 class="docs-title">Документи організації</h1>
-      <p class="lead">Тут зібрано статутні документи, звіти та політики. PDF можна переглядати просто на сторінці або завантажити.</p>
+                    <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
+                    </ul>
+                </li>
+                <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
+                <li class="nr-menu__item"><a class="nr-link" href="/events.html">Події</a></li>
+                <li class="nr-menu__item"><a class="nr-link" href="/committees.html">Комітети</a></li>
+                <li class="nr-menu__item"><a class="nr-link" href="/contacts.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="menu-overlay" aria-hidden="true"></div>
+    <main class="page documents">
+        <!-- HERO -->
+        <section class="docs-hero reveal">
+            <div class="container">
+                <span class="eyebrow">Про нас</span>
+                <h1 class="docs-title">Документи організації</h1>
+                <p class="lead">Статутні документи та звіти. PDF можна переглядати на сторінці або завантажувати.</p>
+            </div>
+        </section>
+
+        <!-- ТАБИ (лише 2) -->
+        <section class="docs-tabs reveal">
+            <div class="container">
+                <div class="tabs" role="tablist" aria-label="Категорії документів">
+                    <button id="tab-1" class="tab is-active" role="tab" aria-controls="panel-1" aria-selected="true">Статутні</button>
+                    <button id="tab-2" class="tab" role="tab" aria-controls="panel-2" aria-selected="false">Звіти</button>
+                </div>
+
+                <div class="tabpanels">
+                    <!-- PANEL 1: СТАТУТНІ -->
+                    <div id="panel-1" class="tabpanel" role="tabpanel" aria-labelledby="tab-1">
+                        <!-- Галерея свідоцтв -->
+                        <div class="card">
+                            <h2>Свідоцтва та реєстраційні документи</h2>
+                            <p class="muted">Натисніть на зображення для перегляду в повноекранному режимі.</p>
+                            <div class="thumbs-grid">
+                                <figure class="doc-thumb">
+                                    <img src="/data/svidotstvo.jpg" alt="Свідоцтво про реєстрацію (оригінал)" loading="lazy" data-lightbox="/data/svidotstvo.jpg">
+                                    <figcaption>Файл: <code>svidotstvo.jpg</code></figcaption>
+                                </figure>
+                                <figure class="doc-thumb">
+                                    <!-- якщо назва відрізняється (svidotsto_pro_reg.jpg), заміни шлях нижче -->
+                                    <img src="/data/svidotso_pro_reg.jpg" alt="Свідоцтво про реєстрацію (дублікат/варіант)" loading="lazy" data-lightbox="/data/svidotso_pro_reg.jpg">
+                                    <figcaption>Файл: <code>svidotso_pro_reg.jpg</code></figcaption>
+                                </figure>
+                            </div>
+                            <div class="actions">
+                                <a class="btn btn-ghost" href="/data/svidotstvo.jpg" download>Завантажити JPG</a>
+                                <a class="btn btn-ghost" href="/data/svidotso_pro_reg.jpg" download>Завантажити JPG</a>
+                            </div>
+                        </div>
+
+                        <!-- Статут (PDF-вьюер №1) -->
+                        <article class="card">
+                            <h2>Статут організації (нова редакція)</h2>
+                            <p class="muted">Перегляд на сторінці або у новій вкладці. Зум — «на ширину сторінки».</p>
+
+                            <div class="pdf-toolbar">
+                                <button class="btn btn-ghost" data-pdf-open>Відкрити у вкладці</button>
+                                <a class="btn btn-ghost" data-pdf-download download>Завантажити PDF</a>
+                                <button class="btn" data-pdf-fullscreen>На весь екран</button>
+                            </div>
+
+                            <div class="pdf-viewer" data-pdf="/data/Статут НР нова редакція  24.01.2022.pdf">
+                                <iframe title="Статут Народна Рада PDF" loading="lazy"></iframe>
+                            </div>
+                        </article>
+
+                        <!-- Виписка з ЄДР (PDF-вьюер №2) -->
+                        <article class="card">
+                            <h2>Виписка з ЄДР</h2>
+                            <p class="muted">Актуальна виписка станом на 20.05.2025.</p>
+
+                            <div class="pdf-toolbar">
+                                <button class="btn btn-ghost" data-pdf-open>Відкрити у вкладці</button>
+                                <a class="btn btn-ghost" data-pdf-download download>Завантажити PDF</a>
+                                <button class="btn" data-pdf-fullscreen>На весь екран</button>
+                            </div>
+
+                            <div class="pdf-viewer" data-pdf="/data/Виписка 20.05.25 СГОУ НР.pdf">
+                                <iframe title="Виписка з ЄДР PDF" loading="lazy"></iframe>
+                            </div>
+                        </article>
+
+                        <!-- Короткий список посилань -->
+                        <ul class="doc-list">
+                            <li>
+                                <span>Статут (PDF)</span>
+                                <a class="link" href="/data/Статут НР нова редакція  24.01.2022.pdf" target="_blank" rel="noopener">Переглянути</a>
+                            </li>
+                            <li>
+                                <span>Виписка з ЄДР (PDF)</span>
+                                <a class="link" href="/data/Виписка 20.05.25 СГОУ НР.pdf" target="_blank" rel="noopener">Переглянути</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- PANEL 2: ЗВІТИ -->
+                    <div id="panel-2" class="tabpanel" role="tabpanel" aria-labelledby="tab-2" hidden>
+                        <div class="empty">
+                            <p>Розділ у підготовці.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальне вікно для фото -->
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Перегляд зображення">
+        <button class="lightbox__close" data-lightbox-close aria-label="Закрити">✕</button>
+        <img class="lightbox__img" alt="">
     </div>
-  </section>
 
-  <!-- ТАБИ -->
-  <section class="docs-tabs reveal">
-    <div class="container">
-      <div class="tabs" role="tablist" aria-label="Категорії документів">
-        <button id="tab-1" class="tab is-active" role="tab" aria-controls="panel-1" aria-selected="true">Статутні</button>
-        <button id="tab-2" class="tab" role="tab" aria-controls="panel-2" aria-selected="false">Звіти</button>
-        <button id="tab-3" class="tab" role="tab" aria-controls="panel-3" aria-selected="false">Політики</button>
-      </div>
+    <footer class="footer">
+        <div class="container row">© 2025 Народна Рада — Усі права захищено</div>
+    </footer>
+    <script defer src="/js/documents.js"></script>
+    <script defer src="/assets/header/header.js"></script>
+    <script defer src="/js/counters.js"></script>
+    <!-- де є лічильники -->
+    <script defer src="/js/accordion.js"></script>
+    <!-- де є акордеон -->
+    <script defer src="/js/tabs.js"></script>
+    <!-- де є вкладки -->
+    <script defer src="/js/partners-filter.js"></script>
+    <!-- новини/партнери/проєкти -->
+    <script defer src="/js/orgchart.js"></script>
+    <!-- керівництво/структура -->
+    <script defer src="/js/contact-anim.js"></script>
+    <!-- контакти -->
 
-      <div class="tabpanels">
-        <!-- PANEL 1 -->
-        <div id="panel-1" class="tabpanel" role="tabpanel" aria-labelledby="tab-1">
-          <div class="grid-2">
-            <!-- Свідоцтво (фото з модальним переглядом) -->
-            <article class="card">
-              <h2>Свідоцтво про реєстрацію</h2>
-              <p class="muted">Оригінал доступний у високій якості. Натисніть, щоб відкрити.</p>
-              <figure class="doc-thumb">
-                <img
-                  src="/data/svidotstvo.jpg"
-                  alt="Свідоцтво про реєстрацію організації"
-                  loading="lazy"
-                  width="840" height="1188"
-                  data-lightbox="/data/svidotstvo.jpg">
-                <figcaption>Файл: <code>svidotstvo.jpg</code></figcaption>
-              </figure>
-              <div class="actions">
-                <a class="btn" href="/data/svidotstvo.jpg" target="_blank" rel="noopener">Відкрити у новій вкладці</a>
-                <a class="btn btn-ghost" href="/data/svidotstvo.jpg" download>Завантажити JPG</a>
-              </div>
-            </article>
+</body>
 
-            <!-- Статут (вбудований PDF) -->
-            <article class="card">
-              <h2>Статут організації (нова редакція)</h2>
-              <p class="muted">Переглядайте документ безпосередньо на сторінці або завантажте PDF.</p>
-
-              <div class="pdf-toolbar">
-                <button class="btn btn-ghost" data-pdf-open>Відкрити в окремій вкладці</button>
-                <a class="btn btn-ghost" data-pdf-download download>Завантажити PDF</a>
-                <button class="btn" data-pdf-fullscreen>На весь екран</button>
-              </div>
-
-              <div class="pdf-viewer" id="pdfViewer"
-                   data-pdf="/data/Статут НР нова редакція  24.01.2022.pdf">
-                <!-- src підставиться скриптом із корректним кодуванням та параметрами -->
-                <iframe id="pdfFrame" title="Статут Народна Рада PDF" loading="lazy"></iframe>
-                <noscript>
-                  <p>Ваш браузер підтримує перегляд PDF. <a href="/data/Статут НР нова редакція  24.01.2022.pdf">Відкрити файл</a>.</p>
-                </noscript>
-              </div>
-            </article>
-          </div>
-
-          <ul class="doc-list">
-            <li>
-              <span>Статут (PDF)</span>
-              <a class="link" href="/data/Статут НР нова редакція  24.01.2022.pdf" target="_blank" rel="noopener">Переглянути</a>
-            </li>
-            <li><span>Положення про наглядову раду (PDF)</span><em class="badge">Скоро</em></li>
-          </ul>
-        </div>
-
-        <!-- PANEL 2 -->
-        <div id="panel-2" class="tabpanel" role="tabpanel" aria-labelledby="tab-2" hidden>
-          <div class="empty">
-            <p>Розділ у підготовці. Додамо після затвердження річних звітів.</p>
-          </div>
-        </div>
-
-        <!-- PANEL 3 -->
-        <div id="panel-3" class="tabpanel" role="tabpanel" aria-labelledby="tab-3" hidden>
-          <div class="empty">
-            <p>Політики публікуватимуться по мірі затвердження.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- Модальне вікно для фото -->
-<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Перегляд зображення">
-  <button class="lightbox__close" data-lightbox-close aria-label="Закрити">✕</button>
-  <img class="lightbox__img" alt="">
-</div>
-
-<footer class="footer"><div class="container row">© 2025 Народна Рада — Усі права захищено</div></footer>
-<script defer src="/js/documents.js"></script>
-<script defer src="/assets/header/header.js"></script>
-<script defer src="/js/counters.js"></script>            <!-- де є лічильники -->
-<script defer src="/js/accordion.js"></script>           <!-- де є акордеон -->
-<script defer src="/js/tabs.js"></script>                <!-- де є вкладки -->
-<script defer src="/js/partners-filter.js"></script>     <!-- новини/партнери/проєкти -->
-<script defer src="/js/orgchart.js"></script>            <!-- керівництво/структура -->
-<script defer src="/js/contact-anim.js"></script>        <!-- контакти -->
-
-</body></html>
+</html>

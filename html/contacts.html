@@ -1,78 +1,191 @@
-<!DOCTYPE html><html lang="uk"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<base href="/"/><title>Контакти — Народна Рада</title>
-<!-- Fancy fonts for the header -->
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Montserrat+Alternates:wght@600;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="uk">
 
-<link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/assets/header/header.css"><link rel="stylesheet" href="/css/theme-ukraine.css"><link rel="stylesheet" href="/css/contact.css">
-</head><body>
-<header class="nr-header" role="banner">
-  <div class="nr-header__top">
-    <a class="nr-brand" href="/" aria-label="Головна">
-      <img class="nr-brand__logo" src="/html/img/" alt="Логотип Народна рада" width="44" height="44">
-      <div class="nr-brand__text">
-        <span class="nr-brand__title">НАРОДНА РАДА</span>
-        <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
-      </div>
-    </a>
-    <nav class="nr-topnav" aria-label="Верхня навігація">
-      <ul class="nr-menu nr-menu--top">
-        <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
-        <li class="nr-menu__item nr-dropdown">
-          <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fond">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="/" />
+    <title>Контакти — Народна Рада</title>
+    <!-- Fancy fonts for the header -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Montserrat+Alternates:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/assets/header/header.css">
+    <link rel="stylesheet" href="/css/theme-ukraine.css">
+    <link rel="stylesheet" href="/css/contact.css">
+</head>
+
+<body>
+    <header class="nr-header" role="banner">
+        <div class="nr-header__top">
+            <a class="nr-brand" href="/" aria-label="Головна">
+                <img class="nr-brand__logo" src="/html/img/logo.jpg" alt="Логотип Народна рада" width="44" height="44">
+                <div class="nr-brand__text">
+                    <span class="nr-brand__title">НАРОДНА РАДА</span>
+                    <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
+                </div>
+            </a>
+            <nav class="nr-topnav" aria-label="Верхня навігація">
+                <ul class="nr-menu nr-menu--top">
+                    <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
+                    <li class="nr-menu__item nr-dropdown">
+                        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fond">
             Фонд
             <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
           </button>
-          <ul id="menu-fond" class="nr-dropdown__menu" role="menu" aria-label="Меню Фонд">
-            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/about-fond.html">Про фонд</a></li>
-            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/partners.html">Партнери</a></li>
-            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/founders.html">Засновники</a></li>
-          </ul>
-        </li>
-      </ul>
-      <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav"><span></span><span></span><span></span></button>
-    </nav>
-  </div>
-  <nav id="nr-subnav" class="nr-subnav" aria-label="Нижня навігація">
-    <ul class="nr-menu nr-menu--bottom">
-      <li class="nr-menu__item nr-dropdown">
-        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
+                        <ul id="menu-fond" class="nr-dropdown__menu" role="menu" aria-label="Меню Фонд">
+                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/about-fond.html">Про фонд</a></li>
+                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/partners.html">Партнери</a></li>
+                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/founders.html">Засновники</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav"><span></span><span></span><span></span></button>
+            </nav>
+        </div>
+        <nav id="nr-subnav" class="nr-subnav" aria-label="Нижня навігація">
+            <ul class="nr-menu nr-menu--bottom">
+                <li class="nr-menu__item nr-dropdown">
+                    <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
           Про нас
           <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
         </button>
-        <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
-        </ul>
-      </li>
-      <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/events.html">Події</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/committees.html">Комітети</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/contacts.html">Контакти</a></li>
-    </ul>
-  </nav>
-</header>
-<div class="menu-overlay" aria-hidden="true"></div>
-<main class="contact-page">
-  <h1>Контакти</h1>
-  <section class="contact-grid">
-    <article class="contact-card"><h3>Секретаріат</h3><ul><li><strong>Email:</strong> onyschuk.volodymyrn@narodnarada.kyiv.ua</li><li><strong>Телефон:</strong> +380 67 404 1515</li></ul></article>
-    <article class="contact-card"><h3>Іноземна Підтримка</h3><ul><li><strong>Email:</strong> nimak.evgeniya@narodnarada.kyiv.ua</li><li><strong>Телефон:</strong> +380 95 322 6692</li></ul></article>
-    <article class="contact-card"><h3>Комунікації з керівництвом</h3><ul><li><strong>Email:</strong> karion@i.ua</li><li><strong>Телефон:</strong> +380673254887</li></ul></article>
-    <article class="contact-card"><h3>Іноземні Куратори</h3><ul><li><strong>Email:</strong> weinzettel.gregor@narodnarada.kyiv.ua</li><li><strong>
-  </section>
-</main>
+                    <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
+                    </ul>
+                </li>
+                <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
+                <li class="nr-menu__item"><a class="nr-link" href="/events.html">Події</a></li>
+                <li class="nr-menu__item"><a class="nr-link" href="/committees.html">Комітети</a></li>
+                <li class="nr-menu__item"><a class="nr-link" href="/contacts.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="menu-overlay" aria-hidden="true"></div>
+    <main class="contact-page">
+        <h1>Контакти</h1>
 
-<footer class="footer"><div class="container row">© 2025 Народна Рада — Усі права захищено</div></footer>
-<script defer src="/assets/header/header.js"></script>
-<script defer src="/js/counters.js"></script>            <!-- де є лічильники -->
-<script defer src="/js/accordion.js"></script>           <!-- де є акордеон -->
-<script defer src="/js/tabs.js"></script>                <!-- де є вкладки -->
-<script defer src="/js/partners-filter.js"></script>     <!-- новини/партнери/проєкти -->
-<script defer src="/js/orgchart.js"></script>            <!-- керівництво/структура -->
-<script defer src="/js/contact-anim.js"></script>        <!-- контакти -->
+        <section class="contact-grid" id="contacts">
+            <article class="contact-card">
+                <h3>Секретаріат</h3>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:onyschuk.volodymyrn@narodnarada.kyiv.ua" class="copyable" data-copy="onyschuk.volodymyrn@narodnarada.kyiv.ua">onyschuk.volodymyrn@narodnarada.kyiv.ua</a></li>
+                    <li><strong>Телефон:</strong> <a href="tel:+380674041515" class="copyable" data-copy="+380674041515">+380 67 404 1515</a></li>
+                </ul>
+            </article>
 
-</body></html>
+            <article class="contact-card">
+                <h3>Іноземна підтримка</h3>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:nimak.evgeniya@narodnarada.kyiv.ua" class="copyable" data-copy="nimak.evgeniya@narodnarada.kyiv.ua">nimak.evgeniya@narodnarada.kyiv.ua</a></li>
+                    <li><strong>Телефон:</strong> <a href="tel:+380953226692" class="copyable" data-copy="+380953226692">+380 95 322 6692</a></li>
+                </ul>
+            </article>
+
+            <article class="contact-card">
+                <h3>Комунікації з керівництвом</h3>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:karion@i.ua" class="copyable" data-copy="karion@i.ua">karion@i.ua</a></li>
+                    <li><strong>Телефон:</strong> <a href="tel:+380673254887" class="copyable" data-copy="+380673254887">+380 67 325 4887</a></li>
+                </ul>
+            </article>
+
+            <article class="contact-card">
+                <h3>Іноземні куратори</h3>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:weinzettel.gregor@narodnarada.kyiv.ua" class="copyable" data-copy="weinzettel.gregor@narodnarada.kyiv.ua">weinzettel.gregor@narodnarada.kyiv.ua</a></li>
+                    <li><strong>Примітка:</strong> міжнародні зв'язки та партнерства</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- Офіс: адреса + карта + графік -->
+        <section class="office">
+            <div class="office__info">
+                <h2>Головний офіс</h2>
+                <address class="office__addr">
+            <div class="addr-line">вул. Левка Лукʼяненка, 1д, оф. 3</div>
+            <div class="addr-line">м. Київ, 04207</div>
+          </address>
+
+                <div class="open-badge" aria-live="polite">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span id="openStatusText">Перевіряю статус…</span>
+                </div>
+
+                <div class="hours">
+                    <h3>Графік роботи</h3>
+                    <table class="hours__table" aria-describedby="hoursNote">
+                        <tbody>
+                            <tr data-day="1">
+                                <th>Пн</th>
+                                <td>08:00 — 18:00</td>
+                            </tr>
+                            <tr data-day="2">
+                                <th>Вт</th>
+                                <td>08:00 — 18:00</td>
+                            </tr>
+                            <tr data-day="3">
+                                <th>Ср</th>
+                                <td>08:00 — 18:00</td>
+                            </tr>
+                            <tr data-day="4">
+                                <th>Чт</th>
+                                <td>08:00 — 18:00</td>
+                            </tr>
+                            <tr data-day="5">
+                                <th>Пт</th>
+                                <td>08:00 — 18:00</td>
+                            </tr>
+                            <tr data-day="6" class="is-closed">
+                                <th>Сб</th>
+                                <td>вихідний</td>
+                            </tr>
+                            <tr data-day="0" class="is-closed">
+                                <th>Нд</th>
+                                <td>вихідний</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p id="hoursNote" class="hours__note">Час за Києвом (EET/EEST).</p>
+                </div>
+
+                <div class="office__actions">
+                    <a class="btn btn--route" href="https://www.google.com/maps/dir/?api=1&destination=%D0%B2%D1%83%D0%BB.+%D0%9B%D0%B5%D0%B2%D0%BA%D0%B0+%D0%9B%D1%83%D0%BA%CA%BC%D1%8F%D0%BD%D0%B5%D0%BD%D0%BA%D0%B0%2C+1%D0%B4%2C+%D0%BE%D1%84.+3%2C+%D0%9A%D0%B8%D1%97%D0%B2%2C+04207"
+                        target="_blank" rel="noopener">Прокласти маршрут</a>
+                </div>
+            </div>
+
+            <div class="office__map" role="region" aria-label="Карта розташування офісу">
+                <iframe title="Карта — вул. Левка Лукʼяненка, 1д, оф. 3, Київ" src="https://www.google.com/maps?q=%D0%B2%D1%83%D0%BB.+%D0%9B%D0%B5%D0%B2%D0%BA%D0%B0+%D0%9B%D1%83%D0%BA%CA%BC%D1%8F%D0%BD%D0%B5%D0%BD%D0%BA%D0%B0%2C+1%D0%B4%2C+%D0%BE%D1%84.+3%2C+%D0%9A%D0%B8%D1%97%D0%B2%2C+04207&hl=uk&z=16&output=embed"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+          </iframe>
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="footer">
+        <div class="container row">© 2025 Народна Рада — Усі права захищено</div>
+    </footer>
+    <script defer src="/assets/header/header.js"></script>
+    <script defer src="/js/counters.js"></script>
+    <!-- де є лічильники -->
+    <script defer src="/js/accordion.js"></script>
+    <!-- де є акордеон -->
+    <script defer src="/js/tabs.js"></script>
+    <!-- де є вкладки -->
+    <script defer src="/js/partners-filter.js"></script>
+    <!-- новини/партнери/проєкти -->
+    <script defer src="/js/orgchart.js"></script>
+    <!-- керівництво/структура -->
+    <script defer src="/js/contact-anim.js"></script>
+    <!-- контакти -->
+
+</body>
+
+</html>
