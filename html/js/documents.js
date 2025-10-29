@@ -81,7 +81,7 @@
         if (frame) frame.src = encoded;
 
         // Знаходимо кнопки саме в межах картки
-        const card = viewer.closest('.card') || document;
+        const card = viewer.closest('.card') || viewer;
         const openB = card.querySelector('[data-pdf-open]');
         const downA = card.querySelector('[data-pdf-download]');
         const fullB = card.querySelector('[data-pdf-fullscreen]');
@@ -104,7 +104,8 @@
         if (e.key !== 'Escape') return;
         document.querySelectorAll('.pdf-viewer.is-fullscreen').forEach((v) => {
             v.classList.remove('is-fullscreen');
-            const btn = v.closest('.card') ? .querySelector('[data-pdf-fullscreen]');
+            const host = v.closest('.card');
+            const btn = host ? host.querySelector('[data-pdf-fullscreen]') : null;
             if (btn) btn.textContent = 'На весь екран';
         });
     });
