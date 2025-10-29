@@ -1,69 +1,94 @@
-<!DOCTYPE html><html lang="uk"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<base href="/"/><title>Комітети — Народна Рада</title>
-<!-- Fancy fonts for the header -->
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Montserrat+Alternates:wght@600;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="uk">
 
-<link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/assets/header/header.css"><link rel="stylesheet" href="/css/theme-ukraine.css"><link rel="stylesheet" href="/css/pages.css">
-</head><body>
-<header class="nr-header" role="banner">
-  <div class="nr-header__top">
-    <a class="nr-brand" href="/" aria-label="Головна">
-      <img class="nr-brand__logo" src="/img/logo.jpg" alt="Логотип Народна рада" width="44" height="44">
-      <div class="nr-brand__text">
-        <span class="nr-brand__title">НАРОДНА РАДА</span>
-        <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
-      </div>
-    </a>
-    <nav class="nr-topnav" aria-label="Верхня навігація">
-      <ul class="nr-menu nr-menu--top">
-        <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
-        <li class="nr-menu__item nr-dropdown">
-          <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fond">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="/" />
+    <title>Комітети — Народна Рада</title>
+    <!-- Fancy fonts for the header -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Montserrat+Alternates:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/assets/header/header.css">
+    <link rel="stylesheet" href="/css/theme-ukraine.css">
+    <link rel="stylesheet" href="/css/pages.css">
+</head>
+
+<body>
+    <header class="nr-header" role="banner">
+        <div class="nr-header__top">
+            <a class="nr-brand" href="/" aria-label="Головна">
+                <img class="nr-brand__logo" src="/img/logo.jpg" alt="Логотип Народна рада" width="44" height="44">
+                <div class="nr-brand__text">
+                    <span class="nr-brand__title">НАРОДНА РАДА</span>
+                    <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
+                </div>
+            </a>
+            <nav class="nr-topnav" aria-label="Верхня навігація">
+                <ul class="nr-menu nr-menu--top">
+                    <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
+                    <li class="nr-menu__item nr-dropdown">
+                        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fond">
             Фонд
             <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
           </button>
-          <ul id="menu-fond" class="nr-dropdown__menu" role="menu" aria-label="Меню Фонд">
-            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/about-fond.html">Про фонд</a></li>
-            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/partners.html">Партнери</a></li>
-            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/founders.html">Засновники</a></li>
-          </ul>
-        </li>
-      </ul>
-      <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav"><span></span><span></span><span></span></button>
-    </nav>
-  </div>
-  <nav id="nr-subnav" class="nr-subnav" aria-label="Нижня навігація">
-    <ul class="nr-menu nr-menu--bottom">
-      <li class="nr-menu__item nr-dropdown">
-        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
+                        <ul id="menu-fond" class="nr-dropdown__menu" role="menu" aria-label="Меню Фонд">
+                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/about-fond.html">Про фонд</a></li>
+                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/partners.html">Партнери</a></li>
+                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/founders.html">Засновники</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav"><span></span><span></span><span></span></button>
+            </nav>
+        </div>
+        <nav id="nr-subnav" class="nr-subnav" aria-label="Нижня навігація">
+            <ul class="nr-menu nr-menu--bottom">
+                <li class="nr-menu__item nr-dropdown">
+                    <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
           Про нас
           <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
         </button>
-        <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
-        </ul>
-      </li>
-      <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/events.html">Події</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/committees.html">Комітети</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/contacts.html">Контакти</a></li>
-    </ul>
-  </nav>
-</header>
-<div class="menu-overlay" aria-hidden="true"></div>
-<main class="page"><h1>Комітети</h1><div class="prose"><p>Тут буде контент сторінки «Комітети».</p></div></main>
-<footer class="footer"><div class="container row">© 2025 Народна Рада — Усі права захищено</div></footer>
-<script defer src="/assets/header/header.js"></script>
-<script defer src="/js/counters.js"></script>            <!-- де є лічильники -->
-<script defer src="/js/accordion.js"></script>           <!-- де є акордеон -->
-<script defer src="/js/tabs.js"></script>                <!-- де є вкладки -->
-<script defer src="/js/partners-filter.js"></script>     <!-- новини/партнери/проєкти -->
-<script defer src="/js/orgchart.js"></script>            <!-- керівництво/структура -->
-<script defer src="/js/contact-anim.js"></script>        <!-- контакти -->
+                    <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
+                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
+                    </ul>
+                </li>
+                <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
+                <li class="nr-menu__item"><a class="nr-link" href="/events.html">Відкрита Трибуна</a></li>
+                <li class="nr-menu__item"><a class="nr-link" href="/committees.html">Комітети</a></li>
+                <li class="nr-menu__item"><a class="nr-link" href="/contacts.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="menu-overlay" aria-hidden="true"></div>
+    <main class="page">
+        <h1>Комітети</h1>
+        <div class="prose">
+            <p>Тут буде контент сторінки «Комітети».</p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container row">© 2025 Народна Рада — Усі права захищено</div>
+    </footer>
+    <script defer src="/assets/header/header.js"></script>
+    <script defer src="/js/counters.js"></script>
+    <!-- де є лічильники -->
+    <script defer src="/js/accordion.js"></script>
+    <!-- де є акордеон -->
+    <script defer src="/js/tabs.js"></script>
+    <!-- де є вкладки -->
+    <script defer src="/js/partners-filter.js"></script>
+    <!-- новини/партнери/проєкти -->
+    <script defer src="/js/orgchart.js"></script>
+    <!-- керівництво/структура -->
+    <script defer src="/js/contact-anim.js"></script>
+    <!-- контакти -->
 
-</body></html>
+</body>
+
+</html>
