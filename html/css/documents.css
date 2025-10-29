@@ -1,0 +1,69 @@
+/* ===== База ===== */
+.documents .container{max-width:1100px;margin:0 auto;padding:clamp(16px,2vw,24px)}
+.eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;opacity:.8}
+.documents h1,.documents h2{margin:0 0 .6em}
+.lead{font-size:clamp(1rem,1.2vw + .8rem,1.25rem);line-height:1.7;opacity:.95}
+.muted{opacity:.8}
+
+/* ===== HERO ===== */
+.docs-hero{padding:clamp(48px,6vw,96px) 0;color:#fff;background:
+  radial-gradient(1200px 400px at 10% -10%, rgba(0,120,255,.15), transparent 60%),
+  radial-gradient(1200px 400px at 120% 10%, rgba(255,200,0,.12), transparent 60%),
+  var(--nr-hero-bg,#0b0f1a)}
+.docs-title{font-family:"Unbounded",system-ui,sans-serif;font-weight:800}
+
+/* ===== Tabs ===== */
+.docs-tabs{padding:28px 0 64px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{appearance:none;border:1px solid rgba(0,0,0,.1);background:#fff;border-radius:999px;
+  padding:10px 16px;font-weight:600;cursor:pointer;transition:.2s}
+.tab:is(:hover,:focus){transform:translateY(-1px)}
+.tab.is-active{background:#0d6efd;color:#fff;border-color:#0d6efd}
+.tabpanels{margin-top:16px}
+.tabpanel[hidden]{display:none}
+
+/* ===== Layout ===== */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,28px)}
+@media (max-width:900px){.grid-2{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;
+  padding:clamp(16px,2vw,24px);box-shadow:0 6px 24px rgba(0,0,0,.06)}
+
+/* ===== Thumb / Lightbox ===== */
+.doc-thumb{margin:.5rem 0 0}
+.doc-thumb img{width:100%;height:auto;border-radius:12px;cursor:pointer;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);transition:transform .25s}
+.doc-thumb img:hover{transform:scale(1.01)}
+.actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;
+  background:#0d6efd;color:#fff;text-decoration:none;border:1px solid #0d6efd;cursor:pointer}
+.btn-ghost{background:#fff;color:#0d6efd;border-color:#0d6efd}
+.btn:focus{outline:3px solid rgba(13,110,253,.35);outline-offset:2px}
+.link{color:#0d6efd;text-decoration:none}
+.link:hover{text-decoration:underline}
+
+/* ===== PDF Viewer ===== */
+.pdf-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.pdf-viewer{position:relative;border:1px solid rgba(0,0,0,.08);border-radius:14px;overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.06);background:#f6f7f9}
+.pdf-viewer iframe{display:block;width:100%;height:min(78vh,900px);border:0;background:#fff}
+.pdf-viewer.is-fullscreen{position:fixed;inset:16px;z-index:1000;border-radius:16px;box-shadow:0 40px 90px rgba(0,0,0,.35)}
+.pdf-viewer.is-fullscreen iframe{height:calc(100vh - 32px)}
+
+/* ===== Список документів ===== */
+.doc-list{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.doc-list li{display:flex;justify-content:space-between;gap:12px;align-items:center;
+  padding:12px 14px;border:1px dashed rgba(0,0,0,.08);border-radius:10px;background:#fff}
+.badge{font-size:.85rem;background:#ffe9a8;border:1px solid #ffcf54;padding:2px 8px;border-radius:999px}
+
+/* ===== Порожні блоки ===== */
+.empty{border:1px dashed rgba(0,0,0,.12);border-radius:14px;padding:24px;background:#fff}
+
+/* ===== Лайтбокс ===== */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;place-items:center;z-index:1200}
+.lightbox.is-open{display:grid}
+.lightbox__img{max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5);background:#fff}
+.lightbox__close{position:absolute;top:12px;right:12px;background:#fff;border:0;border-radius:999px;width:40px;height:40px;cursor:pointer}
+
+/* ===== Reveal animation ===== */
+.reveal{opacity:0;transform:translateY(16px);transition:.6s cubic-bezier(.2,.65,.3,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}

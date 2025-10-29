@@ -4,7 +4,7 @@
 <!-- Fancy fonts for the header -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Montserrat+Alternates:wght@600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="/css/documents.css">
 <link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/assets/header/header.css"><link rel="stylesheet" href="/css/theme-ukraine.css"><link rel="stylesheet" href="/css/pages.css">
 </head><body>
 <header class="nr-header" role="banner">
@@ -56,26 +56,105 @@
   </nav>
 </header>
 <div class="menu-overlay" aria-hidden="true"></div>
-<main class="page">
-  <h1>Документи</h1>
-  <div class="tabs" style="margin-top:8px">
-    <div class="tablist" role="tablist" aria-label="Категорії документів">
-      <button id="tab-1" role="tab" aria-controls="panel-1">Статутні</button>
-      <button id="tab-2" role="tab" aria-controls="panel-2">Звіти</button>
-      <button id="tab-3" role="tab" aria-controls="panel-3">Політики</button>
+<main class="page documents">
+  <!-- HERO -->
+  <section class="docs-hero reveal">
+    <div class="container">
+      <span class="eyebrow">Про нас</span>
+      <h1 class="docs-title">Документи організації</h1>
+      <p class="lead">Тут зібрано статутні документи, звіти та політики. PDF можна переглядати просто на сторінці або завантажити.</p>
     </div>
-    <div class="tabpanels">
-      <div id="panel-1" role="tabpanel" aria-labelledby="tab-1">
-        <ul><li><a href="#">Статут (PDF)</a></li><li><a href="#">Положення про наглядову раду (PDF)</a></li></ul>
+  </section>
+
+  <!-- ТАБИ -->
+  <section class="docs-tabs reveal">
+    <div class="container">
+      <div class="tabs" role="tablist" aria-label="Категорії документів">
+        <button id="tab-1" class="tab is-active" role="tab" aria-controls="panel-1" aria-selected="true">Статутні</button>
+        <button id="tab-2" class="tab" role="tab" aria-controls="panel-2" aria-selected="false">Звіти</button>
+        <button id="tab-3" class="tab" role="tab" aria-controls="panel-3" aria-selected="false">Політики</button>
       </div>
-      <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
-        <ul><li><a href="#">Річний звіт 2024 (PDF)</a></li><li><a href="#">Аудиторський висновок 2024 (PDF)</a></li></ul>
+
+      <div class="tabpanels">
+        <!-- PANEL 1 -->
+        <div id="panel-1" class="tabpanel" role="tabpanel" aria-labelledby="tab-1">
+          <div class="grid-2">
+            <!-- Свідоцтво (фото з модальним переглядом) -->
+            <article class="card">
+              <h2>Свідоцтво про реєстрацію</h2>
+              <p class="muted">Оригінал доступний у високій якості. Натисніть, щоб відкрити.</p>
+              <figure class="doc-thumb">
+                <img
+                  src="/data/svidotstvo.jpg"
+                  alt="Свідоцтво про реєстрацію організації"
+                  loading="lazy"
+                  width="840" height="1188"
+                  data-lightbox="/data/svidotstvo.jpg">
+                <figcaption>Файл: <code>svidotstvo.jpg</code></figcaption>
+              </figure>
+              <div class="actions">
+                <a class="btn" href="/data/svidotstvo.jpg" target="_blank" rel="noopener">Відкрити у новій вкладці</a>
+                <a class="btn btn-ghost" href="/data/svidotstvo.jpg" download>Завантажити JPG</a>
+              </div>
+            </article>
+
+            <!-- Статут (вбудований PDF) -->
+            <article class="card">
+              <h2>Статут організації (нова редакція)</h2>
+              <p class="muted">Переглядайте документ безпосередньо на сторінці або завантажте PDF.</p>
+
+              <div class="pdf-toolbar">
+                <button class="btn btn-ghost" data-pdf-open>Відкрити в окремій вкладці</button>
+                <a class="btn btn-ghost" data-pdf-download download>Завантажити PDF</a>
+                <button class="btn" data-pdf-fullscreen>На весь екран</button>
+              </div>
+
+              <div class="pdf-viewer" id="pdfViewer"
+                   data-pdf="/data/Статут НР нова редакція  24.01.2022.pdf">
+                <!-- src підставиться скриптом із корректним кодуванням та параметрами -->
+                <iframe id="pdfFrame" title="Статут Народна Рада PDF" loading="lazy"></iframe>
+                <noscript>
+                  <p>Ваш браузер підтримує перегляд PDF. <a href="/data/Статут НР нова редакція  24.01.2022.pdf">Відкрити файл</a>.</p>
+                </noscript>
+              </div>
+            </article>
+          </div>
+
+          <ul class="doc-list">
+            <li>
+              <span>Статут (PDF)</span>
+              <a class="link" href="/data/Статут НР нова редакція  24.01.2022.pdf" target="_blank" rel="noopener">Переглянути</a>
+            </li>
+            <li><span>Положення про наглядову раду (PDF)</span><em class="badge">Скоро</em></li>
+          </ul>
+        </div>
+
+        <!-- PANEL 2 -->
+        <div id="panel-2" class="tabpanel" role="tabpanel" aria-labelledby="tab-2" hidden>
+          <div class="empty">
+            <p>Розділ у підготовці. Додамо після затвердження річних звітів.</p>
+          </div>
+        </div>
+
+        <!-- PANEL 3 -->
+        <div id="panel-3" class="tabpanel" role="tabpanel" aria-labelledby="tab-3" hidden>
+          <div class="empty">
+            <p>Політики публікуватимуться по мірі затвердження.</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </main>
 
+<!-- Модальне вікно для фото -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Перегляд зображення">
+  <button class="lightbox__close" data-lightbox-close aria-label="Закрити">✕</button>
+  <img class="lightbox__img" alt="">
+</div>
+
 <footer class="footer"><div class="container row">© 2025 Народна Рада — Усі права захищено</div></footer>
+<script defer src="/js/documents.js"></script>
 <script defer src="/assets/header/header.js"></script>
 <script defer src="/js/counters.js"></script>            <!-- де є лічильники -->
 <script defer src="/js/accordion.js"></script>           <!-- де є акордеон -->
