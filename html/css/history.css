@@ -1,0 +1,157 @@
+/* ====== Базові утиліти ====== */
+.history .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(16px, 2vw, 24px);
+  }
+  
+  .history .eyebrow {
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-size: .8rem;
+    opacity: .8;
+  }
+  
+  .history h1, .history h2, .history h3 {
+    margin: 0 0 .6em;
+  }
+  
+  .history .lead {
+    font-size: clamp(1rem, 1.2vw + .8rem, 1.25rem);
+    line-height: 1.7;
+    opacity: .95;
+  }
+  
+  /* ====== Hero ====== */
+  .history-hero {
+    position: relative;
+    padding: clamp(48px, 6vw, 96px) 0;
+    background:
+      radial-gradient(1200px 400px at 10% -10%, rgba(0,120,255,.15), transparent 60%),
+      radial-gradient(1200px 400px at 120% 10%, rgba(255,200,0,.12), transparent 60%),
+      var(--nr-hero-bg, #0b0f1a);
+    color: #fff;
+    overflow: hidden;
+  }
+  
+  .history-hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: url('/img/pattern-wreath.svg') center/600px repeat;
+    opacity: .06;
+    pointer-events: none;
+  }
+  
+  .history-title {
+    font-family: "Unbounded", system-ui, sans-serif;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-top: .25rem;
+  }
+  
+  /* ====== Карти/контент ====== */
+  .history-content, .history-achievements { padding: 40px 0; }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: clamp(16px, 3vw, 28px);
+  }
+  @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+  
+  .card {
+    background: var(--surface, #fff);
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: 16px;
+    padding: clamp(16px, 2vw, 24px);
+    box-shadow: 0 6px 24px rgba(0,0,0,.06);
+  }
+  
+  /* ====== Факти ====== */
+  .fact-list {
+    list-style: none; padding: 0; margin: .5rem 0 0;
+  }
+  .fact-list li { padding: .5rem 0; border-bottom: 1px dashed rgba(0,0,0,.08); }
+  .fact-list li:last-child { border-bottom: 0; }
+  .fact-list span { opacity: .7; }
+  
+  /* ====== Пріоритети ====== */
+  .history-priorities { padding: 32px 0 8px; }
+  .priority-list {
+    counter-reset: prio;
+    display: grid;
+    gap: 14px;
+    margin: 1rem 0 0;
+    padding-left: 0;
+  }
+  .priority-list li {
+    list-style: none;
+    position: relative;
+    padding: 14px 14px 14px 56px;
+    background: linear-gradient(180deg, #fff, #fafafa);
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: 14px;
+  }
+  .priority-list li::before {
+    counter-increment: prio;
+    content: counter(prio);
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; display: grid; place-items: center;
+    border-radius: 50%;
+    background: #0d6efd; color: #fff; font-weight: 700;
+  }
+  
+  /* ====== Статистика ====== */
+  .history-stats { padding: 24px 0 8px; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: clamp(12px, 2vw, 18px);
+    margin-top: 16px;
+  }
+  @media (max-width: 1100px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+  
+  .stat {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 10px 24px rgba(0,0,0,.05);
+  }
+  .stat .num {
+    font-size: clamp(1.6rem, 2.2vw + 1rem, 2.4rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+  .stat .label { margin-top: 6px; font-size: .92rem; opacity: .85; }
+  .muted { opacity: .8; }
+  .examples { margin-top: .75rem; }
+  
+  /* ====== Таймлайн ====== */
+  .history-timeline { padding: 32px 0 64px; }
+  .timeline {
+    position: relative;
+    margin-top: 18px;
+    padding-left: 20px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute; left: 7px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(#0d6efd, transparent 80%);
+    opacity: .4;
+  }
+  .tl-item { position: relative; padding: 16px 0 16px 24px; }
+  .tl-dot {
+    position: absolute; left: -1px; top: 24px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #0d6efd;
+    box-shadow: 0 0 0 6px rgba(13,110,253,.12);
+  }
+  .tl-content h3 { margin: 0 0 .25rem; font-weight: 700; }
+  .tl-content p { margin: 0; opacity: .95; }
+  
+  /* ====== Анімації появи ====== */
+  .reveal { opacity: 0; transform: translateY(16px); transition: .6s cubic-bezier(.2,.65,.3,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  
