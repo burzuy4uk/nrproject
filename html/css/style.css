@@ -44,3 +44,22 @@ img{max-width:100%;display:block} a{text-decoration:none;color:inherit}
 .footer{background:linear-gradient(180deg,rgba(0,0,0,.12),transparent 40%),#0b1a22;color:#8ea0ad;border-top:1px solid #10222b}
 .footer .row{min-height:64px}
 .muted{color:var(--muted)}
+/* === ВІДКЛЮЧАЄМО ПІДКРЕСЛЕННЯ В МЕНЮ ПОВНІСТЮ === */
+.nr-menu--bottom .nr-link,
+.nr-menu--bottom .nr-dropdown__toggle{
+  padding-bottom: 12px;              /* комфортний відступ без лінії */
+  background-image: none !important; /* раптом десь був фон як лінія */
+}
+
+.nr-menu--bottom .nr-link::after,
+.nr-menu--bottom .nr-dropdown__toggle::after{
+  content: none !important;          /* прибираємо будь-які псевдоелементи */
+  display: none !important;
+}
+
+/* Безпечні межі сабнаву */
+.nr-subnav{
+  position: relative;
+  overflow: visible;                  /* можемо дозволити, бо ліній більше немає */
+  z-index: 20;
+}
