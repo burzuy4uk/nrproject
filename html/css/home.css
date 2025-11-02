@@ -238,3 +238,27 @@
   bottom:-12px;
   background: radial-gradient(60% 100% at 50% 100%, rgba(15,23,42,.14), transparent 70%);
 }
+/* 1) Замкнути підкреслення в межах сабнаву */
+.nr-subnav{
+  position: relative;
+  overflow: hidden;     /* забороняємо вилітати вниз */
+  z-index: 20;
+}
+
+/* 2) Дати місце під лінію всередині пункту меню */
+.nr-menu--bottom .nr-link{
+  padding-bottom: 16px; /* трохи більше, щоб лінія не виходила */
+}
+
+/* 3) Опустити саму лінію й чітко зафіксувати позицію */
+.nr-menu--bottom .nr-link::after{
+  bottom: 6px !important;  /* було -6px або 4px — тепер точно всередині сабнаву */
+  height: 3px;
+}
+
+/* 4) На мобільному ми й так показуємо темне меню — залишимо як є */
+@media (max-width: 900px){
+  .nr-menu--bottom .nr-link::after{
+    bottom: 6px !important;
+  }
+}
