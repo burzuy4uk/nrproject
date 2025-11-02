@@ -212,3 +212,31 @@
   .timeline::before{ left: 24px; }
   .tl-dot{ left: 18px; }
 }
+/* === Timeline: крапка на рівні першого рядка заголовка === */
+.timeline{ padding-left: 56px; }
+.timeline::before{ left: 28px; }
+
+.tl-item{ position: relative; padding: 18px 0; }
+
+.tl-content h3{
+  margin: 0 0 .35rem;
+  line-height: 1.25;           /* стабільна висота рядка */
+}
+
+/* Крапка — злегка нижче верху елемента, центровано по рядку h3 */
+.tl-dot{
+  position: absolute;
+  left: 22px;                  /* між лінією (28px) і краєм контейнера */
+  top: 1.25em;                 /* було ~0.95em → опускаємо нижче, щоб не «зависала» над текстом */
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #5a63ff;
+  border: 3px solid #0f1115;   /* під колір фону секції */
+  box-shadow: none !important;
+}
+
+/* Трохи компактніше на мобільних */
+@media (max-width: 600px){
+  .timeline{ padding-left: 48px; }
+  .timeline::before{ left: 24px; }
+  .tl-dot{ left: 18px; top: 1.2em; }
+}
