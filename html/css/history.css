@@ -175,3 +175,40 @@
 }
 .tl-dot::before,
 .tl-dot::after { content: none !important; }     /* на всяк випадок глушимо дод.точки */
+/* === Timeline: не накладаємо крапку на текст === */
+.timeline{
+  position: relative;
+  padding-left: 56px;              /* було ~20–28px → даємо реальний відступ під крапку */
+}
+.timeline::before{
+  left: 28px;                      /* ставимо лінію всередині поля */
+  width: 2px;
+}
+
+/* один пункт таймлайну */
+.tl-item{
+  position: relative;
+  padding: 18px 0;                 /* без лівого паддінгу — його дає .timeline */
+}
+
+/* сама крапка */
+.tl-dot{
+  position: absolute;
+  left: 22px;                      /* між лінією (28px) і краєм контейнера лишається 6px */
+  top: 0.95em;                     /* прив’язка до першого рядка заголовка */
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #5a63ff;
+  border: 3px solid #0f1115;       /* колір фону сторінки */
+  box-shadow: none !important;
+}
+
+/* заголовок і текст пункту — без додаткових відступів ліворуч */
+.tl-content h3{ margin: 0 0 .25rem; }
+.tl-content p{  margin: 0; }
+
+/* трохи компактніше на вузьких екранах */
+@media (max-width: 600px){
+  .timeline{ padding-left: 48px; }
+  .timeline::before{ left: 24px; }
+  .tl-dot{ left: 18px; }
+}
