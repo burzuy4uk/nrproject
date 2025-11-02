@@ -262,3 +262,42 @@
     bottom: 6px !important;
   }
 }
+/* ===== Underline як фон (без ::after) — НАДІЙНИЙ ВАРІАНТ ===== */
+
+/* 0) Вимикаємо старе підкреслення */
+.nr-menu--bottom .nr-link::after,
+.nr-menu--bottom .nr-dropdown__toggle::after{
+  content: none !important;
+}
+
+/* 1) Базовий стан: лінія схована (0% ширини) */
+.nr-menu--bottom .nr-link,
+.nr-menu--bottom .nr-dropdown__toggle{
+  position: relative;
+  padding-bottom: 16px; /* місце для лінії */
+  background-image: linear-gradient(90deg, var(--ua-blue), var(--ua-yellow));
+  background-repeat: no-repeat;
+  background-size: 0% 3px;                  /* прихована */
+  background-position: 10% calc(100% - 6px);/* 6px від нижнього краю */
+  transition: background-size .22s ease, background-color .2s ease, color .2s ease;
+}
+
+/* 2) Показуємо лінію на hover / активному / поточній сторінці */
+.nr-menu--bottom .nr-link:hover,
+.nr-menu--bottom .nr-link.active,
+.nr-menu--bottom .nr-link[aria-current="page"],
+.nr-menu--bottom .nr-dropdown__toggle:hover,
+.nr-menu--bottom .nr-dropdown__toggle[aria-expanded="true"]{
+  background-size: 80% 3px; /* видима лінія */
+}
+
+/* 3) Мобільне меню (темне) — та сама логіка, інші відтінки за бажання */
+@media (max-width: 900px){
+  .nr-menu--bottom .nr-link,
+  .nr-menu--bottom .nr-dropdown__toggle{
+    background-position: 10% calc(100% - 6px);
+    /* можна зробити м’якші кольори для темного фону:
+       background-image: linear-gradient(90deg, #7aa2ff, #ffe37a); */
+  }
+}
+
