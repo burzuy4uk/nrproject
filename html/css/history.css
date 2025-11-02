@@ -240,3 +240,32 @@
   .timeline::before{ left: 24px; }
   .tl-dot{ left: 18px; top: 1.2em; }
 }
+/* === Timeline: без крапок === */
+.timeline{
+  padding-left: 32px;        /* менший відступ, бо крапки більше немає */
+}
+.timeline::before{
+  left: 12px;                 /* вертикальна лінія ближче до тексту */
+  width: 2px;
+}
+
+/* глушимо будь-які маркери/псевдоелементи */
+.tl-item::before,
+.tl-item::after,
+.tl-dot,
+.tl-dot::before,
+.tl-dot::after{
+  display: none !important;
+  content: none !important;
+}
+
+/* чисті відступи пунктів */
+.tl-item{ padding: 18px 0; }
+.tl-content h3{ margin: 0 0 .35rem; }
+.tl-content p{ margin: 0; }
+
+/* трохи щільніше на мобільних */
+@media (max-width: 600px){
+  .timeline{ padding-left: 28px; }
+  .timeline::before{ left: 10px; }
+}
