@@ -1,12 +1,32 @@
 
 (function(){
   /* ---------- 1) Scroll reveal ---------- */
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+(function(){
+  var targets = document.querySelectorAll('.reveal-up');
+  if(!targets.length) return;
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('show');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+
+    targets.forEach(function(el){
+      io.observe(el);
+      // якщо вже у видимій області при завантаженні
+      var rect = el.getBoundingClientRect();
+      if(rect.top < window.innerHeight && rect.bottom > 0){
+        el.classList.add('show');
+      }
     });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal-up').forEach(el=>io.observe(el));
+  } else {
+    targets.forEach(function(el){ el.classList.add('show'); });
+  }
+})();
 
   /* ---------- 2) Counters in hero ---------- */
   const counterIO = new IntersectionObserver((entries)=>{

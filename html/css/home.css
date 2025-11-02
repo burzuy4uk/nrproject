@@ -150,3 +150,46 @@
 
 /* ======== CONTAINERS ======== */
 .container{ width: min(1100px, 92%); margin: 0 auto; }
+/* 1) КОНТРАСТ ТЕКСТІВ У СВІТЛИХ БЛОКАХ */
+.home-news .section-head h2,
+.gov-links h2{
+  color:#0b1522;                 /* насичений темний */
+}
+
+.news-card .body h3,
+.home-news .card .body h3,
+.home-news article .body h3{
+  color:#0b1522;
+}
+
+.news-card .body p,
+.home-news .card .body p,
+.home-news article .body p{
+  color:#475569;
+}
+
+/* трохи темніший плейсхолдер-банер в картці новини */
+.news-card > div:first-child,
+.home-news .card > div:first-child,
+.home-news article > div:first-child{
+  background: linear-gradient(135deg,#e9eeff,#eef3ff);
+}
+
+/* 2) ПІДРІВНЯТИ ПІДКРЕСЛЕННЯ МЕНЮ, ЩОБ НЕ «ВИЛАЗИЛО» В HERO */
+.nr-subnav{ position: relative; overflow: hidden; }  /* важливо! */
+.nr-menu--bottom .nr-link{
+  padding-bottom: 14px;          /* місце для підкреслення в межах сабнаву */
+}
+.nr-menu--bottom .nr-link::after{
+  bottom: 4px;                    /* було -6px */
+  height: 3px;
+}
+
+/* 3) БЕЗПЕЧНІ REVEAL-СТИЛІ, ЩОБ НЕ ЗДАВАЛОСЬ СУПЕР-БЛІДО, ЯКЩО JS ЗАТРИМАВСЯ */
+.reveal-up{ opacity: .01; transform: translateY(14px); }
+.reveal-up.show{ opacity: 1; transform: translateY(0); }
+
+/* якщо в користувача вимкнені анімації — показуємо одразу */
+@media (prefers-reduced-motion: reduce){
+  .reveal-up{ opacity:1; transform:none; }
+}
