@@ -161,3 +161,41 @@
   text-shadow: 0 1px 0 rgba(255,255,255,.2), 0 1px 8px rgba(0,0,0,.08);
 }
 .nr-header.is-scrolled .nr-header__top{ min-height:64px; }
+/* === Normalize: однаковий шрифт для всіх пунктів меню === */
+.nr-menu--bottom .nr-link,
+.nr-menu--bottom .nr-dropdown__toggle{
+  font-family: "Montserrat Alternates", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1rem;
+  line-height: 1.1;
+  letter-spacing: .2px;
+}
+
+/* Робимо кнопки візуально як лінки */
+.nr-dropdown__toggle{
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 10px 12px;         /* як у .nr-link */
+  border-radius: 10px;
+}
+
+/* Якщо десь всередині лінку є <strong>, не перетискай шрифт */
+.nr-link strong{ font-weight: inherit; }
+
+/* На світлому низі зберігаємо однаковий вигляд hover/active і для кнопок */
+.nr-menu--bottom .nr-dropdown__toggle:hover,
+.nr-menu--bottom .nr-dropdown__toggle:focus-visible{
+  background: var(--light-hover);
+  color: var(--light-fg);
+}
+
+/* Підкреслення-індикатор для кнопок теж */
+.nr-menu--bottom .nr-dropdown__toggle::after{
+  content:""; position:absolute; left:10%; right:10%; bottom:-6px; height:3px;
+  background: linear-gradient(90deg, var(--ua-blue), var(--ua-yellow));
+  border-radius:3px; transform:scaleX(0); transform-origin:center; transition:transform .22s ease;
+}
+.nr-menu--bottom .nr-dropdown__toggle:hover::after,
+.nr-menu--bottom .nr-dropdown__toggle[aria-expanded="true"]::after{ transform:scaleX(1); }

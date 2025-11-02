@@ -9,6 +9,7 @@
     <!-- Fancy fonts for the header -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Montserrat+Alternates:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/assets/header/header.css">
     <link rel="stylesheet" href="/css/theme-ukraine.css">
@@ -94,21 +95,129 @@
   </nav>
 </header>
     <div class="menu-overlay" aria-hidden="true"></div>
-    <main>
-        <section class="hero" style="position:relative">
-            <div class="hero-bg"></div>
-            <div class="hero-inner container">
-                <div style="text-align:center">
-                    <h1 style="margin:0 0 10px"><span style="color:#fff">НАРОДНА РАДА</span></h1>
-                    <p style="max-width:720px;margin:10px auto 0;color:#c8d2de">Прискорюємо розвиток через партнерства, інновації та прозорість.</p>
-                    <div style="margin-top:22px;display:flex;gap:12px;justify-content:center">
-                        <a class="btn" href="/about-fond.html">Дізнатись більше ▸</a>
-                        <a class="btn secondary" href="/contacts.html">Зв’язатися ▸</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+   <main>
+
+  <!-- HERO: анімований градієнт + м’який паралакс -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid container">
+      <div class="hero-copy">
+        <h1 class="reveal-up">
+          <span>НАРОДНА РАДА</span>
+        </h1>
+        <p class="reveal-up delay-1">
+          Прискорюємо розвиток через партнерства, інновації та прозорість.
+        </p>
+        <div class="hero-actions reveal-up delay-2">
+          <a class="btn" href="/about-fond.html">Дізнатись більше ▸</a>
+          <a class="btn secondary" href="/contacts.html">Зв’язатися ▸</a>
+        </div>
+      </div>
+      <ul class="hero-stats reveal-up delay-3">
+        <li><span data-count="24">0</span><small>регіональні ініціативи</small></li>
+        <li><span data-count="120">0</span><small>успішних проєктів</small></li>
+        <li><span data-count="35">0</span><small>партнерів</small></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Швидкі дії -->
+  <section class="quick-links container">
+    <a class="ql-card reveal-up" href="/documents.html">
+      <div class="ql-icon">📄</div>
+      <div class="ql-title">Документи</div>
+      <div class="ql-sub">Статутні та звітні</div>
+    </a>
+    <a class="ql-card reveal-up delay-1" href="/news.html">
+      <div class="ql-icon">🗞️</div>
+      <div class="ql-title">Новини</div>
+      <div class="ql-sub">Останні події</div>
+    </a>
+    <a class="ql-card reveal-up delay-2" href="/events.html">
+      <div class="ql-icon">🎤</div>
+      <div class="ql-title">Відкрита трибуна</div>
+      <div class="ql-sub">Долучайся до дискусій</div>
+    </a>
+    <a class="ql-card reveal-up delay-3" href="/helpthroughart.html">
+      <div class="ql-icon">🎨</div>
+      <div class="ql-title">HelpthroughArt</div>
+      <div class="ql-sub">Мистецтво заради допомоги</div>
+    </a>
+  </section>
+
+  <!-- Останні новини (підтягуємо фрагменти з /news.html) -->
+  <section class="home-news">
+    <div class="container">
+      <header class="section-head">
+        <h2 class="reveal-up">Останні новини</h2>
+        <a class="text-link reveal-up delay-1" href="/news.html">Усі новини ▸</a>
+      </header>
+      <div class="news-grid" id="home-news-list"
+           data-fetch="/news.html"
+           data-select=".news-card, article, .card"></div>
+    </div>
+  </section>
+
+  <!-- Проєкти (горизонтальна карусель, скрол-снап) -->
+  <section class="home-projects">
+    <div class="container">
+      <header class="section-head">
+        <h2 class="reveal-up">Наші проєкти</h2>
+        <a class="text-link reveal-up delay-1" href="/projects.html">Усі проєкти ▸</a>
+      </header>
+
+      <div class="projects-scroller" id="home-projects"
+           data-fetch="/projects.html"
+           data-select=".project-card, article, .card">
+        <!-- якщо fetch не знайде селектори, покажемо ці плейсхолдери -->
+        <article class="project-card reveal-up">
+          <div class="pc-img"></div>
+          <h3>Прозорий бюджет громад</h3>
+          <p>Платформа відкритих даних для місцевих громад.</p>
+          <a href="/projects.html" class="text-link">Детальніше ▸</a>
+        </article>
+        <article class="project-card reveal-up delay-1">
+          <div class="pc-img"></div>
+          <h3>STEM-лабораторії для шкіл</h3>
+          <p>Оснащення навчальних закладів сучасним обладнанням.</p>
+          <a href="/projects.html" class="text-link">Детальніше ▸</a>
+        </article>
+        <article class="project-card reveal-up delay-2">
+          <div class="pc-img"></div>
+          <h3>Єдине вікно волонтерства</h3>
+          <p>Координація допомоги між ініціативами.</p>
+          <a href="/projects.html" class="text-link">Детальніше ▸</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Державні портали (центр сторінки) -->
+  <section class="gov-links">
+    <div class="container">
+      <h2 class="reveal-up">Державні портали</h2>
+      <div class="gov-grid">
+        <a class="gov-card reveal-up" href="https://www.kmu.gov.ua/" target="_blank" rel="noopener">
+          <div class="gov-badge">КМУ</div>
+          <h3>Кабінет Міністрів України</h3>
+          <p>Офіційні новини, рішення уряду, реформи.</p>
+        </a>
+        <a class="gov-card reveal-up delay-1" href="https://rada.gov.ua/" target="_blank" rel="noopener">
+          <div class="gov-badge">ВРУ</div>
+          <h3>Верховна Рада України</h3>
+          <p>Законопроєкти, пленарні засідання, парламентські комітети.</p>
+        </a>
+        <a class="gov-card reveal-up delay-2" href="https://www.president.gov.ua/" target="_blank" rel="noopener">
+          <div class="gov-badge">ОПУ</div>
+          <h3>Офіс Президента України</h3>
+          <p>Укази, звернення, офіційні повідомлення.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
     <footer class="footer">
         <div class="container row">© 2025 Народна Рада — Усі права захищено</div>
     </footer>
@@ -125,6 +234,7 @@
     <!-- керівництво/структура -->
     <script defer src="/js/contact-anim.js"></script>
     <!-- контакти -->
+     <script defer src="/js/home.js"></script>
 
 </body>
 
