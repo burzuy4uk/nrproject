@@ -71,14 +71,73 @@
 .hero-stats small{ color:#b8c3d1; }
 
 /* ======== REVEAL ======== */
-.reveal-up{ opacity:0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+.reveal-up{ opacity: .01; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
 .reveal-up.show{ opacity:1; transform: translateY(0); }
 .delay-1{ transition-delay:.08s } .delay-2{ transition-delay:.16s } .delay-3{ transition-delay:.24s }
+@media (prefers-reduced-motion: reduce){
+  .reveal-up{ opacity:1; transform:none; }
+}
+
+/* ======== QUICK LINKS — full-width band ======== */
+.quicklinks-band{
+  margin: clamp(24px, 4vw, 48px) 0;
+  padding: clamp(16px, 3.5vw, 32px) 0;
+  background: #0f1115;
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(0,0,0,.35);
+  box-shadow:
+    inset 0 6px 24px rgba(0,0,0,.25),
+    0 16px 32px rgba(2,6,23,.20);
+  position: relative;
+}
+.quicklinks-band .quick-links{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 18px;
+}
+@media (max-width: 900px){
+  .quicklinks-band .quick-links{ grid-template-columns: 1fr 1fr; }
+}
+.quicklinks-band .ql-card{
+  display:grid; gap:6px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #f6f8ff;
+  border: 1px solid #e5eaf8;
+  color: #0b1522;
+  text-decoration: none;
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
+}
+.quicklinks-band .ql-card:hover{
+  background:#fff;
+  border-color:#dfe6fb;
+  box-shadow: 0 10px 24px rgba(15,23,42,.10);
+  transform: translateY(-2px);
+}
+.quicklinks-band .ql-icon{ font-size:22px }
+.quicklinks-band .ql-title{ font-weight:800 }
+.quicklinks-band .ql-sub{ color:#48566b; font-size:.95rem }
+.quicklinks-band::before,
+.quicklinks-band::after{
+  content:"";
+  position:absolute; left:50%; transform:translateX(-50%);
+  width:100%; max-width: 100vw; height:12px; pointer-events:none;
+  filter: blur(6px);
+}
+.quicklinks-band::before{
+  top:-12px;
+  background: radial-gradient(60% 100% at 50% 0%, rgba(15,23,42,.14), transparent 70%);
+}
+.quicklinks-band::after{
+  bottom:-12px;
+  background: radial-gradient(60% 100% at 50% 100%, rgba(15,23,42,.14), transparent 70%);
+}
 
 /* ======== NEWS ======== */
 .section-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:12px; }
 .section-head h2{
   margin:0; font-family:"Unbounded", system-ui; font-weight:900; font-size: clamp(22px, 3vw, 32px);
+  color:#0b1522;
 }
 .text-link{ color:#223a8f; text-decoration:none; font-weight:800; }
 .text-link:hover{ text-decoration:underline; }
@@ -98,7 +157,8 @@
 }
 .news-card img, .home-news .card img, .home-news article img{ width:100%; height:100%; object-fit:cover; background:#eef2ff; }
 .news-card .body, .home-news .card .body, .home-news article .body{ padding:12px 14px; }
-.news-card h3, .home-news .card h3, .home-news article h3{ margin:6px 0; font-size:1.05rem; }
+.news-card h3, .home-news .card h3, .home-news article h3{ margin:6px 0; font-size:1.05rem; color:#0b1522; }
+.news-card .body p, .home-news .card .body p, .home-news article .body p{ color:#475569; }
 
 /* ======== PROJECTS (SCROLLER) ======== */
 .home-projects{ padding: 28px 0; }
@@ -117,7 +177,7 @@
 
 /* ======== GOV LINKS ======== */
 .gov-links{ padding: 28px 0 40px; background:#fafcff; border-top:1px solid #eef2fb; }
-.gov-links h2{ margin: 0 0 14px; font-family:"Unbounded"; font-weight:900; }
+.gov-links h2{ margin: 0 0 14px; font-family:"Unbounded"; font-weight:900; color:#0b1522; }
 .gov-grid{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px; }
 @media (max-width: 900px){ .gov-grid{ grid-template-columns: 1fr; } }
 .gov-card{
@@ -134,170 +194,3 @@
 
 /* ======== CONTAINERS ======== */
 .container{ width: min(1100px, 92%); margin: 0 auto; }
-/* 1) КОНТРАСТ ТЕКСТІВ У СВІТЛИХ БЛОКАХ */
-.home-news .section-head h2,
-.gov-links h2{
-  color:#0b1522;                 /* насичений темний */
-}
-
-.news-card .body h3,
-.home-news .card .body h3,
-.home-news article .body h3{
-  color:#0b1522;
-}
-
-.news-card .body p,
-.home-news .card .body p,
-.home-news article .body p{
-  color:#475569;
-}
-
-/* трохи темніший плейсхолдер-банер в картці новини */
-.news-card > div:first-child,
-.home-news .card > div:first-child,
-.home-news article > div:first-child{
-  background: linear-gradient(135deg,#e9eeff,#eef3ff);
-}
-
-/* 2) ПІДРІВНЯТИ ПІДКРЕСЛЕННЯ МЕНЮ, ЩОБ НЕ «ВИЛАЗИЛО» В HERO */
-.nr-subnav{ position: relative; overflow: hidden; }  /* важливо! */
-.nr-menu--bottom .nr-link{
-  padding-bottom: 14px;          /* місце для підкреслення в межах сабнаву */
-}
-.nr-menu--bottom .nr-link::after{
-  bottom: 4px;                    /* було -6px */
-  height: 3px;
-}
-
-/* 3) БЕЗПЕЧНІ REVEAL-СТИЛІ, ЩОБ НЕ ЗДАВАЛОСЬ СУПЕР-БЛІДО, ЯКЩО JS ЗАТРИМАВСЯ */
-.reveal-up{ opacity: .01; transform: translateY(14px); }
-.reveal-up.show{ opacity: 1; transform: translateY(0); }
-
-/* якщо в користувача вимкнені анімації — показуємо одразу */
-@media (prefers-reduced-motion: reduce){
-  .reveal-up{ opacity:1; transform:none; }
-}
-/* ======== QUICK LINKS — full-width band ======== */
-.quicklinks-band{
-  margin: clamp(24px, 4vw, 48px) 0;             /* відстань від сусідів */
-  padding: clamp(16px, 3.5vw, 32px) 0;          /* внутрішні відступи */
-  background: #0f1115;                          /* темніша смуга */
-  border-top: 1px solid rgba(255,255,255,.06);
-  border-bottom: 1px solid rgba(0,0,0,.35);
-  box-shadow:
-    inset 0 6px 24px rgba(0,0,0,.25),
-    0 16px 32px rgba(2,6,23,.20);
-}
-
-/* сітка всередині смуги */
-.quicklinks-band .quick-links{
-  display:grid;
-  grid-template-columns: repeat(4, minmax(0,1fr));
-  gap: 18px;
-}
-@media (max-width: 900px){
-  .quicklinks-band .quick-links{ grid-template-columns: 1fr 1fr; }
-}
-
-/* картки на темному фоні — світлі */
-.quicklinks-band .ql-card{
-  display:grid; gap:6px;
-  padding: 18px;
-  border-radius: 14px;
-  background: #f6f8ff;
-  border: 1px solid #e5eaf8;
-  color: #0b1522;
-  text-decoration: none;
-  transition: transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
-}
-.quicklinks-band .ql-card:hover{
-  background:#fff;
-  border-color:#dfe6fb;
-  box-shadow: 0 10px 24px rgba(15,23,42,.10);
-  transform: translateY(-2px);
-}
-
-.quicklinks-band .ql-icon{ font-size:22px }
-.quicklinks-band .ql-title{ font-weight:800 }
-.quicklinks-band .ql-sub{ color:#48566b; font-size:.95rem }
-
-/* візуальні м’які роздільники зверху/знизу смуги (опційно, але додає глибину) */
-.quicklinks-band{ position: relative; }
-.quicklinks-band::before,
-.quicklinks-band::after{
-  content:"";
-  position:absolute; left:50%; transform:translateX(-50%);
-  width:100%; max-width: 100vw; height:12px; pointer-events:none;
-  filter: blur(6px);
-}
-.quicklinks-band::before{
-  top:-12px;
-  background: radial-gradient(60% 100% at 50% 0%, rgba(15,23,42,.14), transparent 70%);
-}
-.quicklinks-band::after{
-  bottom:-12px;
-  background: radial-gradient(60% 100% at 50% 100%, rgba(15,23,42,.14), transparent 70%);
-}
-/* 1) Замкнути підкреслення в межах сабнаву */
-.nr-subnav{
-  position: relative;
-  overflow: hidden;     /* забороняємо вилітати вниз */
-  z-index: 20;
-}
-
-/* 2) Дати місце під лінію всередині пункту меню */
-.nr-menu--bottom .nr-link{
-  padding-bottom: 16px; /* трохи більше, щоб лінія не виходила */
-}
-
-/* 3) Опустити саму лінію й чітко зафіксувати позицію */
-.nr-menu--bottom .nr-link::after{
-  bottom: 6px !important;  /* було -6px або 4px — тепер точно всередині сабнаву */
-  height: 3px;
-}
-
-/* 4) На мобільному ми й так показуємо темне меню — залишимо як є */
-@media (max-width: 900px){
-  .nr-menu--bottom .nr-link::after{
-    bottom: 6px !important;
-  }
-}
-/* ===== Underline як фон (без ::after) — НАДІЙНИЙ ВАРІАНТ ===== */
-
-/* 0) Вимикаємо старе підкреслення */
-.nr-menu--bottom .nr-link::after,
-.nr-menu--bottom .nr-dropdown__toggle::after{
-  content: none !important;
-}
-
-/* 1) Базовий стан: лінія схована (0% ширини) */
-.nr-menu--bottom .nr-link,
-.nr-menu--bottom .nr-dropdown__toggle{
-  position: relative;
-  padding-bottom: 16px; /* місце для лінії */
-  background-image: linear-gradient(90deg, var(--ua-blue), var(--ua-yellow));
-  background-repeat: no-repeat;
-  background-size: 0% 3px;                  /* прихована */
-  background-position: 10% calc(100% - 6px);/* 6px від нижнього краю */
-  transition: background-size .22s ease, background-color .2s ease, color .2s ease;
-}
-
-/* 2) Показуємо лінію на hover / активному / поточній сторінці */
-.nr-menu--bottom .nr-link:hover,
-.nr-menu--bottom .nr-link.active,
-.nr-menu--bottom .nr-link[aria-current="page"],
-.nr-menu--bottom .nr-dropdown__toggle:hover,
-.nr-menu--bottom .nr-dropdown__toggle[aria-expanded="true"]{
-  background-size: 80% 3px; /* видима лінія */
-}
-
-/* 3) Мобільне меню (темне) — та сама логіка, інші відтінки за бажання */
-@media (max-width: 900px){
-  .nr-menu--bottom .nr-link,
-  .nr-menu--bottom .nr-dropdown__toggle{
-    background-position: 10% calc(100% - 6px);
-    /* можна зробити м’якші кольори для темного фону:
-       background-image: linear-gradient(90deg, #7aa2ff, #ffe37a); */
-  }
-}
-
