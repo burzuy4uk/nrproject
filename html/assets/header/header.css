@@ -133,3 +133,189 @@
 @media (max-width: 900px){
   .nr-topnav{ gap: 10px; }
 }
+/* ---------- Базові змінні (можеш підлаштувати під тему) ---------- */
+:root{
+  --nr-bg: #0e0e12;
+  --nr-fg: #ffffff;
+  --nr-fg-subtle: #c9c9cf;
+  --nr-accent: #e31b23;       /* червоний */
+  --nr-link: #ffffff;
+  --nr-link-hover: #e6e6ff;
+  --nr-grad-start: #e31b23;   /* червоно-чорний градієнт */
+  --nr-grad-end: #0b0b0d;
+
+  /* Шрифти: заголовок — більш характерний, підзаголовок — чистий */
+  --nr-title-font: "Unbounded", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --nr-subtitle-font: "Montserrat Alternates", Inter, Roboto, Arial, sans-serif;
+
+  /* Розміри */
+  --nr-title-size: clamp(1.25rem, 1.1rem + 1vw, 1.75rem);
+  --nr-subtitle-size: clamp(.7rem, .65rem + .3vw, .9rem);
+}
+
+/* ---------- Контейнер шапки ---------- */
+.nr-header {
+  background: var(--nr-bg);
+  color: var(--nr-fg);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* ---------- Верхній поверх ---------- */
+.nr-header__top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px clamp(12px, 3vw, 28px);
+}
+
+.nr-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nr-brand__logo {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+}
+
+.nr-brand__text {
+  display: grid;
+  gap: 4px;
+}
+
+.nr-brand__title {
+  font-family: var(--nr-title-font);
+  font-weight: 800;
+  letter-spacing: .2px;
+  line-height: 1.1;
+  font-size: var(--nr-title-size);
+}
+
+.nr-brand__subtitle {
+  font-family: var(--nr-subtitle-font);
+  font-size: var(--nr-subtitle-size);
+  color: var(--nr-fg-subtle);
+  line-height: 1.2;
+}
+
+/* Соц.іконки + бургер */
+.nr-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nr-social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  color: var(--nr-fg);
+  background: rgba(255,255,255,.06);
+  transition: transform .15s ease, background .2s ease, color .2s ease;
+}
+.nr-social__link:hover,
+.nr-social__link:focus-visible {
+  background: rgba(255,255,255,.12);
+  transform: translateY(-1px);
+  color: var(--nr-link-hover);
+  outline: none;
+}
+
+/* Бургер */
+.nr-burger{
+  display: none;
+  width: 42px; height: 38px;
+  border: 0; background: rgba(255,255,255,.06);
+  border-radius: 10px; cursor: pointer;
+  margin-left: 8px;
+}
+.nr-burger span{
+  display:block; height:2px; margin:7px 8px; background:#fff; border-radius:2px;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.nr-burger[aria-expanded="true"] span:nth-child(1){ transform: translateY(9px) rotate(45deg); }
+.nr-burger[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
+.nr-burger[aria-expanded="true"] span:nth-child(3){ transform: translateY(-9px) rotate(-45deg); }
+
+/* ---------- Середній поверх (декоративний) ---------- */
+.nr-header__mid{
+  height: clamp(8px, 0.6vw + 6px, 14px);
+  background: linear-gradient(90deg, var(--nr-grad-start), var(--nr-grad-end));
+}
+
+/* ---------- Нижній поверх (навігація) ---------- */
+.nr-subnav{
+  padding: 6px clamp(10px, 3vw, 28px);
+  background: #121217;
+}
+
+.nr-menu{
+  list-style: none; margin:0; padding:0;
+  display:flex; flex-wrap:wrap; gap: 6px 14px;
+}
+
+.nr-menu--bottom .nr-menu__item{
+  position: relative;
+}
+
+.nr-link{
+  display:inline-flex; align-items:center; gap:6px;
+  padding: 10px 12px; border-radius: 10px;
+  color: var(--nr-link); text-decoration: none;
+  background: transparent;
+  transition: background .2s ease, color .2s ease;
+}
+.nr-link:hover,
+.nr-link:focus-visible{
+  background: rgba(255,255,255,.08);
+  color: var(--nr-link-hover);
+  outline: none;
+}
+
+/* Дропдауни */
+.nr-dropdown__toggle{
+  border:0; background: transparent; cursor: pointer;
+  font: inherit; color: inherit;
+}
+.nr-caret{ opacity:.9; }
+
+.nr-dropdown__menu{
+  position: absolute; inset-inline-start: 0; top: calc(100% + 6px);
+  min-width: 220px;
+  background: #16161d; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px; padding: 8px;
+  box-shadow: 0 12px 24px rgba(0,0,0,.3);
+  display:none; z-index: 30;
+}
+.nr-dropdown__menu[data-open="true"]{ display:block; }
+
+.nr-dropdown__link{
+  display:block; padding:10px 12px; border-radius: 8px;
+  color: #fff; text-decoration: none;
+}
+.nr-dropdown__link:hover,
+.nr-dropdown__link:focus-visible{
+  background: rgba(255,255,255,.08); outline: none;
+}
+
+/* ---------- Адаптив ---------- */
+@media (max-width: 900px){
+  .nr-burger{ display:inline-flex; }
+  .nr-subnav{ display:none; }
+  .nr-subnav[aria-expanded="true"]{ display:block; }
+  .nr-menu{ flex-direction: column; gap:6px; }
+  .nr-dropdown__menu{
+    position: static; display:none; margin-top: 4px;
+    border-radius: 10px; border: 1px solid rgba(255,255,255,.08);
+  }
+  .nr-dropdown__menu[data-open="true"]{ display:block; }
+}
+

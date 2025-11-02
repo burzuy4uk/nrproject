@@ -49,3 +49,49 @@
   function onScroll(){ if(!header) return; header.classList.toggle('is-scrolled', window.scrollY>8); }
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 })();
+// ---------- Бургер відкриває/закриває нижнє меню ----------
+(function initBurger(){
+  const burger = document.querySelector('.nr-burger');
+  const subnav = document.getElementById('nr-subnav');
+  if(!burger || !subnav) return;
+
+  burger.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    subnav.setAttribute('aria-expanded', String(!open));
+  });
+})();
+
+// ---------- Дропдауни (Про нас, Фонд) ----------
+(function initDropdowns(){
+  const toggles = document.querySelectorAll('.nr-dropdown__toggle');
+  const menus = document.querySelectorAll('.nr-dropdown__menu');
+
+  function closeAll(){
+    menus.forEach(m => m.removeAttribute('data-open'));
+    toggles.forEach(t => t.setAttribute('aria-expanded', 'false'));
+  }
+
+  toggles.forEach(btn => {
+    const menuId = btn.getAttribute('aria-controls');
+    const menu = document.getElementById(menuId);
+    if(!menu) return;
+
+    btn.addEventListener('click', (e) => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      closeAll();
+      if(!isOpen){
+        btn.setAttribute('aria-expanded', 'true');
+        menu.setAttribute('data-open', 'true');
+      }
+      e.stopPropagation();
+    });
+  });
+
+  // Клік поза меню закриває все
+  document.addEventListener('click', closeAll);
+  // ESC закриває
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeAll();
+  });
+})();

@@ -18,53 +18,83 @@
 
 <body>
     <header class="nr-header" role="banner">
-        <div class="nr-header__top">
-            <a class="nr-brand" href="/" aria-label="Головна">
-                <img class="nr-brand__logo" src="/img/logo.jpg" alt="Логотип Народна рада" width="44" height="44">
-                <div class="nr-brand__text">
-                    <span class="nr-brand__title">НАРОДНА РАДА</span>
-                    <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
-                </div>
-            </a>
-            <nav class="nr-topnav" aria-label="Верхня навігація">
-                <ul class="nr-menu nr-menu--top">
-                    <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
-                    <li class="nr-menu__item nr-dropdown">
-                        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fond">
-            Фонд
-            <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
-          </button>
-                        <ul id="menu-fond" class="nr-dropdown__menu" role="menu" aria-label="Меню Фонд">
-                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/about-fond.html">Про фонд</a></li>
-                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/partners.html">Партнери</a></li>
-                            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/founders.html">Засновники</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav"><span></span><span></span><span></span></button>
-            </nav>
-        </div>
-        <nav id="nr-subnav" class="nr-subnav" aria-label="Нижня навігація">
-            <ul class="nr-menu nr-menu--bottom">
-                <li class="nr-menu__item nr-dropdown">
-                    <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
+  <!-- Верхній поверх: лого, назва, соц.іконки -->
+  <div class="nr-header__top" aria-label="Верхня панель">
+    <a class="nr-brand" href="/" aria-label="Головна">
+      <img class="nr-brand__logo" src="/img/logo.jpg" alt="Логотип Народна рада" width="48" height="48" decoding="async" />
+      <div class="nr-brand__text">
+        <span class="nr-brand__title">Народна рада</span>
+        <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
+      </div>
+    </a>
+
+    <nav class="nr-social" aria-label="Соціальні мережі">
+      <a class="nr-social__link" href="#" aria-label="Instagram" title="Instagram">
+        <!-- Instagram SVG -->
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm5.75-3.25a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z"/>
+        </svg>
+      </a>
+      <a class="nr-social__link" href="#" aria-label="Twitter / X" title="Twitter / X">
+        <!-- X/Twitter SVG -->
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path fill="currentColor" d="M3 3h4.6l5.4 7.2L18.4 3H21l-7 9.2L21 21h-4.6l-5.6-7.5L5.6 21H3l7.4-9.8L3 3z"/>
+        </svg>
+      </a>
+      <a class="nr-social__link" href="#" aria-label="Facebook" title="Facebook">
+        <!-- Facebook SVG -->
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path fill="currentColor" d="M13 9h3V6h-3c-2.2 0-4 1.8-4 4v2H6v3h3v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/>
+        </svg>
+      </a>
+
+      <!-- Бургер лише для моб. щоб відкривати нижнє меню -->
+      <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Середній поверх: декоративна смужка -->
+  <div class="nr-header__mid" aria-hidden="true"></div>
+
+  <!-- Нижній поверх: головна навігація -->
+  <nav id="nr-subnav" class="nr-subnav" aria-label="Головна навігація">
+    <ul class="nr-menu nr-menu--bottom">
+      <li class="nr-menu__item nr-dropdown">
+        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
           Про нас
           <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
         </button>
-                    <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
-                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
-                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
-                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
-                        <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
-                    </ul>
-                </li>
-                <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
-                <li class="nr-menu__item"><a class="nr-link" href="/events.html">Відкрита Трибуна</a></li>
-                <li class="nr-menu__item"><a class="nr-link" href="/committees.html">Комітети</a></li>
-                <li class="nr-menu__item"><a class="nr-link" href="/contacts.html">Контакти</a></li>
-            </ul>
-        </nav>
-    </header>
+        <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
+        </ul>
+      </li>
+
+      <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
+      <li class="nr-menu__item"><a class="nr-link" href="/events.html">Відкрита Трибуна</a></li>
+      <li class="nr-menu__item"><a class="nr-link" href="/helpthroughart.html">HelpthroughArt</a></li>
+      <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
+
+      <li class="nr-menu__item nr-dropdown">
+        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fund">
+          Фонд
+          <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
+        </button>
+        <ul id="menu-fund" class="nr-dropdown__menu" role="menu" aria-label="Меню Фонд">
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/about-fond.html">Про фонд</a></li>
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/partners.html">Партнери</a></li>
+          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/founders.html">Засновники</a></li>
+        </ul>
+      </li>
+
+      <li class="nr-menu__item"><a class="nr-link" href="/contacts.html">Контакти</a></li>
+    </ul>
+  </nav>
+</header>
     <div class="menu-overlay" aria-hidden="true"></div>
     <main class="page">
         <h1>Структура</h1>
