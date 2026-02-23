@@ -3,168 +3,366 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Адмінка новин</title>
+  <title>Адмінка — Народна Рада</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body{font-family:system-ui,Arial,sans-serif;margin:24px;max-width:900px}
-    input,textarea,button{width:100%;padding:10px;margin:8px 0;box-sizing:border-box}
-    button{cursor:pointer}
-    .row{border:1px solid #ddd;border-radius:12px;padding:12px;margin:12px 0}
-    img{max-width:260px;border-radius:10px;display:block;margin-top:8px}
-    .muted{opacity:.7;font-size:14px}
-    .top{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
-    .top > div{flex:1;min-width:260px}
-    .status{margin-top:6px;font-size:14px}
-    .ok{color:green}
-    .err{color:crimson}
+    :root {
+      --bg:#0f1115; --bg-2:#121821;
+      --text:#e7e9ee; --muted:#afbacb;
+      --accent:#5a41d8; --accent-2:#7a63ff;
+      --card:#171a21; --card-2:#1b2230; --border:#253140;
+      --radius:14px;
+      --green:#22c55e; --red:#ef4444; --yellow:#f59e0b;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh; font-size: 15px; line-height: 1.6;
+    }
+    .admin-header {
+      background: var(--card); border-bottom: 1px solid var(--border);
+      padding: 0 32px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .admin-logo {
+      font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 13px; color: #fff;
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+    }
+    .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2); }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .header-badge { background: rgba(90,65,216,.18); border: 1px solid rgba(122,99,255,.3); color: var(--accent-2); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 999px; }
+    .header-link { color: var(--muted); font-size: 13px; font-weight: 500; text-decoration: none; transition: color .15s; }
+    .header-link:hover { color: var(--text); }
+    .layout { display: grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 64px); }
+    @media (max-width: 860px) { .layout { grid-template-columns: 1fr; } .sidebar { border-right: none; border-bottom: 1px solid var(--border); } }
+    .sidebar { background: var(--card); border-right: 1px solid var(--border); padding: 24px 20px; display: flex; flex-direction: column; gap: 16px; }
+    .sec-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .auth-box { background: var(--card-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+    .token-wrap { position: relative; }
+    .token-wrap input { width: 100%; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 8px; color: var(--text); padding: 9px 36px 9px 12px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none; transition: border-color .2s; }
+    .token-wrap input:focus { border-color: var(--accent-2); }
+    .token-eye { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--muted); font-size: 15px; transition: color .15s; }
+    .token-eye:hover { color: var(--text); }
+    .status-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 999px; margin-top: 10px; transition: all .3s; }
+    .status-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .status-pill.idle { background: rgba(255,255,255,.05); color: var(--muted); }
+    .status-pill.ok   { background: rgba(34,197,94,.12); color: var(--green); }
+    .status-pill.err  { background: rgba(239,68,68,.12); color: var(--red); }
+    .status-pill.loading { background: rgba(122,99,255,.12); color: var(--accent-2); }
+    .status-pill.loading::before { animation: blink 1s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-box { background: var(--card-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; text-align: center; }
+    .stat-num { font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 900; color: #fff; line-height: 1; }
+    .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .btn-ghost { width: 100%; padding: 10px; background: rgba(122,99,255,.08); border: 1px solid rgba(122,99,255,.2); border-radius: 8px; color: var(--accent-2); font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; }
+    .btn-ghost:hover { background: rgba(122,99,255,.16); border-color: rgba(122,99,255,.35); }
+    .main-content { padding: 28px 32px; display: flex; flex-direction: column; gap: 28px; }
+    @media (max-width: 600px) { .main-content { padding: 20px 16px; } }
+    .form-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
+    .form-card-head { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .form-card-head h2 { font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 900; color: #fff; }
+    .edit-banner { display: none; align-items: center; gap: 8px; background: rgba(245,158,11,.1); border: 1px solid rgba(245,158,11,.25); color: var(--yellow); font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; }
+    .edit-banner.on { display: flex; }
+    .edit-banner button { background: none; border: none; cursor: pointer; color: var(--yellow); opacity: .7; font-size: 15px; line-height: 1; }
+    .edit-banner button:hover { opacity: 1; }
+    .form-body { padding: 20px 24px; display: grid; gap: 16px; }
+    .field { display: grid; gap: 6px; }
+    .field > label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+    .field input, .field textarea { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; color: var(--text); padding: 11px 14px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none; resize: vertical; width: 100%; transition: border-color .2s, background .2s; }
+    .field input:focus, .field textarea:focus { border-color: var(--accent-2); background: rgba(122,99,255,.04); }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(175,186,203,.35); }
+    .file-zone { border: 2px dashed var(--border); border-radius: 10px; padding: 22px; text-align: center; cursor: pointer; position: relative; transition: all .2s; }
+    .file-zone:hover, .file-zone.over { border-color: var(--accent-2); background: rgba(122,99,255,.05); }
+    .file-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .fz-icon { font-size: 26px; margin-bottom: 6px; }
+    .fz-hint { color: var(--muted); font-size: 13px; }
+    .fz-hint b { color: var(--accent-2); }
+    .preview-wrap { display: none; margin-top: 10px; text-align: center; }
+    .preview-wrap img { max-height: 110px; border-radius: 8px; margin: 0 auto; }
+    .preview-wrap span { display: block; font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .form-footer { padding: 0 24px 22px; display: flex; gap: 10px; }
+    .btn-publish { flex: 1; padding: 12px; background: linear-gradient(180deg,#705cff,var(--accent)); border: none; border-radius: 10px; color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 8px 22px rgba(90,65,216,.35); transition: filter .2s, transform .15s; }
+    .btn-publish:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-publish:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .btn-cancel { padding: 12px 18px; background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 10px; color: var(--muted); font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; display: none; transition: all .2s; }
+    .btn-cancel.on { display: block; }
+    .btn-cancel:hover { background: rgba(255,255,255,.09); color: var(--text); }
+    .list-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .list-head h2 { font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 900; color: #fff; }
+    .news-badge { background: rgba(122,99,255,.15); color: var(--accent-2); font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+    .news-list { display: flex; flex-direction: column; gap: 10px; }
+    .news-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); display: grid; grid-template-columns: 90px 1fr auto; align-items: stretch; overflow: hidden; transition: border-color .2s, box-shadow .2s, transform .15s; animation: fadeUp .3s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(10px) } to { opacity:1; transform:none } }
+    .news-item:hover { border-color: rgba(122,99,255,.3); box-shadow: 0 6px 20px rgba(0,0,0,.25); transform: translateY(-1px); }
+    .ni-thumb { background: var(--card-2); overflow: hidden; }
+    .ni-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .no-img { width: 100%; min-height: 80px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--border); }
+    .ni-body { padding: 13px 16px; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .ni-title { font-weight: 700; font-size: 14px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ni-meta { font-size: 11px; color: var(--muted); }
+    .ni-excerpt { font-size: 13px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 2px; }
+    .ni-actions { padding: 10px 12px; display: flex; flex-direction: column; gap: 7px; justify-content: center; border-left: 1px solid var(--border); min-width: 90px; }
+    .btn-edit, .btn-del { padding: 6px 12px; border-radius: 7px; font-size: 12px; font-weight: 700; cursor: pointer; border: 1px solid; font-family: 'Inter', sans-serif; transition: all .15s; white-space: nowrap; }
+    .btn-edit { background: rgba(122,99,255,.1); border-color: rgba(122,99,255,.25); color: var(--accent-2); }
+    .btn-edit:hover { background: rgba(122,99,255,.22); }
+    .btn-del { background: rgba(239,68,68,.08); border-color: rgba(239,68,68,.22); color: var(--red); }
+    .btn-del:hover { background: rgba(239,68,68,.18); }
+    .empty-state { text-align: center; padding: 48px 24px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); color: var(--muted); }
+    .empty-state .es-icon { font-size: 38px; margin-bottom: 10px; }
+    .toast { position: fixed; bottom: 24px; right: 24px; background: var(--card-2); border: 1px solid var(--border); border-radius: 12px; padding: 13px 18px; font-size: 14px; font-weight: 600; color: var(--text); box-shadow: 0 14px 36px rgba(0,0,0,.45); transform: translateY(80px); opacity: 0; transition: all .3s cubic-bezier(.22,.8,.24,1); z-index: 999; display: flex; align-items: center; gap: 10px; max-width: 320px; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.ok  { border-color: rgba(34,197,94,.3); }
+    .toast.err { border-color: rgba(239,68,68,.3); }
+    ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   </style>
 </head>
 <body>
-  <h1>Адмінка: Новини</h1>
-  <p class="muted">
-    Тут можна створювати новини (текст + фото). Працює через Netlify Functions.
-  </p>
 
-  <div class="top">
-    <div>
-      <label for="token"><b>ADMIN TOKEN</b></label>
-      <input id="token" placeholder="вnfp_NS3AHNZx1TDqjMpQmH5W9nGqqV9RQX64a7ad" />
-      <div id="status" class="status muted"></div>
-    </div>
-
-    <div>
-      <button id="refresh">🔄 Оновити список новин</button>
-    </div>
+<header class="admin-header">
+  <a class="admin-logo" href="/"><div class="logo-dot"></div>НАРОДНА РАДА</a>
+  <div class="header-right">
+    <span class="header-badge">⚙️ Адмінка новин</span>
+    <a class="header-link" href="/news.html" target="_blank">↗ Переглянути сайт</a>
   </div>
+</header>
 
-  <hr/>
+<div class="layout">
+  <aside class="sidebar">
+    <div>
+      <div class="sec-label">Авторизація</div>
+      <div class="auth-box">
+        <div class="token-wrap">
+          <input id="token" type="password" placeholder="Введи Admin Token..." autocomplete="off" />
+          <button class="token-eye" onclick="togglePwd()">👁</button>
+        </div>
+        <div id="statusPill" class="status-pill idle">Очікування</div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-label">Статистика</div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-num" id="statTotal">—</div><div class="stat-lbl">Всього</div></div>
+        <div class="stat-box"><div class="stat-num" id="statPhoto">—</div><div class="stat-lbl">З фото</div></div>
+      </div>
+    </div>
+    <button class="btn-ghost" onclick="loadNews()">🔄 Оновити список</button>
+  </aside>
 
-  <h2>Створити новину</h2>
-  <label for="title">Заголовок</label>
-  <input id="title" placeholder="Наприклад: Відкриття нового відділення" />
+  <main class="main-content">
+    <div class="form-card">
+      <div class="form-card-head">
+        <h2 id="formTitle">✦ Нова новина</h2>
+        <div class="edit-banner" id="editBanner">
+          ✏️ Редагування <span id="editLabel"></span>
+          <button onclick="resetForm()">✕</button>
+        </div>
+      </div>
+      <div class="form-body">
+        <div class="field">
+          <label>Заголовок</label>
+          <input id="fTitle" placeholder="Наприклад: Відкриття нового відділення..." />
+        </div>
+        <div class="field">
+          <label>Текст новини</label>
+          <textarea id="fContent" rows="5" placeholder="Введи текст новини..."></textarea>
+        </div>
+        <div class="field">
+          <label>Фото (не обов'язково)</label>
+          <div class="file-zone" id="fileZone">
+            <input type="file" id="fImage" accept="image/*" onchange="onFile(this)" />
+            <div class="fz-icon">🖼</div>
+            <div class="fz-hint">Перетягни або <b>обери файл</b></div>
+          </div>
+          <div class="preview-wrap" id="previewWrap">
+            <img id="previewImg" src="" alt="" />
+            <span id="previewName"></span>
+          </div>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button class="btn-publish" id="btnSubmit" onclick="submitForm()">✅ Опублікувати</button>
+        <button class="btn-cancel" id="btnCancel" onclick="resetForm()">Скасувати</button>
+      </div>
+    </div>
 
-  <label for="content">Текст новини</label>
-  <textarea id="content" rows="7" placeholder="Введи текст новини..."></textarea>
+    <div>
+      <div class="list-head">
+        <h2>Список новин</h2>
+        <span class="news-badge" id="newsCount">0</span>
+      </div>
+      <div class="news-list" id="newsList">
+        <div class="empty-state"><div class="es-icon">📭</div>Завантаження...</div>
+      </div>
+    </div>
+  </main>
+</div>
 
-  <label for="image">Фото (не обов'язково)</label>
-  <input id="image" type="file" accept="image/*" />
-
-  <button id="create">✅ Опублікувати</button>
-
-  <hr/>
-
-  <h2>Список новин</h2>
-  <div id="list" class="muted">Завантаження...</div>
+<div class="toast" id="toast"></div>
 
 <script>
-  // ✅ Netlify Functions endpoints (відносні URL)
-  const GET_NEWS = "/.netlify/functions/get-news";
-  const CREATE_NEWS = "/.netlify/functions/create-news";
+  const API = {
+    get:    '/.netlify/functions/get-news',
+    create: '/.netlify/functions/create-news',
+    update: '/.netlify/functions/update-news',
+    delete: '/.netlify/functions/delete-news',
+  };
+  const $ = id => document.getElementById(id);
+  let editingId = null, toastTimer;
 
-  const el = (id) => document.getElementById(id);
-
-  function setStatus(text, type = "muted") {
-    const s = el("status");
-    s.textContent = text || "";
-    s.className = `status ${type}`;
+  function toast(msg, type = 'ok') {
+    const t = $('toast');
+    t.textContent = (type === 'ok' ? '✅ ' : '❌ ') + msg;
+    t.className = `toast ${type} show`;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3500);
   }
+
+  function setStatus(text, type = 'idle') {
+    const s = $('statusPill');
+    s.textContent = text;
+    s.className = `status-pill ${type}`;
+  }
+
+  function togglePwd() {
+    const i = $('token');
+    i.type = i.type === 'password' ? 'text' : 'password';
+  }
+
+  function onFile(input) {
+    const f = input.files[0];
+    if (!f) return;
+    const r = new FileReader();
+    r.onload = e => {
+      $('previewImg').src = e.target.result;
+      $('previewName').textContent = f.name;
+      $('previewWrap').style.display = 'block';
+    };
+    r.readAsDataURL(f);
+  }
+
+  const zone = $('fileZone');
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault(); zone.classList.remove('over');
+    const f = e.dataTransfer.files[0];
+    if (f?.type.startsWith('image/')) { $('fImage').files = e.dataTransfer.files; onFile($('fImage')); }
+  });
 
   async function loadNews() {
+    setStatus('Завантажую...', 'loading');
     try {
-      setStatus("Завантажую новини...");
-      const res = await fetch(GET_NEWS);
+      const res = await fetch(API.get);
       if (!res.ok) throw new Error(await res.text());
-
-      const news = await res.json();
-      const list = el("list");
-
-      if (!Array.isArray(news) || news.length === 0) {
-        list.className = "muted";
-        list.textContent = "Новин поки немає.";
-        setStatus("Готово ✅", "ok");
-        return;
-      }
-
-      list.className = "";
-      list.innerHTML = "";
-
-      news.forEach(n => {
-        const div = document.createElement("div");
-        div.className = "row";
-
-        const created = n.created_at ? new Date(n.created_at).toLocaleString() : "";
-        div.innerHTML = `
-          <b>#${n.id}</b> — ${escapeHtml(n.title)}<br/>
-          <span class="muted">${created}</span>
-          <p>${escapeHtml(n.content).replace(/\n/g, "<br/>")}</p>
-          ${n.image_url ? `<img src="${n.image_url}" alt="news image">` : ""}
-        `;
-
-        list.appendChild(div);
-      });
-
-      setStatus("Готово ✅", "ok");
+      renderList(await res.json());
+      setStatus('Готово', 'ok');
     } catch (e) {
-      el("list").className = "muted";
-      el("list").textContent = "Не вдалося завантажити новини.";
-      setStatus("Помилка завантаження: " + e.message, "err");
+      setStatus('Помилка', 'err');
+      $('newsList').innerHTML = `<div class="empty-state"><div class="es-icon">⚠️</div>Не вдалося завантажити</div>`;
     }
   }
 
-  async function createNews() {
-    const token = el("token").value.trim();
-    const title = el("title").value.trim();
-    const content = el("content").value.trim();
-    const file = el("image").files[0];
-
-    if (!token) {
-      setStatus("Введи ADMIN TOKEN.", "err");
+  function renderList(news) {
+    $('newsCount').textContent = news.length;
+    $('statTotal').textContent = news.length;
+    $('statPhoto').textContent = news.filter(n => n.image_url).length;
+    const list = $('newsList');
+    if (!news.length) {
+      list.innerHTML = `<div class="empty-state"><div class="es-icon">📭</div>Новин поки немає. Створи першу!</div>`;
       return;
     }
-    if (!title || !content) {
-      setStatus("Заповни заголовок і текст новини.", "err");
-      return;
-    }
+    list.innerHTML = '';
+    news.forEach((n, i) => {
+      const div = document.createElement('div');
+      div.className = 'news-item';
+      div.style.animationDelay = `${i * 40}ms`;
+      const date = n.created_at
+        ? new Date(n.created_at).toLocaleString('uk-UA', {day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
+        : '';
+      div.innerHTML = `
+        <div class="ni-thumb">
+          ${n.image_url ? `<img src="${n.image_url}" alt="" loading="lazy">` : `<div class="no-img">🗞</div>`}
+        </div>
+        <div class="ni-body">
+          <div class="ni-title">${esc(n.title)}</div>
+          <div class="ni-meta">#${n.id} · ${date}</div>
+          <div class="ni-excerpt">${esc(n.content)}</div>
+        </div>
+        <div class="ni-actions">
+          <button class="btn-edit" onclick='startEdit(${n.id},${JSON.stringify(n.title)},${JSON.stringify(n.content)})'>✏️ Ред.</button>
+          <button class="btn-del" onclick="delNews(${n.id})">🗑 Вид.</button>
+        </div>`;
+      list.appendChild(div);
+    });
+  }
 
+  async function submitForm() {
+    const token = $('token').value.trim();
+    const title = $('fTitle').value.trim();
+    const content = $('fContent').value.trim();
+    const file = $('fImage').files[0];
+    if (!token)             { toast('Введи Admin Token', 'err'); return; }
+    if (!title || !content) { toast("Заголовок і текст обов'язкові", 'err'); return; }
+    $('btnSubmit').disabled = true;
+    setStatus('Збереження...', 'loading');
+    const fd = new FormData();
+    fd.append('title', title); fd.append('content', content);
+    if (file) fd.append('image', file);
     try {
-      setStatus("Публікую новину...");
-
-      const fd = new FormData();
-      fd.append("title", title);
-      fd.append("content", content);
-      if (file) fd.append("image", file);
-
-      const res = await fetch(CREATE_NEWS, {
-        method: "POST",
-        headers: { "x-admin-token": token },
-        body: fd
-      });
-
+      const url = editingId ? `${API.update}?id=${editingId}` : API.create;
+      const res = await fetch(url, { method: 'POST', headers: { 'x-admin-token': token }, body: fd });
       if (!res.ok) throw new Error(await res.text());
-
-      // очистка форми
-      el("title").value = "";
-      el("content").value = "";
-      el("image").value = "";
-
-      setStatus("Новину створено ✅", "ok");
-      await loadNews();
+      toast(editingId ? 'Новину оновлено!' : 'Новину опубліковано!');
+      resetForm(); await loadNews();
     } catch (e) {
-      setStatus("Помилка створення: " + e.message, "err");
+      toast('Помилка: ' + e.message, 'err'); setStatus('Помилка', 'err');
+    } finally {
+      $('btnSubmit').disabled = false;
     }
   }
 
-  // маленький захист від вставки HTML в контент
-  function escapeHtml(str) {
-    return String(str)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
+  async function delNews(id) {
+    if (!$('token').value.trim()) { toast('Введи Admin Token', 'err'); return; }
+    if (!confirm(`Видалити новину #${id}?`)) return;
+    setStatus('Видаляю...', 'loading');
+    try {
+      const res = await fetch(`${API.delete}?id=${id}`, { method: 'DELETE', headers: { 'x-admin-token': $('token').value.trim() } });
+      if (!res.ok) throw new Error(await res.text());
+      toast('Новину видалено'); await loadNews();
+    } catch (e) {
+      toast('Помилка видалення', 'err'); setStatus('Помилка', 'err');
+    }
   }
 
-  el("create").addEventListener("click", createNews);
-  el("refresh").addEventListener("click", loadNews);
+  function startEdit(id, title, content) {
+    editingId = id;
+    $('fTitle').value = title; $('fContent').value = content;
+    $('fImage').value = ''; $('previewWrap').style.display = 'none';
+    $('formTitle').textContent = '✏️ Редагування';
+    $('btnSubmit').textContent = '💾 Зберегти зміни';
+    $('editLabel').textContent = `#${id}`;
+    $('editBanner').classList.add('on');
+    $('btnCancel').classList.add('on');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function resetForm() {
+    editingId = null;
+    $('fTitle').value = ''; $('fContent').value = '';
+    $('fImage').value = ''; $('previewWrap').style.display = 'none';
+    $('formTitle').textContent = '✦ Нова новина';
+    $('btnSubmit').textContent = '✅ Опублікувати';
+    $('editBanner').classList.remove('on');
+    $('btnCancel').classList.remove('on');
+  }
+
+  function esc(s) {
+    return String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+  }
 
   loadNews();
 </script>

@@ -1,147 +1,362 @@
 <!DOCTYPE html>
 <html lang="uk">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <base href="/" />
-    <title>Новини — Народна Рада</title>
-    <!-- Fancy fonts for the header -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Montserrat+Alternates:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/assets/header/header.css">
-    <link rel="stylesheet" href="/css/theme-ukraine.css">
-    <link rel="stylesheet" href="/css/news.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="/" />
+  <title>Новини — Народна Рада</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Montserrat+Alternates:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/assets/header/header.css">
+  <link rel="stylesheet" href="/css/theme-ukraine.css">
+  <link rel="stylesheet" href="/css/news.css">
+  <style>
+    /* ── Динамічні новини зі Supabase ── */
+    .news-dynamic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 8px;
+    }
+    @media (max-width: 900px) { .news-dynamic-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 580px) { .news-dynamic-grid { grid-template-columns: 1fr; } }
+
+    .dyn-card {
+      background: #fff;
+      border: 1px solid #e7eaf6;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 260px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .16s ease, box-shadow .16s ease;
+      cursor: pointer;
+      animation: cardIn .4s ease both;
+    }
+    @keyframes cardIn { from { opacity:0; transform:translateY(12px) } to { opacity:1; transform:none } }
+    .dyn-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15,23,42,.10); }
+
+    .dyn-thumb {
+      height: 168px;
+      background: linear-gradient(135deg, #eef2ff, #dde5ff);
+      overflow: hidden;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .dyn-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+    .dyn-card:hover .dyn-thumb img { transform: scale(1.04); }
+    .dyn-thumb .no-photo {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; color: #b8c4e8;
+    }
+
+    .dyn-body { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .dyn-date { font-size: 12px; color: #8494b2; font-weight: 500; }
+    .dyn-title { font-size: 1rem; font-weight: 800; color: #0b1522; line-height: 1.35; }
+    .dyn-excerpt { font-size: 13px; color: #475569; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .dyn-more { margin-top: auto; font-size: 13px; font-weight: 700; color: #223a8f; }
+
+    /* Modal */
+    .news-modal-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(10,14,26,.75);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s ease;
+    }
+    .news-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .news-modal {
+      background: #fff;
+      border-radius: 20px;
+      max-width: 680px; width: 100%;
+      max-height: 88vh; overflow-y: auto;
+      box-shadow: 0 24px 60px rgba(0,0,0,.3);
+      transform: scale(.96) translateY(16px);
+      transition: transform .3s cubic-bezier(.22,.8,.24,1);
+    }
+    .news-modal-overlay.open .news-modal { transform: none; }
+    .modal-img { width: 100%; max-height: 320px; object-fit: cover; display: block; border-radius: 20px 20px 0 0; }
+    .modal-body { padding: 24px 28px 32px; }
+    .modal-date { font-size: 13px; color: #8494b2; margin-bottom: 8px; }
+    .modal-title { font-family: 'Unbounded', sans-serif; font-size: clamp(18px,3vw,24px); font-weight: 900; color: #0b1522; margin-bottom: 16px; line-height: 1.3; }
+    .modal-content { font-size: 15px; color: #334155; line-height: 1.75; white-space: pre-wrap; }
+    .modal-close {
+      position: sticky; top: 16px; float: right; margin: 16px 16px 0 0;
+      background: rgba(15,23,42,.08); border: none;
+      width: 36px; height: 36px; border-radius: 50%;
+      font-size: 18px; cursor: pointer; color: #334155;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: rgba(15,23,42,.15); }
+
+    /* Skeleton loader */
+    .skeleton {
+      background: #f1f5f9;
+      border: 1px solid #e7eaf6;
+      border-radius: 14px;
+      min-height: 260px;
+      overflow: hidden;
+      position: relative;
+    }
+    .skeleton::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,.7) 50%, transparent 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+    @keyframes shimmer { from { background-position: 200% 0 } to { background-position: -200% 0 } }
+
+    .news-error {
+      grid-column: 1/-1; text-align: center;
+      padding: 40px 20px; color: #94a3b8; font-size: 15px;
+    }
+    .news-error .err-icon { font-size: 36px; margin-bottom: 10px; }
+
+    /* Pagination */
+    .dyn-pagination {
+      display: flex; justify-content: center; align-items: center;
+      gap: 8px; margin-top: 28px;
+    }
+    .dyn-pagination button {
+      padding: 8px 16px; border-radius: 8px; border: 1px solid #e2e8f0;
+      background: #fff; color: #334155; font-weight: 600; font-size: 14px;
+      cursor: pointer; transition: all .15s;
+      font-family: inherit;
+    }
+    .dyn-pagination button:hover:not(:disabled) { background: #eef2ff; border-color: #c7d2fe; color: #223a8f; }
+    .dyn-pagination button.active { background: #223a8f; color: #fff; border-color: #223a8f; }
+    .dyn-pagination button:disabled { opacity: .4; cursor: not-allowed; }
+  </style>
 </head>
-
 <body>
-    <header class="nr-header" role="banner">
-  <!-- Верхній поверх: лого, назва, соц.іконки -->
-  <div class="nr-header__top" aria-label="Верхня панель">
-    <a class="nr-brand" href="/" aria-label="Головна">
-      <img class="nr-brand__logo" src="/img/logo.jpg" alt="Логотип Народна рада" width="48" height="48" decoding="async" />
-      <div class="nr-brand__text">
-        <span class="nr-brand__title">Народна рада</span>
-        <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
-      </div>
-    </a>
-
-    <nav class="nr-social" aria-label="Соціальні мережі">
-      <a class="nr-social__link" href="#" aria-label="Instagram" title="Instagram">
-        <!-- Instagram SVG -->
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm5.75-3.25a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z"/>
-        </svg>
+  <header class="nr-header" role="banner">
+    <div class="nr-header__top" aria-label="Верхня панель">
+      <a class="nr-brand" href="/" aria-label="Головна">
+        <img class="nr-brand__logo" src="/img/logo.jpg" alt="Логотип Народна рада" width="48" height="48" decoding="async" />
+        <div class="nr-brand__text">
+          <span class="nr-brand__title">Народна рада</span>
+          <span class="nr-brand__subtitle">Всеукраїнська спілка громадських організацій</span>
+        </div>
       </a>
-      <a class="nr-social__link" href="#" aria-label="Twitter / X" title="Twitter / X">
-        <!-- X/Twitter SVG -->
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <path fill="currentColor" d="M3 3h4.6l5.4 7.2L18.4 3H21l-7 9.2L21 21h-4.6l-5.6-7.5L5.6 21H3l7.4-9.8L3 3z"/>
-        </svg>
-      </a>
-      <a class="nr-social__link" href="#" aria-label="Facebook" title="Facebook">
-        <!-- Facebook SVG -->
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <path fill="currentColor" d="M13 9h3V6h-3c-2.2 0-4 1.8-4 4v2H6v3h3v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/>
-        </svg>
-      </a>
-
-      <!-- Бургер лише для моб. щоб відкривати нижнє меню -->
-      <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav">
-        <span></span><span></span><span></span>
-      </button>
+      <nav class="nr-social" aria-label="Соціальні мережі">
+        <a class="nr-social__link" href="#" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm5.75-3.25a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z"/></svg>
+        </a>
+        <a class="nr-social__link" href="#" aria-label="Twitter / X" title="Twitter / X">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M3 3h4.6l5.4 7.2L18.4 3H21l-7 9.2L21 21h-4.6l-5.6-7.5L5.6 21H3l7.4-9.8L3 3z"/></svg>
+        </a>
+        <a class="nr-social__link" href="#" aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M13 9h3V6h-3c-2.2 0-4 1.8-4 4v2H6v3h3v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg>
+        </a>
+        <button class="nr-burger" aria-label="Меню" aria-expanded="false" aria-controls="nr-subnav">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+    <div class="nr-header__mid" aria-hidden="true"></div>
+    <nav id="nr-subnav" class="nr-subnav" aria-label="Головна навігація">
+      <ul class="nr-menu nr-menu--bottom">
+        <li class="nr-menu__item nr-dropdown">
+          <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
+            Про нас
+            <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
+          </button>
+          <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
+            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
+            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
+            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
+            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
+          </ul>
+        </li>
+        <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
+        <li class="nr-menu__item"><a class="nr-link" href="/events.html">Відкрита Трибуна</a></li>
+        <li class="nr-menu__item"><a class="nr-link" href="/helpthroughart.html">HelpthroughArt</a></li>
+        <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
+        <li class="nr-menu__item nr-dropdown">
+          <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fund">
+            Фонд
+            <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
+          </button>
+          <ul id="menu-fund" class="nr-dropdown__menu" role="menu" aria-label="Меню Фонд">
+            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/about-fond.html">Про фонд</a></li>
+            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/partners.html">Партнери</a></li>
+            <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/founders.html">Засновники</a></li>
+          </ul>
+        </li>
+        <li class="nr-menu__item"><a class="nr-link" href="/contacts.html">Контакти</a></li>
+      </ul>
     </nav>
+  </header>
+
+  <div class="menu-overlay" aria-hidden="true"></div>
+
+  <main class="container" style="margin: 26px auto 60px">
+    <h1 class="page-title">Новини</h1>
+
+    <!-- Динамічна секція з Supabase -->
+    <div id="newsGrid" class="news-dynamic-grid">
+      <!-- Skeleton loaders -->
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
+
+    <nav class="dyn-pagination" id="pagination" aria-label="Пагінація" style="display:none"></nav>
+  </main>
+
+  <!-- Modal -->
+  <div class="news-modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="news-modal" id="modalBox">
+      <button class="modal-close" onclick="closeModal()" aria-label="Закрити">✕</button>
+      <img id="modalImg" class="modal-img" src="" alt="" style="display:none" />
+      <div class="modal-body">
+        <div class="modal-date" id="modalDate"></div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-content" id="modalContent"></div>
+      </div>
+    </div>
   </div>
 
-  <!-- Середній поверх: декоративна смужка -->
-  <div class="nr-header__mid" aria-hidden="true"></div>
+  <footer class="footer">
+    <div class="container row">© 2025 Народна Рада — Усі права захищено</div>
+  </footer>
 
-  <!-- Нижній поверх: головна навігація -->
-  <nav id="nr-subnav" class="nr-subnav" aria-label="Головна навігація">
-    <ul class="nr-menu nr-menu--bottom">
-      <li class="nr-menu__item nr-dropdown">
-        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-about">
-          Про нас
-          <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
-        </button>
-        <ul id="menu-about" class="nr-dropdown__menu" role="menu" aria-label="Меню Про нас">
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/history.html">Історія</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/documents.html">Документи</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/leadership.html">Керівництво</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/structure.html">Структура</a></li>
-        </ul>
-      </li>
+  <script src="/js/burger.js" defer></script>
+  <script src="/assets/header/header.js" defer></script>
+  <script src="/js/active-nav.js" defer></script>
 
-      <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/events.html">Відкрита Трибуна</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/helpthroughart.html">HelpthroughArt</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
+  <script>
+    const PER_PAGE = 9;
+    let allNews = [];
+    let currentPage = 1;
 
-      <li class="nr-menu__item nr-dropdown">
-        <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-fund">
-          Фонд
-          <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
-        </button>
-        <ul id="menu-fund" class="nr-dropdown__menu" role="menu" aria-label="Меню Фонд">
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/about-fond.html">Про фонд</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/partners.html">Партнери</a></li>
-          <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/founders.html">Засновники</a></li>
-        </ul>
-      </li>
+    async function fetchNews() {
+      try {
+        const res = await fetch('/.netlify/functions/get-news');
+        if (!res.ok) throw new Error('Помилка завантаження');
+        allNews = await res.json();
+        renderPage(1);
+      } catch (e) {
+        document.getElementById('newsGrid').innerHTML = `
+          <div class="news-error">
+            <div class="err-icon">😕</div>
+            Не вдалося завантажити новини. Спробуй пізніше.
+          </div>`;
+      }
+    }
 
-      <li class="nr-menu__item"><a class="nr-link" href="/contacts.html">Контакти</a></li>
-    </ul>
-  </nav>
-</header>
-    <div class="menu-overlay" aria-hidden="true"></div>
-    <main class="container" style="margin:26px auto 40px">
-        <h1 class="page-title">Новини</h1>
+    function renderPage(page) {
+      currentPage = page;
+      const grid = document.getElementById('newsGrid');
+      const start = (page - 1) * PER_PAGE;
+      const items = allNews.slice(start, start + PER_PAGE);
 
-        <div class="filters">
-            <div class="filters-row">
-                <button class="chip active" data-filter="all">Усі</button>
-                <button class="chip" data-filter="nr">Новини НР</button>
-                <button class="chip" data-filter="ua">Новини України</button>
-                <button class="chip" data-filter="fond">Новини Фонду</button>
-            </div>
-        </div>
+      if (!items.length) {
+        grid.innerHTML = `<div class="news-error"><div class="err-icon">📭</div>Новин поки немає.</div>`;
+        document.getElementById('pagination').style.display = 'none';
+        return;
+      }
 
-        <div class="list">
-            <article class="card-article" data-cat="nr">
-                <span class="chip">Новини НР</span>
-                <h3 class="title">Запуск програми мікрогрантів</h3>
-                <p class="excerpt">Перший етап підтримки місцевих ініціатив…</p>
-                <div class="meta">12.10.2025</div>
-            </article>
-            <article class="card-article" data-cat="ua">
-                <span class="chip">Новини України</span>
-                <h3 class="title">Партнерство для розвитку ВДЕ</h3>
-                <p class="excerpt">Підписано меморандум та дорожню карту…</p>
-                <div class="meta">09.10.2025</div>
-            </article>
-            <article class="card-article" data-cat="fond">
-                <span class="chip">Новини Фонду</span>
-                <h3 class="title">Звітність за III квартал</h3>
-                <p class="excerpt">Ключові результати та використання коштів…</p>
-                <div class="meta">02.10.2025</div>
-            </article>
-        </div>
+      grid.innerHTML = '';
+      items.forEach((n, i) => {
+        const card = document.createElement('div');
+        card.className = 'dyn-card';
+        card.style.animationDelay = `${i * 60}ms`;
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', n.title);
 
-        <nav class="pagination" aria-label="Пагінація">
-            <button class="page-btn" disabled>‹</button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">›</button>
-        </nav>
-    </main>
+        const date = n.created_at
+          ? new Date(n.created_at).toLocaleDateString('uk-UA', {day:'2-digit', month:'long', year:'numeric'})
+          : '';
+        const excerpt = n.content.length > 120 ? n.content.slice(0, 120) + '...' : n.content;
 
-    <footer class="footer">
-        <div class="container row">© 2025 Народна Рада — Усі права захищено</div>
-    </footer>
-    <script src="/js/burger.js" defer></script>
-    <script src="/assets/header/header.js" defer></script>
-    <script src="/js/active-nav.js" defer></script>
+        card.innerHTML = `
+          <div class="dyn-thumb">
+            ${n.image_url
+              ? `<img src="${n.image_url}" alt="${esc(n.title)}" loading="lazy">`
+              : `<div class="no-photo">🗞</div>`}
+          </div>
+          <div class="dyn-body">
+            <div class="dyn-date">${date}</div>
+            <div class="dyn-title">${esc(n.title)}</div>
+            <div class="dyn-excerpt">${esc(excerpt)}</div>
+            <div class="dyn-more">Читати далі →</div>
+          </div>`;
+
+        card.addEventListener('click', () => openModal(n));
+        card.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(n); });
+        grid.appendChild(card);
+      });
+
+      renderPagination();
+    }
+
+    function renderPagination() {
+      const total = Math.ceil(allNews.length / PER_PAGE);
+      const nav = document.getElementById('pagination');
+      if (total <= 1) { nav.style.display = 'none'; return; }
+
+      nav.style.display = 'flex';
+      nav.innerHTML = '';
+
+      const prev = document.createElement('button');
+      prev.textContent = '‹ Назад';
+      prev.disabled = currentPage === 1;
+      prev.onclick = () => { renderPage(currentPage - 1); window.scrollTo({top:0,behavior:'smooth'}); };
+      nav.appendChild(prev);
+
+      for (let p = 1; p <= total; p++) {
+        const btn = document.createElement('button');
+        btn.textContent = p;
+        if (p === currentPage) btn.classList.add('active');
+        btn.onclick = () => { renderPage(p); window.scrollTo({top:0,behavior:'smooth'}); };
+        nav.appendChild(btn);
+      }
+
+      const next = document.createElement('button');
+      next.textContent = 'Далі ›';
+      next.disabled = currentPage === total;
+      next.onclick = () => { renderPage(currentPage + 1); window.scrollTo({top:0,behavior:'smooth'}); };
+      nav.appendChild(next);
+    }
+
+    // ── Modal ──
+    function openModal(n) {
+      const date = n.created_at
+        ? new Date(n.created_at).toLocaleDateString('uk-UA', {day:'2-digit', month:'long', year:'numeric'})
+        : '';
+      const img = document.getElementById('modalImg');
+      if (n.image_url) { img.src = n.image_url; img.style.display = 'block'; }
+      else { img.style.display = 'none'; }
+      document.getElementById('modalDate').textContent = date;
+      document.getElementById('modalTitle').textContent = n.title;
+      document.getElementById('modalContent').textContent = n.content;
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e && e.target !== document.getElementById('modalOverlay') && !e.target.classList.contains('modal-close')) return;
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; } });
+
+    function esc(s) {
+      return String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+    }
+
+    fetchNews();
+  </script>
 </body>
-
 </html>
