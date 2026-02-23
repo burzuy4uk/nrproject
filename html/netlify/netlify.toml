@@ -1,3 +1,7 @@
+[build]
+  publish = "html"
+  functions = "netlify/functions"
+  
 [[redirects]]
 from = "/news/:slug"
 to   = "/news-post.html?slug=:slug"

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Адмінка новин</title>
+  <style>
+    body{font-family:system-ui,Arial,sans-serif;margin:24px;max-width:900px}
+    input,textarea,button{width:100%;padding:10px;margin:8px 0;box-sizing:border-box}
+    button{cursor:pointer}
+    .row{border:1px solid #ddd;border-radius:12px;padding:12px;margin:12px 0}
+    img{max-width:260px;border-radius:10px;display:block;margin-top:8px}
+    .muted{opacity:.7;font-size:14px}
+    .top{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+    .top > div{flex:1;min-width:260px}
+    .status{margin-top:6px;font-size:14px}
+    .ok{color:green}
+    .err{color:crimson}
+  </style>
+</head>
+<body>
+  <h1>Адмінка: Новини</h1>
+  <p class="muted">
+    Тут можна створювати новини (текст + фото). Працює через Netlify Functions.
+  </p>
+
+  <div class="top">
+    <div>
+      <label for="token"><b>ADMIN TOKEN</b></label>
+      <input id="token" placeholder="вnfp_NS3AHNZx1TDqjMpQmH5W9nGqqV9RQX64a7ad" />
+      <div id="status" class="status muted"></div>
+    </div>
+
+    <div>
+      <button id="refresh">🔄 Оновити список новин</button>
+    </div>
+  </div>
+
+  <hr/>
+
+  <h2>Створити новину</h2>
+  <label for="title">Заголовок</label>
+  <input id="title" placeholder="Наприклад: Відкриття нового відділення" />
+
+  <label for="content">Текст новини</label>
+  <textarea id="content" rows="7" placeholder="Введи текст новини..."></textarea>
+
+  <label for="image">Фото (не обов'язково)</label>
+  <input id="image" type="file" accept="image/*" />
+
+  <button id="create">✅ Опублікувати</button>
+
+  <hr/>
+
+  <h2>Список новин</h2>
+  <div id="list" class="muted">Завантаження...</div>
+
+<script>
+  // ✅ Netlify Functions endpoints (відносні URL)
+  const GET_NEWS = "/.netlify/functions/get-news";
+  const CREATE_NEWS = "/.netlify/functions/create-news";
+
+  const el = (id) => document.getElementById(id);
+
+  function setStatus(text, type = "muted") {
+    const s = el("status");
+    s.textContent = text || "";
+    s.className = `status ${type}`;
+  }
+
+  async function loadNews() {
+    try {
+      setStatus("Завантажую новини...");
+      const res = await fetch(GET_NEWS);
+      if (!res.ok) throw new Error(await res.text());
+
+      const news = await res.json();
+      const list = el("list");
+
+      if (!Array.isArray(news) || news.length === 0) {
+        list.className = "muted";
+        list.textContent = "Новин поки немає.";
+        setStatus("Готово ✅", "ok");
+        return;
+      }
+
+      list.className = "";
+      list.innerHTML = "";
+
+      news.forEach(n => {
+        const div = document.createElement("div");
+        div.className = "row";
+
+        const created = n.created_at ? new Date(n.created_at).toLocaleString() : "";
+        div.innerHTML = `
+          <b>#${n.id}</b> — ${escapeHtml(n.title)}<br/>
+          <span class="muted">${created}</span>
+          <p>${escapeHtml(n.content).replace(/\n/g, "<br/>")}</p>
+          ${n.image_url ? `<img src="${n.image_url}" alt="news image">` : ""}
+        `;
+
+        list.appendChild(div);
+      });
+
+      setStatus("Готово ✅", "ok");
+    } catch (e) {
+      el("list").className = "muted";
+      el("list").textContent = "Не вдалося завантажити новини.";
+      setStatus("Помилка завантаження: " + e.message, "err");
+    }
+  }
+
+  async function createNews() {
+    const token = el("token").value.trim();
+    const title = el("title").value.trim();
+    const content = el("content").value.trim();
+    const file = el("image").files[0];
+
+    if (!token) {
+      setStatus("Введи ADMIN TOKEN.", "err");
+      return;
+    }
+    if (!title || !content) {
+      setStatus("Заповни заголовок і текст новини.", "err");
+      return;
+    }
+
+    try {
+      setStatus("Публікую новину...");
+
+      const fd = new FormData();
+      fd.append("title", title);
+      fd.append("content", content);
+      if (file) fd.append("image", file);
+
+      const res = await fetch(CREATE_NEWS, {
+        method: "POST",
+        headers: { "x-admin-token": token },
+        body: fd
+      });
+
+      if (!res.ok) throw new Error(await res.text());
+
+      // очистка форми
+      el("title").value = "";
+      el("content").value = "";
+      el("image").value = "";
+
+      setStatus("Новину створено ✅", "ok");
+      await loadNews();
+    } catch (e) {
+      setStatus("Помилка створення: " + e.message, "err");
+    }
+  }
+
+  // маленький захист від вставки HTML в контент
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  el("create").addEventListener("click", createNews);
+  el("refresh").addEventListener("click", loadNews);
+
+  loadNews();
+</script>
+</body>
+</html>
