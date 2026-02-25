@@ -76,7 +76,9 @@
 
       <li class="nr-menu__item"><a class="nr-link" href="/news.html">Новини</a></li>
       <li class="nr-menu__item"><a class="nr-link" href="/events.html">Відкрита Трибуна</a></li>
-      <li class="nr-menu__item"><a class="nr-link" href="/helpthroughart.html">HelpthroughArt</a></li>
+      <li class="nr-menu__item">
+  <a class="nr-link" href="https://lccd-cls.cloud/dashboards/community-research" target="_blank" rel="noopener">HelpthroughArt</a>
+</li>
       <li class="nr-menu__item"><a class="nr-link" href="/projects.html">Проєкти</a></li>
 
       <li class="nr-menu__item nr-dropdown">
@@ -99,7 +101,16 @@
     <main class="page">
         <h1>Проєкти</h1>
         <div class="prose">
-            <p>Тут буде контент сторінки «Проєкти».</p>
+            <li class="nr-menu__item nr-dropdown">
+  <button class="nr-link nr-dropdown__toggle" aria-expanded="false" aria-controls="menu-projects">
+    Проєкти
+    <svg class="nr-caret" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="currentColor"/></svg>
+  </button>
+  <ul id="menu-projects" class="nr-dropdown__menu" role="menu">
+    <li role="none"><a role="menuitem" class="nr-dropdown__link" href="/projects.html">Всі проєкти</a></li>
+    <li role="none"><a role="menuitem" class="nr-dropdown__link" href="https://lccd-cls.cloud/dashboards/community-research" target="_blank" rel="noopener">HelpthroughArt ↗</a></li>
+  </ul>
+</li>
         </div>
     </main>
     <footer class="footer">
